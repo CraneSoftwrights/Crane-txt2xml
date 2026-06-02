@@ -1,0 +1,35 @@
+set -e
+
+# ---------------------------------------------------------------------------
+# Crane-txt2xml.sh
+#
+# A shell script for invoking the Crane-txt2xml workflow on the inputs
+#
+# Usage:
+#   Crane-txt2xml.sh  model-base-name  test-base-name
+#
+# Assumptions:
+#
+#   model-base-name.ixml - iXML grammar
+#   model-base-name.xsl  - iXML output massage stylesheet
+#
+#   test-base-name.txt                        - text input for XML output
+#   test-base-name/test-base-name.ixmlout.xml - iXML output XML
+#   test-base-name/test-base-name.ixmlout.txt - iXML XML as text
+#   test-base-name/test-base-name.xml         - XML output for text input
+#
+# Project: https://GitHub.com/CraneSoftwrights/Crane-txt2xml
+#
+# ---------------------------------------------------------------------------
+
+ixml=recipe.ixml
+ixml2xml=../xsl/Crane-ixml2xml.xsl
+xml2txt=../Crane-xml2txt.xsl
+
+
+DP0=$( cd "$(dirname "$0")" ; pwd -P )
+
+sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe" "$DP0/recipe1"
+sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe" "$DP0/recipe2"
+sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe" "$DP0/recipe3"
+sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe" "$DP0/recipe4"
