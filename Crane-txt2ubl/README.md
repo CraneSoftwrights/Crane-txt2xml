@@ -4,7 +4,7 @@ An environment for creating OASIS Universal Business Language (UBL) ISO/IEC 1984
 
 This configuration uses [version 2.5 of the UBL vocabulary](https://docs.oasis-open.org/ubl/UBL-2.5.html). This vocabulary is very large with over 5000 elements defined in many more contexts.
 
-The `Crane-ubl2txt.xsl` stylesheet converts a UBL instance into a text document suitable for using the `Crne-txt2ubl` environment for conversion back to XML.
+The `Crane-ubl2txt.xsl` stylesheet converts a UBL instance into a text document suitable for using the `Crane-txt2ubl` environment for conversion back to XML.
 
 At this time only the complete schemas are supported and not the endorsed schema subset.
 

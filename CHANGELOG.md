@@ -8,5 +8,5 @@ Latest release: [![Latest release](https://img.shields.io/github/v/release/Crane
 
 ---
 
-### [v0.0.1] - [v0.0.n] – 2026-05-17
-- initialize repository
+### [v1.0.0] – 2026-06-04
+- first release

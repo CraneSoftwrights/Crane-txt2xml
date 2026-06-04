@@ -11,21 +11,10 @@
 
 <xst:doc info="https://github.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-ixml2xml.xsl" vocabulary="DocBook">
-  <xst:title>Convert an ISS document into a raw XML document</xst:title>
+  <xst:title>Convert the iXML document into a raw XML document</xst:title>
   <para>
-    The Intermediate Sentence Syntax in Crane-txt2xml is the glue
-    between an arbitrary sentence parser and the vocabulary-specific
-    structure generator.
-  </para>
-  <para>
-    This stylesheet presumes element content to produce XML syntax with
-    only a namespace for the document element. This is suitable for
-    vocabularies such as OASIS UBL, though UBL needs a layer on top of
-    this to accommodate the namespaces.
-  </para>
-  <para>
-    Note that all matching priorities in this module are negative, so that
-    an including stylesheet can use standard priorities.
+    This stylesheet accommodates the elements produced from iXML that are
+    not vocabulary specific.
   </para>
 </xst:doc>
 
@@ -33,31 +22,6 @@
 <xst:doc>
   <xst:title>All processing is vocabulary agnostic</xst:title>
 </xst:doc>
-
-<xst:template>
-  <para>Ensure input is as expected</para>
-</xst:template>
-<xsl:template match="/" priority="-1">
-  <xsl:variable name="c:namespaceURI"
-                select="substring-after(namespace-uri(*),'?output=')"/>
-  <!--
-  <xsl:if test="not(ixml) and
-                not(starts-with(namespace-uri(*),
-                     'https://cranesoftwrights.github.io/ns/Crane-txt2xml')) or
-          ( for $suffix in substring-after(namespace-uri(*),'2xml')
-            return ( $suffix!='' and not(starts-with($suffix,'?output=')) ) )">
-    <xsl:message terminate="yes"
->Unexpected document element: {{{namespace-uri(*)}}}{local-name(*)}</xsl:message>
-  </xsl:if>
-  -->
-  <xsl:result-document indent="no" method="xml">
-
-  <xsl:next-match>
-    <xsl:with-param name="c:namespaceURI" tunnel="yes"
-                    select="$c:namespaceURI"/>
-  </xsl:next-match>
-  </xsl:result-document>
-</xsl:template>
 
 <xst:template>
   <para>All element handling is the same</para>
@@ -95,7 +59,7 @@
 
 <xst:template>
   <para>
-    A text element simply emits the text
+    When putting out values, add a space separator
   </para>
 </xst:template>
 <xsl:template match="*:__mixed_content_value" priority="-3">
@@ -106,7 +70,7 @@
 
 <xst:template>
   <para>
-    A text element simply emits the text
+    When putting out values, add a space separator
   </para>
 </xst:template>
 <xsl:template match="*:__value" priority="-3">
@@ -160,8 +124,6 @@
                         else $c:running"/>
 </xsl:function>
 
-<xsl:include href="Crane-reportParseErrors.xsl"/>
-
 <xst:template>
   <para>Every other element is emitted in no namespace</para>
   <xst:param name="c:namespaceURI">
@@ -174,5 +136,56 @@
     <xsl:call-template name="c:processContent"/>
   </xsl:element>
 </xsl:template>
+
+<!--========================================================================-->
+<xs:doc>
+  <xs:title>Utility</xs:title>
+</xs:doc>
+
+<xs:function>
+  <para>
+    Return the XPath address of the given node relative to the ixml document
+    element's grandchildren
+  </para>
+  <xs:param name="node">
+    <para>The node to report</para>
+  </xs:param>
+</xs:function>
+<xsl:function name="c:relativeXPath" as="xs:string?">
+  <xsl:param name="node" as="item()"/>
+  <xsl:sequence select="(for $each in $node return
+replace( if( $each instance of node() ) then c:xpath($each) else $each,
+         '^/ixml/[^/]*/?','')[normalize-space(.)],'')[1]"/>
+</xsl:function>
+
+<xs:function>
+  <para>Return the XPath address of the given node</para>
+  <xs:param name="node">
+    <para>The node to report</para>
+  </xs:param>
+</xs:function>
+<xsl:function name="c:xpath" as="xs:string">
+  <xsl:param name="node" as="node()"/>
+  <xsl:for-each select="$node">
+   <xsl:value-of>
+    <xsl:for-each select="(ancestor-or-self::*)">
+      <xsl:value-of select="string-join(( '/',name(.),
+        if(position()=1) then ''
+        else ('[',
+          string(count(preceding-sibling::*[name(.)=name(current())])+1),']')),
+              '')"/>
+    </xsl:for-each>
+    <xsl:if test="self::attribute()">
+      <xsl:text/>/@<xsl:value-of select="name(.)"/>
+    </xsl:if>
+    <xsl:if test="self::processing-instruction()">
+      <xsl:text/>/processing-instruction(<xsl:value-of select="name(.)"/>
+      <xsl:text>)[</xsl:text>
+      <xsl:value-of select="count(preceding-sibling::processing-instruction()
+                                  [name(.)=name(current())])+1"/>]<xsl:text/>
+    </xsl:if>
+   </xsl:value-of>
+  </xsl:for-each>
+</xsl:function>
 
 </xsl:stylesheet>

@@ -43,7 +43,7 @@ We'd also love PRs. If you're thinking of a large PR, we advise opening up an is
 1. Create a new branch: `git checkout -b my-branch-name`.
 1. Make your change, add tests, and make sure the original tests still pass.
 1. Please draft the [CHANGELOG.md](CHANGELOG.md) entry for your changes, to be finalized by the repository maintainer upon approval and merge.
-1. Please do not update the version-*.txt file in your pull request. Versioning and packaging are handled by the repository maintainer upon approval and merge.
+1. Please do not update the version-*.md file in your pull request. Versioning and packaging are handled by the repository maintainer upon approval and merge.
 1. Push to your fork and [submit a pull request][pr].
 1. Pat yourself on the back.
 1. We’ll take it from there and be in touch after review.
@@ -58,7 +58,7 @@ Work in Progress pull requests are also welcome to get feedback early on, or if 
 
 ## Release workflow
 
-Only the Réalta repository maintainer account can make a release. They determine the next version number to use for the release and update the submitter's branch with the revised `version-*.txt` file. 
+Only the Crane repository maintainer account can make a release. They determine the next version number to use for the release and update the submitter's branch with the revised `version-*.md` file. 
 
 The YAML script `release.yml` prepares a release with the artefact needed for non-Mac users.
 

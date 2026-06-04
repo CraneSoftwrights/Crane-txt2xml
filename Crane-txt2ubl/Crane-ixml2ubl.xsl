@@ -10,7 +10,7 @@
 
 <xst:doc info="https://github.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-ixml2ubl.xsl" vocabulary="DocBook">
-  <xst:title>Convert an ISS document into a UBL document</xst:title>
+  <xst:title>Convert the output of iXML into a UBL document</xst:title>
   <para>
     The Intermediate Sentence Syntax in Crane-txt2xml is the glue
     between an arbitrary sentence parser and the vocabulary-specific
@@ -23,8 +23,8 @@
   </para>
 </xst:doc>
 
-<!--note this has to be included and not imported to avoid import precedence-->
-<xsl:include href="../xsl/Crane-ixml2xml.xsl"/>
+<xsl:import href="../xsl/Crane-ixml2xml.xsl"/>
+<xsl:import href="../xsl/Crane-reportCoffeepotErrors.xsl"/>
 
 <!--========================================================================-->
 <xst:doc>

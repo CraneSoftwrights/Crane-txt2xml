@@ -77,8 +77,6 @@ This environment is not suited for every possible XML vocabulary. Please see the
 
 For questions, suggestions, comments, and contributions we invite you to create issues and pull requests, both of which are accessible in tabs in the GitHub web page header. Eager qualified contributors are invited to introduce themselves for consideration in joining the team.
 
-In particular, improvements and additions to the label language translations for [xsl/xlate/](xsl/xlate/) are most welcome.
-
 The numeric versioning of this project Latest release: [![Latest release](https://img.shields.io/github/v/release/CraneSoftwrights/Crane-txt2xml)](https://github.com/CraneSoftwrights/Crane-txt2xml/releases) follows the `<major/>`.`<minor/>`.`<patch/>` pattern defined by [Semantic Versioning](https://semver.org/). While generally aligned with SemVer principles, major version changes may also signal significant expansions in the project's scope.
 
 - `<major/>` — increased when existing usage may break due to changes, or when substantial new functionality is introduced that significantly broadens the project’s scope (i.e. new project phases).
@@ -101,4 +99,4 @@ Further resources are available via the tabs above:
 - See the [Wiki](https://github.com/CraneSoftwrights/Crane-txt2xml/wiki) for installation instructions, additional details, and frequently asked questions.  
 - See the [Discussions](https://github.com/CraneSoftwrights/Crane-txt2xml/discussions) for ongoing conversations and infrequently asked questions.
 
-At this time the project manager is [G. Ken Holman](mailto:gkholman@CraneSoftwrights.com), a [long-time XML community contributor](https://linkedin.com/in/gkholman) and the Princple Softwright at [Crane Softwrights Ltd.](https://CraneSoftwrights.com).
+At this time the project manager is [G. Ken Holman](mailto:gkholman@CraneSoftwrights.com), a [long-time XML community contributor](https://linkedin.com/in/gkholman) and the Principal Softwright at [Crane Softwrights Ltd.](https://CraneSoftwrights.com).

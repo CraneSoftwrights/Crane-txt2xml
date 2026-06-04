@@ -49,11 +49,13 @@ Errors are detected at three stages, each catching different classes of problems
 
 The iXML grammar encodes the vocabulary's element content models. When the authored text violates element structure — misspelled element labels, wrong element order, missing required elements, elements in impermissible locations — the iXML processor reports errors.
 
-The iXML processor's error output is in XML (in the iXML namespace). The Cleanup XSLT imports . The goal is to distill the error context into guidance the author can act on without understanding XML or iXML diagnostics.
-
 ### Stage 2: Cleanup XSLT
 
-The Cleanup XSLT accommodates the iXML processor error reporting, when present, and the transformation to the output XML instance when absent. The imported `Crane-ixml2xml.xsl` fragment accommodates the error reporting. Feedback is welcome regarding unaddressed error reporting that can be improved upon.
+The Cleanup XSLT accommodates the iXML processor error reporting, when present, and the transformation to the output XML instance when absent. See [Crane-txt2ubl/Crane-ixml2ubl.xsl](Crane-txt2ubl/Crane-ixml2ubl.xsl) for an example.
+
+The included `xsl/Crane-reportCoffeepotErrors.xsl` fragment accommodates the error reporting. Feedback is welcome regarding unaddressed error reporting that can be improved upon.
+
+The included `xsl/Crane-ixml2xml.xsl` fragment accommodates the successful output from parsing the iXML grammar.
 
 ### Stage 3: Schema Validation
 
@@ -80,7 +82,7 @@ Design considerations for aliases:
 
 - **Raw XML names are always supported.** An author can always use the actual XML element name (e.g., `AccountingSupplierParty:`) regardless of what aliases exist. Aliases are additive.
 - **Multi-word labels.** Aliases may contain whitespace. For example, the UBL implementation breaks camelCase element names into separate words: `Invoice Line:` as an alias for `InvoiceLine`. The iXML grammar accommodates optional whitespace within multi-word labels.
-- **Multiple languages.** Different environments can define aliases in different natural languages for the same vocabulary. For example, Crane-txt2pubmed offers language-specific distributions (Crane-txt2pubmed-de, Crane-txt2pubmed-fr) where element labels are available in German, French, and so on, alongside the English XML names.
+- **Multiple languages.** Different environments can define aliases in different natural languages for the same vocabulary. For example, the \<PubNote> project offers language-specific invocations (PubNoteInText2XML-de, PubNoteInText2XML-fr) where element labels are available in German, French, and so on, alongside the English XML names.
 - **Multiple aliases per name.** A single XML element name may have several aliases — abbreviations, full names, translations — all mapping to the same output element.
 
 ## The Cleanup XSLT

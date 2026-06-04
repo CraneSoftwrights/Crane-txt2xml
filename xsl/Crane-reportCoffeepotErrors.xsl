@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <?xml-stylesheet type="text/xsl" href="../xslstyle/xslstyle-docbook.xsl"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xs="http://www.CraneSoftwrights.com/ns/xslstyle"
-                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:xst="http://www.CraneSoftwrights.com/ns/xslstyle"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:c="urn:X-Crane"
                 xmlns:ctx="http://www.CraneSoftwrights.com/ns/Crane-txt2xml"
                 xmlns:ixml='http://invisiblexml.org/NS'
-                exclude-result-prefixes="xs xsd c ixml ctx"
+                exclude-result-prefixes="xs xst c ixml ctx"
                 version="3.0">
 
-<xs:doc info="$Id$"
-        filename="Crane-reportParseErrors.xsl" vocabulary="DocBook">
-  <xs:title>Report parse errors from the iXML output</xs:title>
+<xst:doc info="$Id$"
+        filename="Crane-reportCoffeepotErrors.xsl" vocabulary="DocBook">
+  <xst:title>Report parse errors from the iXML output</xst:title>
   <para>
     One of the ways in which the process fails is that the grammar is ambiguous
     and the ixml tool abends with a report.
@@ -23,34 +23,34 @@
     This stylesheet is reliant on XPath 3, which means it cannot be used with
     Saxon HE (Home Edition). The package distribution includes only Saxon HE.
   </para>
-</xs:doc>
+</xst:doc>
 
 <!--========================================================================-->
-<xs:doc>
-  <xs:title>Invocation parameters and input file</xs:title>
+<xst:doc>
+  <xst:title>Invocation parameters and input file</xst:title>
   <para>
     The input file is an XML document with {}ixml as the document element.
   </para>
-</xs:doc>
+</xst:doc>
   
 <!--
-<xs:param ignore-ns='yes'>
+<xst:param ignore-ns='yes'>
   <para>
   </para>
-</xs:param>
-<xsl:param name="" select="''" as="xsd:string"/>
+</xst:param>
+<xsl:param name="" select="''" as="xs:string"/>
 -->
 <!--========================================================================-->
-<xs:doc>
-  <xs:title></xs:title>
-</xs:doc>
+<xst:doc>
+  <xst:title></xst:title>
+</xst:doc>
 
-<xs:template>
+<xst:template>
   <para>
     Walk the tree reporting the beginning of sub-trees that are unequal,
     testing the 
   </para>
-</xs:template>
+</xst:template>
 <xsl:template match="ixml[@ixml:state='failed']">
   <xsl:message select="'Failure reported; details in the output XML'"/>
   <failure>
@@ -68,19 +68,19 @@
   </failure>
 </xsl:template>
 
-<xs:template>
+<xst:template>
   <para>
     Walk the tree reporting the beginning of sub-trees that are unequal,
     testing the 
   </para>
-</xs:template>
+</xst:template>
 <xsl:template match="ixml[count(*)>1]
                          [exists(*[@ixml:state='ambiguous'])]">
   <xsl:variable name="baseNode"
                 select="*[@ixml:state='ambiguous'][1]"/>
   <xsl:variable name="baseXPath"
                 select="concat(c:xpath($baseNode),'')"/>
-  <xsl:variable name="foundUnequalNodeLeafXPaths" as="xsd:string*">
+  <xsl:variable name="foundUnequalNodeLeafXPaths" as="xs:string*">
     <xsl:for-each select="*[@ixml:state='ambiguous'][position()>1]">
       <xsl:apply-templates select="*" mode="ctx:ambiguity">
         <xsl:with-param name="baseXPath" select="$baseXPath" tunnel="yes"/>
@@ -124,12 +124,12 @@
   </ambiguous>
 </xsl:template>
 
-<xs:template>
+<xst:template>
   <para>
     Report this node's element content without any of its children.
   </para>
-  <xs:param name="base"><para>The base file comparing against</para></xs:param>
-</xs:template>
+  <xst:param name="base"><para>The base file comparing against</para></xst:param>
+</xst:template>
 <xsl:template match="*" as="node()" mode="ctx:difference">
   <xsl:copy copy-namespaces="no">
     <xsl:if test="exists(text()[normalize-space()])">
@@ -139,27 +139,27 @@
 </xsl:template>
 
 <!--========================================================================-->
-<xs:doc>
-  <xs:title>Ambiguity checking and reporting</xs:title>
-</xs:doc>
+<xst:doc>
+  <xst:title>Ambiguity checking and reporting</xst:title>
+</xst:doc>
 
-<xs:template>
+<xst:template>
   <para>
     Check this node against its counterpart in the base XML file, returning
     a pair of XPath addresses (
   </para>
-  <xs:param name="baseXPath">
+  <xst:param name="baseXPath">
     <para>The base XPath comparing against</para>
-  </xs:param>
-  <xs:param name="ancestorEqual">
+  </xst:param>
+  <xst:param name="ancestorEqual">
     <para>Whether or not some ancestor is unequal</para>
-  </xs:param>
-</xs:template>
-<xsl:template match="*" as="xsd:string*" mode="ctx:ambiguity">
-  <xsl:param name="baseXPath" as="xsd:string" tunnel="yes"/>
-  <xsl:param name="ancestorEqual" as="xsd:boolean" select="true()"/>
+  </xst:param>
+</xst:template>
+<xsl:template match="*" as="xs:string*" mode="ctx:ambiguity">
+  <xsl:param name="baseXPath" as="xs:string" tunnel="yes"/>
+  <xsl:param name="ancestorEqual" as="xs:boolean" select="true()"/>
   <xsl:variable name="here" select="."/>
-  <xsl:variable name="hereUp" as="xsd:string"
+  <xsl:variable name="hereUp" as="xs:string"
                 select="concat( c:xpath(..), '')"/>
   <xsl:variable name="herePosition" select="count(preceding-sibling::*) + 1"/>
   <xsl:variable name="hereXPath" select="c:relativeXPath(..)"/>
@@ -200,56 +200,5 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-
-<!--========================================================================-->
-<xs:doc>
-  <xs:title>Utility</xs:title>
-</xs:doc>
-
-<xs:function>
-  <para>
-    Return the XPath address of the given node relative to the ixml document
-    element's grandchildren
-  </para>
-  <xs:param name="node">
-    <para>The node to report</para>
-  </xs:param>
-</xs:function>
-<xsl:function name="c:relativeXPath" as="xsd:string?">
-  <xsl:param name="node" as="item()"/>
-  <xsl:sequence select="(for $each in $node return
-replace( if( $each instance of node() ) then c:xpath($each) else $each,
-         '^/ixml/[^/]*/?','')[normalize-space(.)],'')[1]"/>
-</xsl:function>
-
-<xs:function>
-  <para>Return the XPath address of the given node</para>
-  <xs:param name="node">
-    <para>The node to report</para>
-  </xs:param>
-</xs:function>
-<xsl:function name="c:xpath" as="xsd:string">
-  <xsl:param name="node" as="node()"/>
-  <xsl:for-each select="$node">
-   <xsl:value-of>
-    <xsl:for-each select="(ancestor-or-self::*)">
-      <xsl:value-of select="string-join(( '/',name(.),
-        if(position()=1) then ''
-        else ('[',
-          string(count(preceding-sibling::*[name(.)=name(current())])+1),']')),
-              '')"/>
-    </xsl:for-each>
-    <xsl:if test="self::attribute()">
-      <xsl:text/>/@<xsl:value-of select="name(.)"/>
-    </xsl:if>
-    <xsl:if test="self::processing-instruction()">
-      <xsl:text/>/processing-instruction(<xsl:value-of select="name(.)"/>
-      <xsl:text>)[</xsl:text>
-      <xsl:value-of select="count(preceding-sibling::processing-instruction()
-                                  [name(.)=name(current())])+1"/>]<xsl:text/>
-    </xsl:if>
-   </xsl:value-of>
-  </xsl:for-each>
-</xsl:function>
 
 </xsl:stylesheet>

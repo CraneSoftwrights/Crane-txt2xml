@@ -39,7 +39,9 @@ The output content of an item defined as `xs:boolean` is one of the four values:
 
 The output content of an item defined using any other XSD data type is a single value specification representing that token value.
 
-The vocabulary documentation should highlight 
+The vocabulary documentation should highlight which of the item values are `xs:string` or otherwise a single token.
+
+The following is the specification of an element labeled "Title":
 
 ```
 Title: Pancakes
@@ -240,7 +242,7 @@ Very compressed, with only the absolute minimum required white-space around unqu
 Recipe:Title:Pancakes Ingredient:Name:Flour Amount:@unit:cups 2 Ingredient:Name:"Maple Syrup"Amount:@unit:tablespoons @approximate:"yes" 3 Step:"Mix ingredients together"Step:"Cook on a greased griddle"Step:Serve
 ```
 
-All produce the same XML according to [Recipe.xsd](Recipe.xsd):
+All produce the same XML conforming to [recipe/recipe-garden-of-eden.xsd](recipe/recipe-garden-of-eden.xsd):
 
 ```xml
 <Recipe>

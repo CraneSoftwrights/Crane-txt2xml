@@ -8,17 +8,23 @@ REPO="$(cd "$(dirname "$0")" && cd .. && pwd)"
 #
 # ---------------------------------------------------------------------------
 
+echo REPO=$REPO
+ls -la $REPO/utilities/saxonhe/saxonhe.jar
 echo \(note that SXWN9040 is innocuous and inevitable with recent design decisions by Saxonica\)
-find "$REPO/xsl" -maxdepth 1 -name '*.xsl' ! -name indentXML.xsl -name xslstyle -prune -o \
- -exec sh -c '
-  file="$1"
-  base=$(basename "$file")
-  echo Generating HTML for $1...
-  #java -jar "$2/utilities/saxonhe/saxonhe.jar" -a -warnings:silent -s:"$file" > "$2/xsl/$base.html"
-' sh {} "$REPO" \;
-
+find "$REPO" \
+  -name xslstyle -prune \
+  -o \( -name '*.xsl' \
+    -exec sh -c '
+      file=$1
+      repo=$2
+      echo "Generating HTML for $file..."
+      java -jar "$repo/utilities/saxonhe/saxonhe.jar" -a -warnings:silent -s:"$file" > "$file.html"
+    ' sh {} "$REPO" \; \)
 echo
 echo These files have inconsistencies that need to be addressed:
-find "$REPO/xsl" -maxdepth 1 -name \*.xsl.html -exec grep -l Inconsistencies {} \;
+find "$REPO" \
+  -name xslstyle -prune \
+  -o \( -name '*.xsl' \
+    -exec grep -l Inconsistencies {} \; \)
 echo End of list of files with inconsistencies
 echo Remember that the SXWN9040 errors are innocuous ... would love to avoid them but I haven\'t the time to update the 22-year-old files
