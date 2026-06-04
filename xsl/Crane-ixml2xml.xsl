@@ -50,8 +50,7 @@
 >Unexpected document element: {{{namespace-uri(*)}}}{local-name(*)}</xsl:message>
   </xsl:if>
   -->
-  <xsl:result-document indent="no"
-            method="{if( /ixml/@ixml:state='failed' ) then 'text' else 'xml'}">
+  <xsl:result-document indent="no" method="xml">
 
   <xsl:next-match>
     <xsl:with-param name="c:namespaceURI" tunnel="yes"
@@ -161,7 +160,7 @@
                         else $c:running"/>
 </xsl:function>
 
-<xsl:include href="reportParseErrors.xsl"/>
+<xsl:include href="Crane-reportParseErrors.xsl"/>
 
 <xst:template>
   <para>Every other element is emitted in no namespace</para>

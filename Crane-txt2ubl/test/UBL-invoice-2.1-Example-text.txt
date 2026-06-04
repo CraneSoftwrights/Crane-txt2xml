@@ -1,0 +1,353 @@
+Invoice:
+  UBLVersion ID: 2.1 
+  ID: TOSL108 
+  Issue Date: 2009-12-15 
+  Invoice Type Code: @list ID: "UN/ECE 1001 Subset" @list Agency ID: 6  380 
+  Note: @language ID: en  Ordered in our booth at the convention. 
+  Tax Point Date: 2009-11-30 
+  Document Currency Code: @list ID: "ISO 4217 Alpha" @list Agency ID: 6  EUR 
+  Accounting Cost: Project cost code 123 
+  Invoice Period:
+    Start Date: 2009-11-01 
+    End Date: 2009-11-30 
+  Order Reference:
+    ID: 123 
+  Contract Document Reference:
+    ID: Contract321 
+    Document Type: Framework agreement 
+  Additional Document Reference:
+    ID: Doc1 
+    Document Type: Timesheet 
+    Attachment:
+      External Reference:
+        URI: http\:\/\/www.suppliersite.eu\/sheet001.html 
+  Additional Document Reference:
+    ID: Doc2 
+    Document Type: Drawing 
+    Attachment:
+      Embedded Document Binary Object: @mime Code: application\/pdf  UjBsR09EbGhjZ0dTQUxNQUFBUUNBRU1tQ1p0dU1GUXhEUzhi 
+  Accounting Supplier Party:
+    Party:
+      Endpoint ID: @scheme ID: GLN  @scheme Agency ID: 9  1234567890123 
+      Party Identification:
+        ID: @scheme ID: ZZZ  Supp123 
+      Party Name:
+        Name: Salescompany ltd. 
+      Postal Address:
+        ID: @scheme ID: GLN  @scheme Agency ID: 9  1231412341324 
+        Postbox: 5467 
+        Street Name: Main street 
+        Additional Street Name: Suite 123 
+        Building Number: 1 
+        Department: Revenue department 
+        City Name: Big city 
+        Postal Zone: 54321 
+        Country Subentity Code: RegionA 
+        Country:
+          Identification Code: @list ID: ISO3166-1  @list Agency ID: 6  DK 
+      Party Tax Scheme:
+        Company ID: @scheme ID: DKVAT  @scheme Agency ID: ZZZ  DK12345 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+      Party Legal Entity:
+        Registration Name: The Sellercompany Incorporated 
+        Company ID: @scheme ID: CVR  @scheme Agency ID: ZZZ  5402697509 
+        Registration Address:
+          City Name: Big city 
+          Country Subentity: RegionA 
+          Country:
+            Identification Code: DK 
+      Contact:
+        Telephone: 4621230 
+        Telefax: 4621231 
+        Electronic Mail: antonio\@salescompany.dk 
+      Person:
+        First Name: Antonio 
+        Family Name: Salemacher 
+        Middle Name: M 
+        Job Title: Sales manager 
+  Accounting Customer Party:
+    Party:
+      Endpoint ID: @scheme ID: GLN  @scheme Agency ID: 9  1234567987654 
+      Party Identification:
+        ID: @scheme ID: ZZZ  345KS5324 
+      Party Name:
+        Name: Buyercompany ltd 
+      Postal Address:
+        ID: @scheme ID: GLN  @scheme Agency ID: 9  1238764941386 
+        Postbox: 123 
+        Street Name: Anystreet 
+        Additional Street Name: Back door 
+        Building Number: 8 
+        Department: Accounting department 
+        City Name: Anytown 
+        Postal Zone: 101 
+        Country Subentity: RegionB 
+        Country:
+          Identification Code: @list ID: ISO3166-1  @list Agency ID: 6  BE 
+      Party Tax Scheme:
+        Company ID: @scheme ID: BEVAT  @scheme Agency ID: ZZZ  BE54321 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+      Party Legal Entity:
+        Registration Name: The buyercompany inc. 
+        Company ID: @scheme Agency ID: ZZZ  @scheme ID: ZZZ  5645342123 
+        Registration Address:
+          City Name: Mainplace 
+          Country Subentity: RegionB 
+          Country:
+            Identification Code: BE 
+      Contact:
+        Telephone: 5121230 
+        Telefax: 5121231 
+        Electronic Mail: john\@buyercompany.eu 
+      Person:
+        First Name: John 
+        Family Name: Doe 
+        Middle Name: X 
+        Job Title: Purchasing manager 
+  Payee Party:
+    Party Identification:
+      ID: @scheme ID: GLN  @scheme Agency ID: 9  098740918237 
+    Party Name:
+      Name: Ebeneser Scrooge Inc. 
+    Party Legal Entity:
+      Company ID: @scheme ID: UK\:CH  @scheme Agency ID: ZZZ  6411982340 
+  Delivery:
+    Actual Delivery Date: 2009-12-15 
+    Delivery Location:
+      ID: @scheme ID: GLN  @scheme Agency ID: 9  6754238987648 
+      Address:
+        Street Name: Deliverystreet 
+        Additional Street Name: Side door 
+        Building Number: 12 
+        City Name: DeliveryCity 
+        Postal Zone: 523427 
+        Country Subentity: RegionC 
+        Country:
+          Identification Code: BE 
+  Payment Means:
+    Payment Means Code: @list ID: "UN/ECE 4461" 31 
+    Payment Due Date: 2009-12-31 
+    Payment Channel Code: IBAN 
+    Payment ID: Payref1 
+    Payee Financial Account:
+      ID: DK1212341234123412 
+      Financial Institution Branch:
+        Financial Institution:
+          ID: DKDKABCD 
+  Payment Terms:
+    Note: Penalty percentage 10% from due date 
+  Allowance Charge:
+    Charge Indicator: true 
+    Allowance Charge Reason: Packing cost 
+    Amount: @currency ID: EUR  100 
+  /Allowance Charge 
+  Allowance Charge:
+    Charge Indicator: false 
+    Allowance Charge Reason: Promotion discount 
+    Amount: @currency ID: EUR  100 
+  /Allowance Charge 
+  Tax Total:
+    Tax Amount: @currency ID: EUR  292.20 
+    Tax Subtotal:
+      Taxable Amount: @currency ID: EUR  1460.5 
+      Tax Amount: @currency ID: EUR  292.1 
+      Tax Category:
+        ID: @scheme ID: "UN/ECE 5305" @scheme Agency ID: 6  S 
+        Percent: 20 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+    Tax Subtotal:
+      Taxable Amount: @currency ID: EUR  1 
+      Tax Amount: @currency ID: EUR  0.1 
+      Tax Category:
+        ID: @scheme ID: "UN/ECE 5305" @scheme Agency ID: 6  AA 
+        Percent: 10 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+    Tax Subtotal:
+      Taxable Amount: @currency ID: EUR  -25 
+      Tax Amount: @currency ID: EUR  0 
+      Tax Category:
+        ID: @scheme ID: "UN/ECE 5305" @scheme Agency ID: 6  E 
+        Percent: 0 
+        Tax Exemption Reason Code: @list ID: "CWA 15577" @list Agency ID: ZZZ  AAM 
+        Tax Exemption Reason: Exempt New Means of Transport 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+  Legal Monetary Total:
+    Line Extension Amount: @currency ID: EUR  1436.5 
+    Tax Exclusive Amount: @currency ID: EUR  1436.5 
+    Tax Inclusive Amount: @currency ID: EUR  1729 
+    Allowance Total Amount: @currency ID: EUR  100 
+    Charge Total Amount: @currency ID: EUR  100 
+    Prepaid Amount: @currency ID: EUR  1000 
+    Payable Rounding Amount: @currency ID: EUR  0.30 
+    Payable Amount: @currency ID: EUR  729 
+  Invoice Line:
+    ID: 1 
+    Note: Scratch on box 
+    Invoiced Quantity: @unit Code: C62  1 
+    Line Extension Amount: @currency ID: EUR  1273 
+    Accounting Cost: BookingCode001 
+    Order Line Reference:
+      Line ID: 1 
+    Allowance Charge:
+      Charge Indicator: false 
+      Allowance Charge Reason: Damage 
+      Amount: @currency ID: EUR  12 
+    /Allowance Charge 
+    Allowance Charge:
+      Charge Indicator: true 
+      Allowance Charge Reason: Testing 
+      Amount: @currency ID: EUR  10 
+    /Allowance Charge 
+    Tax Total:
+      Tax Amount: @currency ID: EUR  254.6 
+    Item:
+      Description: @language ID: EN  "Processor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM:
+				3MB. Screen 1440x900"
+      Name: Labtop computer 
+      Sellers Item Identification:
+        ID: JB007 
+      Standard Item Identification:
+        ID: @scheme ID: GTIN  @scheme Agency ID: 9  1234567890124 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 113  @list ID: UNSPSC  12344321 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 2  @list ID: CPV  65434568 
+      Classified Tax Category:
+        ID: @scheme ID: "UN/ECE 5305" @scheme Agency ID: 6  S 
+        Percent: 20 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+      Additional Item Property:
+        Name: Color 
+        Value: black 
+    Price:
+      Price Amount: @currency ID: EUR  1273 
+      Base Quantity: @unit Code: C62  1 
+      Allowance Charge:
+        Charge Indicator: false 
+        Allowance Charge Reason: Contract 
+        Multiplier Factor Numeric: 0.15 
+        Amount: @currency ID: EUR  225 
+        Base Amount: @currency ID: EUR  1500 
+      /Allowance Charge 
+  Invoice Line:
+    ID: 2 
+    Note: Cover is slightly damaged. 
+    Invoiced Quantity: @unit Code: C62  -1 
+    Line Extension Amount: @currency ID: EUR  -3.96 
+    Order Line Reference:
+      Line ID: 5 
+    Tax Total:
+      Tax Amount: @currency ID: EUR  -0.396 
+    Item:
+      Name: Returned \"Advanced computing\" book 
+      Sellers Item Identification:
+        ID: JB008 
+      Standard Item Identification:
+        ID: @scheme ID: GTIN  @scheme Agency ID: 9  1234567890125 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 113  @list ID: UNSPSC  32344324 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 2  @list ID: CPV  65434567 
+      Classified Tax Category:
+        ID: @scheme ID: "UN/ECE 5305" @scheme Agency ID: 6  AA 
+        Percent: 10 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+    Price:
+      Price Amount: @currency ID: EUR  3.96 
+      Base Quantity: @unit Code: C62  1 
+  Invoice Line:
+    ID: 3 
+    Invoiced Quantity: @unit Code: C62  2 
+    Line Extension Amount: @currency ID: EUR  4.96 
+    Order Line Reference:
+      Line ID: 3 
+    Tax Total:
+      Tax Amount: @currency ID: EUR  0.496 
+    Item:
+      Name: \"Computing for dummies\" book 
+      Sellers Item Identification:
+        ID: JB009 
+      Standard Item Identification:
+        ID: @scheme ID: GTIN  @scheme Agency ID: 9  1234567890126 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 113  @list ID: UNSPSC  32344324 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 2  @list ID: CPV  65434566 
+      Classified Tax Category:
+        ID: @scheme ID: "UN/ECE 5305" @scheme Agency ID: 6  AA 
+        Percent: 10 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+    Price:
+      Price Amount: @currency ID: EUR  2.48 
+      Base Quantity: @unit Code: C62  1 
+      Allowance Charge:
+        Charge Indicator: false 
+        Allowance Charge Reason: Contract 
+        Multiplier Factor Numeric: 0.1 
+        Amount: @currency ID: EUR  0.275 
+        Base Amount: @currency ID: EUR  2.75 
+      /Allowance Charge 
+  Invoice Line:
+    ID: 4 
+    Invoiced Quantity: @unit Code: C62  -1 
+    Line Extension Amount: @currency ID: EUR  -25 
+    Order Line Reference:
+      Line ID: 2 
+    Tax Total:
+      Tax Amount: @currency ID: EUR  0 
+    Item:
+      Name: Returned IBM 5150 desktop 
+      Sellers Item Identification:
+        ID: JB010 
+      Standard Item Identification:
+        ID: @scheme ID: GTIN  @scheme Agency ID: 9  1234567890127 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 113  @list ID: UNSPSC  12344322 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 2  @list ID: CPV  65434565 
+      Classified Tax Category:
+        ID: @scheme ID: "UN/ECE 5305" @scheme Agency ID: 6  E 
+        Percent: 0 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+    Price:
+      Price Amount: @currency ID: EUR  25 
+      Base Quantity: @unit Code: C62  1 
+  Invoice Line:
+    ID: 5 
+    Invoiced Quantity: @unit Code: C62  250 
+    Line Extension Amount: @currency ID: EUR  187.5 
+    Accounting Cost: BookingCode002 
+    Order Line Reference:
+      Line ID: 4 
+    Tax Total:
+      Tax Amount: @currency ID: EUR  37.5 
+    Item:
+      Name: Network cable 
+      Sellers Item Identification:
+        ID: JB011 
+      Standard Item Identification:
+        ID: @scheme ID: GTIN  @scheme Agency ID: 9  1234567890128 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 113  @list ID: UNSPSC  12344325 
+      Commodity Classification:
+        Item Classification Code: @list Agency ID: 2  @list ID: CPV  65434564 
+      Classified Tax Category:
+        ID: @scheme ID: "UN/ECE 5305" @scheme Agency ID: 6  S 
+        Percent: 20 
+        Tax Scheme:
+          ID: @scheme ID: "UN/ECE 5153" @scheme Agency ID: 6  VAT 
+      Additional Item Property:
+        Name: Type 
+        Value: Cat5 
+    Price:
+      Price Amount: @currency ID: EUR  0.75 
+      Base Quantity: @unit Code: C62  1 

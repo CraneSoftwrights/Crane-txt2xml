@@ -52,8 +52,18 @@
   </para>
 </xs:template>
 <xsl:template match="ixml[@ixml:state='failed']">
+  <xsl:message select="'Failure reported; details in the output XML'"/>
   <failure>
-    <summary>Failed! Failure guidance coming soon</summary>
+    <guidance>
+      <xsl:choose>
+        <xsl:when test="fail/unexpected='@'">
+          <xsl:text>An attribute specification is unexpected; check </xsl:text>
+          <xsl:text>that element content has not been specified </xsl:text>
+          <xsl:text>before the attribute is specified.</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>Failure guidance coming soon</xsl:otherwise>
+      </xsl:choose>
+    </guidance>
     <xsl:copy-of select="."/>
   </failure>
 </xsl:template>
@@ -78,40 +88,40 @@
     </xsl:for-each>
   </xsl:variable>
   
-  <xsl:if test="exists($foundUnequalNodeLeafXPaths)">
-<xsl:comment>
+  <xsl:message select="'Ambiguity reported; details in the output XML'"/>
+  <ambiguous>
+    <xsl:if test="exists($foundUnequalNodeLeafXPaths)">
+      <guidance>
   The program has encountered an ambiguity problem parsing the user input. Such
   an error is not something that can be diagnosed by users. Please visit the
   project's git repository and file an issue including both your input data
   and this report file so that the problem can be reproduced in the lab. Thank
   you for your support of this project.
-</xsl:comment>
-  </xsl:if>
-  <xsl:variable name="base" select="/"/>
-  <!--
-  <xsl:message select="'DEBUG4',count($foundUnequalNodeLeafXPaths),'&#xa;',$foundUnequalNodeLeafXPaths"></xsl:message>
-  -->
-  <xsl:for-each-group select="$foundUnequalNodeLeafXPaths"
-                      group-by="round-half-to-even(position() + .5)">
-    <xsl:variable name="here" as="node()*">
-      <xsl:evaluate context-item="$base"
-                    xpath="current-group()[1]"/>
-    </xsl:variable>
-    <xsl:variable name="there" as="node()*">
-      <xsl:if test="exists($here)">
+      </guidance>
+    </xsl:if>
+    <xsl:variable name="base" select="/"/>
+    <xsl:for-each-group select="$foundUnequalNodeLeafXPaths"
+                        group-by="round-half-to-even(position() + .5)">
+      <xsl:variable name="here" as="node()*">
         <xsl:evaluate context-item="$base"
-                      xpath="current-group()[2]"/>
-      </xsl:if>
-    </xsl:variable>
-    <difference item="{position()}">
-      <base xpath="{$here/c:xpath(.)}">
-        <xsl:apply-templates mode="ctx:difference" select="$here/node()"/>
-      </base>
-      <other xpath="{$there/c:xpath(.)}">
-        <xsl:apply-templates mode="ctx:difference" select="$there/node()"/>
-      </other>
-    </difference>
-  </xsl:for-each-group>
+                      xpath="current-group()[1]"/>
+      </xsl:variable>
+      <xsl:variable name="there" as="node()*">
+        <xsl:if test="exists($here)">
+          <xsl:evaluate context-item="$base"
+                        xpath="current-group()[2]"/>
+        </xsl:if>
+      </xsl:variable>
+      <difference item="{position()}">
+        <base xpath="{$here/c:xpath(.)}">
+          <xsl:apply-templates mode="ctx:difference" select="$here/node()"/>
+        </base>
+        <other xpath="{$there/c:xpath(.)}">
+          <xsl:apply-templates mode="ctx:difference" select="$there/node()"/>
+        </other>
+      </difference>
+    </xsl:for-each-group>
+  </ambiguous>
 </xsl:template>
 
 <xs:template>

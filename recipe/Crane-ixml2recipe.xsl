@@ -8,57 +8,16 @@
                 exclude-result-prefixes="xs xst c map"
                 version="3.0">
 
-<xsl:import href="../xsl/Crane-xsd2ixml.xsl"/>
+<xsl:import href="../xsl/Crane-ixml2xml.xsl"/>
 
 <xst:doc info="https://github.com/CraneSoftwrights/temp-txt2xml"
         filename="Crane-ixml2recipe.xsl" vocabulary="DocBook">
   <xst:title>Convert Recipe iXML to XML</xst:title>
   <para>
-    This automates the generation of iXML from a schema.
+    This converts the iXML output to XML output.
   </para>
 </xst:doc>
 
-<!--========================================================================-->
-<xst:doc>
-  <xst:title>Invocation parameters and input file</xst:title>
-  <para>
-    The input file is an XSD grammar in the Venetian Blind structure
-  </para>
-  <para>
-    If the input has the description of mixed content, this is assumed to 
-    be simple text.
-  </para>
-</xst:doc>
-
-<!--========================================================================-->
-<xst:doc>
-  <xst:title>Main logic</xst:title>
-</xst:doc>
-
-<xst:template>
-  <para>
-    Declare the document element of the input schema with trailing white-space
-  </para>
-</xst:template>
-<xsl:template name="c:preamble">
-
-  -__document_element = Recipe, -__WS*.
-
-</xsl:template>
-
-<xst:function>
-  <para>Return an array of all possible name conventions</para>
-</xst:function>
-<xsl:function name="c:nameEntries" as="array(xs:string+)*">
-  <xsl:param name="c:name" as="xs:string"/>
-  <xsl:variable name="c:nameAlt" as="xs:string+"
-                select="tokenize( replace( $c:name, 
-                                                   '([a-z])([A-Z])','$1 $2'),
-                                          '\s' )"/>
-  <xsl:sequence select="c:nameEntriesComposed($c:name)"/>
-  <xsl:if test="count($c:nameAlt) > 1">
-    <xsl:sequence select="array { $c:nameAlt }"/>
-  </xsl:if>
-</xsl:function>
+<!--nothing in addition to the standard processing-->
 
 </xsl:stylesheet>

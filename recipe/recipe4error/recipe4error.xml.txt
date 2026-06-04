@@ -1,0 +1,77 @@
+failure:
+  guidance: An attribute specification is unexpected; check that element content has not been specified before the attribute is specified. 
+  ixml: @parses: 2  @totalParses: 2  @state: failed 
+    fail: @state: failed 
+      line: 1 
+      column: 121 
+      pos: 121 
+      unexpected: @ 
+      permitted: #9, #A, #D, [Zs] 
+      completions:
+        completed: @rule: __value  @start: 119  @end: 120 
+          input: "3 "
+        completed: @rule: xs_decimal  @start: 119  @end: 120 
+          input: "3 "
+        completed: @rule: __content__AmountType  @start: 101  @end: 120 
+          input: "@unit:tablespoons 3 "
+        completed: @rule: Amount  @start: 94  @end: 120 
+          input: "Amount:@unit:tablespoons 3 "
+        completed: @rule: __content__IngredientType  @start: 76  @end: 120 
+          input: "Name:\"Maple Syr ... :tablespoons 3 "
+        completed: @rule: Ingredient  @start: 65  @end: 120 
+          input: "Ingredient:Name ... :tablespoons 3 "
+        completed: @rule: __value  @start: 63  @end: 64 
+          input: "2 "
+        completed: @rule: xs_decimal  @start: 63  @end: 64 
+          input: "2 "
+      could-be-next:
+        in: @rule: __WS 
+          tokens: #9, #A, #D, [Zs] 
+      unfinished:
+        open: @rule: __content__RecipeType  @start: 8  @end: 120 
+          input: "Title:Pancakes  ... :tablespoons 3 "
+        open: @rule: __unquoted  @start: 119  @end: 119 
+          input: 3 
+        open: @rule: __value  @start: 94  @end: 99 
+          input: Amount 
+        open: @rule: __more_quoted  @start: 92  @end: 92 
+          input: p 
+        open: @rule: Recipe  @start: 1  @end: 7 
+          input: Recipe: 
+    fail: @state: failed 
+      line: 1 
+      column: 121 
+      pos: 121 
+      unexpected: @ 
+      permitted: #9, #A, #D, [Zs] 
+      completions:
+        completed: @rule: __value  @start: 119  @end: 120 
+          input: "3 "
+        completed: @rule: xs_decimal  @start: 119  @end: 120 
+          input: "3 "
+        completed: @rule: __content__AmountType  @start: 101  @end: 120 
+          input: "@unit:tablespoons 3 "
+        completed: @rule: Amount  @start: 94  @end: 120 
+          input: "Amount:@unit:tablespoons 3 "
+        completed: @rule: __content__IngredientType  @start: 76  @end: 120 
+          input: "Name:\"Maple Syr ... :tablespoons 3 "
+        completed: @rule: Ingredient  @start: 65  @end: 120 
+          input: "Ingredient:Name ... :tablespoons 3 "
+        completed: @rule: __value  @start: 63  @end: 64 
+          input: "2 "
+        completed: @rule: xs_decimal  @start: 63  @end: 64 
+          input: "2 "
+      could-be-next:
+        in: @rule: __WS 
+          tokens: #9, #A, #D, [Zs] 
+      unfinished:
+        open: @rule: __content__RecipeType  @start: 8  @end: 120 
+          input: "Title:Pancakes  ... :tablespoons 3 "
+        open: @rule: __unquoted  @start: 119  @end: 119 
+          input: 3 
+        open: @rule: __value  @start: 94  @end: 99 
+          input: Amount 
+        open: @rule: __more_quoted  @start: 92  @end: 92 
+          input: p 
+        open: @rule: Recipe  @start: 1  @end: 7 
+          input: Recipe: 

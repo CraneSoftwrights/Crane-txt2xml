@@ -48,6 +48,9 @@
 
 <xst:function>
   <para>Return an array of all possible name conventions</para>
+  <xst:param name="c:name">
+    <para>The base name from which the possibilities are calculated</para>
+  </xst:param>
 </xst:function>
 <xsl:function name="c:nameEntries" as="array(xs:string+)*">
   <xsl:param name="c:name" as="xs:string"/>

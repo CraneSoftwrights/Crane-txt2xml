@@ -1,0 +1,1429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice>
+   <UBLVersionID>
+      <__value>2.1</__value>
+   </UBLVersionID>
+   <ID>
+      <__value>TOSL108</__value>
+   </ID>
+   <IssueDate>
+      <__value>2009-12-15</__value>
+   </IssueDate>
+   <InvoiceTypeCode>
+      <__attr alias="listID" name="listID">
+         <__value>UN/ECE 1001 Subset</__value>
+      </__attr>
+      <__attr alias="listAgencyID" name="listAgencyID">
+         <__value>6</__value>
+      </__attr>
+      <__value>380</__value>
+   </InvoiceTypeCode>
+   <Note>
+      <__attr alias="languageID" name="languageID">
+         <__value>en</__value>
+      </__attr>
+      <__value>Ordered</__value>
+      <__value>in</__value>
+      <__value>our</__value>
+      <__value>booth</__value>
+      <__value>at</__value>
+      <__value>the</__value>
+      <__value>convention.</__value>
+   </Note>
+   <TaxPointDate>
+      <__value>2009-11-30</__value>
+   </TaxPointDate>
+   <DocumentCurrencyCode>
+      <__attr alias="listID" name="listID">
+         <__value>ISO 4217 Alpha</__value>
+      </__attr>
+      <__attr alias="listAgencyID" name="listAgencyID">
+         <__value>6</__value>
+      </__attr>
+      <__value>EUR</__value>
+   </DocumentCurrencyCode>
+   <AccountingCost>
+      <__value>Project</__value>
+      <__value>cost</__value>
+      <__value>code</__value>
+      <__value>123</__value>
+   </AccountingCost>
+   <InvoicePeriod>
+      <StartDate>
+         <__value>2009-11-01</__value>
+      </StartDate>
+      <EndDate>
+         <__value>2009-11-30</__value>
+      </EndDate>
+   </InvoicePeriod>
+   <OrderReference>
+      <ID>
+         <__value>123</__value>
+      </ID>
+   </OrderReference>
+   <ContractDocumentReference>
+      <ID>
+         <__value>Contract321</__value>
+      </ID>
+      <DocumentType>
+         <__value>Framework</__value>
+         <__value>agreement</__value>
+      </DocumentType>
+   </ContractDocumentReference>
+   <AdditionalDocumentReference>
+      <ID>
+         <__value>Doc1</__value>
+      </ID>
+      <DocumentType>
+         <__value>Timesheet</__value>
+      </DocumentType>
+      <Attachment>
+         <ExternalReference>
+            <URI>
+               <__value>http://www.suppliersite.eu/sheet001.html</__value>
+            </URI>
+         </ExternalReference>
+      </Attachment>
+   </AdditionalDocumentReference>
+   <AdditionalDocumentReference>
+      <ID>
+         <__value>Doc2</__value>
+      </ID>
+      <DocumentType>
+         <__value>Drawing</__value>
+      </DocumentType>
+      <Attachment>
+         <EmbeddedDocumentBinaryObject>
+            <__attr alias="mimeCode" name="mimeCode">
+               <__value>application/pdf</__value>
+            </__attr>
+            <__value>UjBsR09EbGhjZ0dTQUxNQUFBUUNBRU1tQ1p0dU1GUXhEUzhi</__value>
+         </EmbeddedDocumentBinaryObject>
+      </Attachment>
+   </AdditionalDocumentReference>
+   <AccountingSupplierParty>
+      <Party>
+         <EndpointID>
+            <__attr alias="schemeID" name="schemeID">
+               <__value>GLN</__value>
+            </__attr>
+            <__attr alias="schemeAgencyID" name="schemeAgencyID">
+               <__value>9</__value>
+            </__attr>
+            <__value>1234567890123</__value>
+         </EndpointID>
+         <PartyIdentification>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>ZZZ</__value>
+               </__attr>
+               <__value>Supp123</__value>
+            </ID>
+         </PartyIdentification>
+         <PartyName>
+            <Name>
+               <__value>Salescompany</__value>
+               <__value>ltd.</__value>
+            </Name>
+         </PartyName>
+         <PostalAddress>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>GLN</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>9</__value>
+               </__attr>
+               <__value>1231412341324</__value>
+            </ID>
+            <Postbox>
+               <__value>5467</__value>
+            </Postbox>
+            <StreetName>
+               <__value>Main</__value>
+               <__value>street</__value>
+            </StreetName>
+            <AdditionalStreetName>
+               <__value>Suite</__value>
+               <__value>123</__value>
+            </AdditionalStreetName>
+            <BuildingNumber>
+               <__value>1</__value>
+            </BuildingNumber>
+            <Department>
+               <__value>Revenue</__value>
+               <__value>department</__value>
+            </Department>
+            <CityName>
+               <__value>Big</__value>
+               <__value>city</__value>
+            </CityName>
+            <PostalZone>
+               <__value>54321</__value>
+            </PostalZone>
+            <CountrySubentityCode>
+               <__value>RegionA</__value>
+            </CountrySubentityCode>
+            <Country>
+               <IdentificationCode>
+                  <__attr alias="listID" name="listID">
+                     <__value>ISO3166-1</__value>
+                  </__attr>
+                  <__attr alias="listAgencyID" name="listAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>DK</__value>
+               </IdentificationCode>
+            </Country>
+         </PostalAddress>
+         <PartyTaxScheme>
+            <CompanyID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>DKVAT</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>ZZZ</__value>
+               </__attr>
+               <__value>DK12345</__value>
+            </CompanyID>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </PartyTaxScheme>
+         <PartyLegalEntity>
+            <RegistrationName>
+               <__value>The</__value>
+               <__value>Sellercompany</__value>
+               <__value>Incorporated</__value>
+            </RegistrationName>
+            <CompanyID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>CVR</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>ZZZ</__value>
+               </__attr>
+               <__value>5402697509</__value>
+            </CompanyID>
+            <RegistrationAddress>
+               <CityName>
+                  <__value>Big</__value>
+                  <__value>city</__value>
+               </CityName>
+               <CountrySubentity>
+                  <__value>RegionA</__value>
+               </CountrySubentity>
+               <Country>
+                  <IdentificationCode>
+                     <__value>DK</__value>
+                  </IdentificationCode>
+               </Country>
+            </RegistrationAddress>
+         </PartyLegalEntity>
+         <Contact>
+            <Telephone>
+               <__value>4621230</__value>
+            </Telephone>
+            <Telefax>
+               <__value>4621231</__value>
+            </Telefax>
+            <ElectronicMail>
+               <__value>antonio@salescompany.dk</__value>
+            </ElectronicMail>
+         </Contact>
+         <Person>
+            <FirstName>
+               <__value>Antonio</__value>
+            </FirstName>
+            <FamilyName>
+               <__value>Salemacher</__value>
+            </FamilyName>
+            <MiddleName>
+               <__value>M</__value>
+            </MiddleName>
+            <JobTitle>
+               <__value>Sales</__value>
+               <__value>manager</__value>
+            </JobTitle>
+         </Person>
+      </Party>
+   </AccountingSupplierParty>
+   <AccountingCustomerParty>
+      <Party>
+         <EndpointID>
+            <__attr alias="schemeID" name="schemeID">
+               <__value>GLN</__value>
+            </__attr>
+            <__attr alias="schemeAgencyID" name="schemeAgencyID">
+               <__value>9</__value>
+            </__attr>
+            <__value>1234567987654</__value>
+         </EndpointID>
+         <PartyIdentification>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>ZZZ</__value>
+               </__attr>
+               <__value>345KS5324</__value>
+            </ID>
+         </PartyIdentification>
+         <PartyName>
+            <Name>
+               <__value>Buyercompany</__value>
+               <__value>ltd</__value>
+            </Name>
+         </PartyName>
+         <PostalAddress>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>GLN</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>9</__value>
+               </__attr>
+               <__value>1238764941386</__value>
+            </ID>
+            <Postbox>
+               <__value>123</__value>
+            </Postbox>
+            <StreetName>
+               <__value>Anystreet</__value>
+            </StreetName>
+            <AdditionalStreetName>
+               <__value>Back</__value>
+               <__value>door</__value>
+            </AdditionalStreetName>
+            <BuildingNumber>
+               <__value>8</__value>
+            </BuildingNumber>
+            <Department>
+               <__value>Accounting</__value>
+               <__value>department</__value>
+            </Department>
+            <CityName>
+               <__value>Anytown</__value>
+            </CityName>
+            <PostalZone>
+               <__value>101</__value>
+            </PostalZone>
+            <CountrySubentity>
+               <__value>RegionB</__value>
+            </CountrySubentity>
+            <Country>
+               <IdentificationCode>
+                  <__attr alias="listID" name="listID">
+                     <__value>ISO3166-1</__value>
+                  </__attr>
+                  <__attr alias="listAgencyID" name="listAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>BE</__value>
+               </IdentificationCode>
+            </Country>
+         </PostalAddress>
+         <PartyTaxScheme>
+            <CompanyID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>BEVAT</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>ZZZ</__value>
+               </__attr>
+               <__value>BE54321</__value>
+            </CompanyID>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </PartyTaxScheme>
+         <PartyLegalEntity>
+            <RegistrationName>
+               <__value>The</__value>
+               <__value>buyercompany</__value>
+               <__value>inc.</__value>
+            </RegistrationName>
+            <CompanyID>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>ZZZ</__value>
+               </__attr>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>ZZZ</__value>
+               </__attr>
+               <__value>5645342123</__value>
+            </CompanyID>
+            <RegistrationAddress>
+               <CityName>
+                  <__value>Mainplace</__value>
+               </CityName>
+               <CountrySubentity>
+                  <__value>RegionB</__value>
+               </CountrySubentity>
+               <Country>
+                  <IdentificationCode>
+                     <__value>BE</__value>
+                  </IdentificationCode>
+               </Country>
+            </RegistrationAddress>
+         </PartyLegalEntity>
+         <Contact>
+            <Telephone>
+               <__value>5121230</__value>
+            </Telephone>
+            <Telefax>
+               <__value>5121231</__value>
+            </Telefax>
+            <ElectronicMail>
+               <__value>john@buyercompany.eu</__value>
+            </ElectronicMail>
+         </Contact>
+         <Person>
+            <FirstName>
+               <__value>John</__value>
+            </FirstName>
+            <FamilyName>
+               <__value>Doe</__value>
+            </FamilyName>
+            <MiddleName>
+               <__value>X</__value>
+            </MiddleName>
+            <JobTitle>
+               <__value>Purchasing</__value>
+               <__value>manager</__value>
+            </JobTitle>
+         </Person>
+      </Party>
+   </AccountingCustomerParty>
+   <PayeeParty>
+      <PartyIdentification>
+         <ID>
+            <__attr alias="schemeID" name="schemeID">
+               <__value>GLN</__value>
+            </__attr>
+            <__attr alias="schemeAgencyID" name="schemeAgencyID">
+               <__value>9</__value>
+            </__attr>
+            <__value>098740918237</__value>
+         </ID>
+      </PartyIdentification>
+      <PartyName>
+         <Name>
+            <__value>Ebeneser</__value>
+            <__value>Scrooge</__value>
+            <__value>Inc.</__value>
+         </Name>
+      </PartyName>
+      <PartyLegalEntity>
+         <CompanyID>
+            <__attr alias="schemeID" name="schemeID">
+               <__value>UK:CH</__value>
+            </__attr>
+            <__attr alias="schemeAgencyID" name="schemeAgencyID">
+               <__value>ZZZ</__value>
+            </__attr>
+            <__value>6411982340</__value>
+         </CompanyID>
+      </PartyLegalEntity>
+   </PayeeParty>
+   <Delivery>
+      <ActualDeliveryDate>
+         <__value>2009-12-15</__value>
+      </ActualDeliveryDate>
+      <DeliveryLocation>
+         <ID>
+            <__attr alias="schemeID" name="schemeID">
+               <__value>GLN</__value>
+            </__attr>
+            <__attr alias="schemeAgencyID" name="schemeAgencyID">
+               <__value>9</__value>
+            </__attr>
+            <__value>6754238987648</__value>
+         </ID>
+         <Address>
+            <StreetName>
+               <__value>Deliverystreet</__value>
+            </StreetName>
+            <AdditionalStreetName>
+               <__value>Side</__value>
+               <__value>door</__value>
+            </AdditionalStreetName>
+            <BuildingNumber>
+               <__value>12</__value>
+            </BuildingNumber>
+            <CityName>
+               <__value>DeliveryCity</__value>
+            </CityName>
+            <PostalZone>
+               <__value>523427</__value>
+            </PostalZone>
+            <CountrySubentity>
+               <__value>RegionC</__value>
+            </CountrySubentity>
+            <Country>
+               <IdentificationCode>
+                  <__value>BE</__value>
+               </IdentificationCode>
+            </Country>
+         </Address>
+      </DeliveryLocation>
+   </Delivery>
+   <PaymentMeans>
+      <PaymentMeansCode>
+         <__attr alias="listID" name="listID">
+            <__value>UN/ECE 4461</__value>
+         </__attr>
+         <__value>31</__value>
+      </PaymentMeansCode>
+      <PaymentDueDate>
+         <__value>2009-12-31</__value>
+      </PaymentDueDate>
+      <PaymentChannelCode>
+         <__value>IBAN</__value>
+      </PaymentChannelCode>
+      <PaymentID>
+         <__value>Payref1</__value>
+      </PaymentID>
+      <PayeeFinancialAccount>
+         <ID>
+            <__value>DK1212341234123412</__value>
+         </ID>
+         <FinancialInstitutionBranch>
+            <FinancialInstitution>
+               <ID>
+                  <__value>DKDKABCD</__value>
+               </ID>
+            </FinancialInstitution>
+         </FinancialInstitutionBranch>
+      </PayeeFinancialAccount>
+   </PaymentMeans>
+   <PaymentTerms>
+      <Note>
+         <__value>Penalty</__value>
+         <__value>percentage</__value>
+         <__value>10%</__value>
+         <__value>from</__value>
+         <__value>due</__value>
+         <__value>date</__value>
+      </Note>
+   </PaymentTerms>
+   <AllowanceCharge>
+      <ChargeIndicator>
+         <__value>true</__value>
+      </ChargeIndicator>
+      <AllowanceChargeReason>
+         <__value>Packing</__value>
+         <__value>cost</__value>
+      </AllowanceChargeReason>
+      <Amount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>100</__value>
+      </Amount>
+   </AllowanceCharge>
+   <AllowanceCharge>
+      <ChargeIndicator>
+         <__value>false</__value>
+      </ChargeIndicator>
+      <AllowanceChargeReason>
+         <__value>Promotion</__value>
+         <__value>discount</__value>
+      </AllowanceChargeReason>
+      <Amount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>100</__value>
+      </Amount>
+   </AllowanceCharge>
+   <TaxTotal>
+      <TaxAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>292.20</__value>
+      </TaxAmount>
+      <TaxSubtotal>
+         <TaxableAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>1460.5</__value>
+         </TaxableAmount>
+         <TaxAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>292.1</__value>
+         </TaxAmount>
+         <TaxCategory>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>UN/ECE 5305</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>6</__value>
+               </__attr>
+               <__value>S</__value>
+            </ID>
+            <Percent>
+               <__value>20</__value>
+            </Percent>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </TaxCategory>
+      </TaxSubtotal>
+      <TaxSubtotal>
+         <TaxableAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>1</__value>
+         </TaxableAmount>
+         <TaxAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>0.1</__value>
+         </TaxAmount>
+         <TaxCategory>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>UN/ECE 5305</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>6</__value>
+               </__attr>
+               <__value>AA</__value>
+            </ID>
+            <Percent>
+               <__value>10</__value>
+            </Percent>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </TaxCategory>
+      </TaxSubtotal>
+      <TaxSubtotal>
+         <TaxableAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>-25</__value>
+         </TaxableAmount>
+         <TaxAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>0</__value>
+         </TaxAmount>
+         <TaxCategory>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>UN/ECE 5305</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>6</__value>
+               </__attr>
+               <__value>E</__value>
+            </ID>
+            <Percent>
+               <__value>0</__value>
+            </Percent>
+            <TaxExemptionReasonCode>
+               <__attr alias="listID" name="listID">
+                  <__value>CWA 15577</__value>
+               </__attr>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>ZZZ</__value>
+               </__attr>
+               <__value>AAM</__value>
+            </TaxExemptionReasonCode>
+            <TaxExemptionReason>
+               <__value>Exempt</__value>
+               <__value>New</__value>
+               <__value>Means</__value>
+               <__value>of</__value>
+               <__value>Transport</__value>
+            </TaxExemptionReason>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </TaxCategory>
+      </TaxSubtotal>
+   </TaxTotal>
+   <LegalMonetaryTotal>
+      <LineExtensionAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>1436.5</__value>
+      </LineExtensionAmount>
+      <TaxExclusiveAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>1436.5</__value>
+      </TaxExclusiveAmount>
+      <TaxInclusiveAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>1729</__value>
+      </TaxInclusiveAmount>
+      <AllowanceTotalAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>100</__value>
+      </AllowanceTotalAmount>
+      <ChargeTotalAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>100</__value>
+      </ChargeTotalAmount>
+      <PrepaidAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>1000</__value>
+      </PrepaidAmount>
+      <PayableRoundingAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>0.30</__value>
+      </PayableRoundingAmount>
+      <PayableAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>729</__value>
+      </PayableAmount>
+   </LegalMonetaryTotal>
+   <InvoiceLine>
+      <ID>
+         <__value>1</__value>
+      </ID>
+      <Note>
+         <__value>Scratch</__value>
+         <__value>on</__value>
+         <__value>box</__value>
+      </Note>
+      <InvoicedQuantity>
+         <__attr alias="unitCode" name="unitCode">
+            <__value>C62</__value>
+         </__attr>
+         <__value>1</__value>
+      </InvoicedQuantity>
+      <LineExtensionAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>1273</__value>
+      </LineExtensionAmount>
+      <AccountingCost>
+         <__value>BookingCode001</__value>
+      </AccountingCost>
+      <OrderLineReference>
+         <LineID>
+            <__value>1</__value>
+         </LineID>
+      </OrderLineReference>
+      <AllowanceCharge>
+         <ChargeIndicator>
+            <__value>false</__value>
+         </ChargeIndicator>
+         <AllowanceChargeReason>
+            <__value>Damage</__value>
+         </AllowanceChargeReason>
+         <Amount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>12</__value>
+         </Amount>
+      </AllowanceCharge>
+      <AllowanceCharge>
+         <ChargeIndicator>
+            <__value>true</__value>
+         </ChargeIndicator>
+         <AllowanceChargeReason>
+            <__value>Testing</__value>
+         </AllowanceChargeReason>
+         <Amount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>10</__value>
+         </Amount>
+      </AllowanceCharge>
+      <TaxTotal>
+         <TaxAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>254.6</__value>
+         </TaxAmount>
+      </TaxTotal>
+      <Item>
+         <Description>
+            <__attr alias="languageID" name="languageID">
+               <__value>EN</__value>
+            </__attr>
+            <__value>Processor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM:
+				3MB. Screen 1440x900</__value>
+         </Description>
+         <Name>
+            <__value>Labtop</__value>
+            <__value>computer</__value>
+         </Name>
+         <SellersItemIdentification>
+            <ID>
+               <__value>JB007</__value>
+            </ID>
+         </SellersItemIdentification>
+         <StandardItemIdentification>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>GTIN</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>9</__value>
+               </__attr>
+               <__value>1234567890124</__value>
+            </ID>
+         </StandardItemIdentification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>113</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>UNSPSC</__value>
+               </__attr>
+               <__value>12344321</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>2</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>CPV</__value>
+               </__attr>
+               <__value>65434568</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <ClassifiedTaxCategory>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>UN/ECE 5305</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>6</__value>
+               </__attr>
+               <__value>S</__value>
+            </ID>
+            <Percent>
+               <__value>20</__value>
+            </Percent>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </ClassifiedTaxCategory>
+         <AdditionalItemProperty>
+            <Name>
+               <__value>Color</__value>
+            </Name>
+            <Value>
+               <__value>black</__value>
+            </Value>
+         </AdditionalItemProperty>
+      </Item>
+      <Price>
+         <PriceAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>1273</__value>
+         </PriceAmount>
+         <BaseQuantity>
+            <__attr alias="unitCode" name="unitCode">
+               <__value>C62</__value>
+            </__attr>
+            <__value>1</__value>
+         </BaseQuantity>
+         <AllowanceCharge>
+            <ChargeIndicator>
+               <__value>false</__value>
+            </ChargeIndicator>
+            <AllowanceChargeReason>
+               <__value>Contract</__value>
+            </AllowanceChargeReason>
+            <MultiplierFactorNumeric>
+               <__value>0.15</__value>
+            </MultiplierFactorNumeric>
+            <Amount>
+               <__attr alias="currencyID" name="currencyID">
+                  <__value>EUR</__value>
+               </__attr>
+               <__value>225</__value>
+            </Amount>
+            <BaseAmount>
+               <__attr alias="currencyID" name="currencyID">
+                  <__value>EUR</__value>
+               </__attr>
+               <__value>1500</__value>
+            </BaseAmount>
+         </AllowanceCharge>
+      </Price>
+   </InvoiceLine>
+   <InvoiceLine>
+      <ID>
+         <__value>2</__value>
+      </ID>
+      <Note>
+         <__value>Cover</__value>
+         <__value>is</__value>
+         <__value>slightly</__value>
+         <__value>damaged.</__value>
+      </Note>
+      <InvoicedQuantity>
+         <__attr alias="unitCode" name="unitCode">
+            <__value>C62</__value>
+         </__attr>
+         <__value>-1</__value>
+      </InvoicedQuantity>
+      <LineExtensionAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>-3.96</__value>
+      </LineExtensionAmount>
+      <OrderLineReference>
+         <LineID>
+            <__value>5</__value>
+         </LineID>
+      </OrderLineReference>
+      <TaxTotal>
+         <TaxAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>-0.396</__value>
+         </TaxAmount>
+      </TaxTotal>
+      <Item>
+         <Name>
+            <__value>Returned</__value>
+            <__value>"Advanced</__value>
+            <__value>computing"</__value>
+            <__value>book</__value>
+         </Name>
+         <SellersItemIdentification>
+            <ID>
+               <__value>JB008</__value>
+            </ID>
+         </SellersItemIdentification>
+         <StandardItemIdentification>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>GTIN</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>9</__value>
+               </__attr>
+               <__value>1234567890125</__value>
+            </ID>
+         </StandardItemIdentification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>113</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>UNSPSC</__value>
+               </__attr>
+               <__value>32344324</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>2</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>CPV</__value>
+               </__attr>
+               <__value>65434567</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <ClassifiedTaxCategory>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>UN/ECE 5305</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>6</__value>
+               </__attr>
+               <__value>AA</__value>
+            </ID>
+            <Percent>
+               <__value>10</__value>
+            </Percent>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </ClassifiedTaxCategory>
+      </Item>
+      <Price>
+         <PriceAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>3.96</__value>
+         </PriceAmount>
+         <BaseQuantity>
+            <__attr alias="unitCode" name="unitCode">
+               <__value>C62</__value>
+            </__attr>
+            <__value>1</__value>
+         </BaseQuantity>
+      </Price>
+   </InvoiceLine>
+   <InvoiceLine>
+      <ID>
+         <__value>3</__value>
+      </ID>
+      <InvoicedQuantity>
+         <__attr alias="unitCode" name="unitCode">
+            <__value>C62</__value>
+         </__attr>
+         <__value>2</__value>
+      </InvoicedQuantity>
+      <LineExtensionAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>4.96</__value>
+      </LineExtensionAmount>
+      <OrderLineReference>
+         <LineID>
+            <__value>3</__value>
+         </LineID>
+      </OrderLineReference>
+      <TaxTotal>
+         <TaxAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>0.496</__value>
+         </TaxAmount>
+      </TaxTotal>
+      <Item>
+         <Name>
+            <__value>"Computing</__value>
+            <__value>for</__value>
+            <__value>dummies"</__value>
+            <__value>book</__value>
+         </Name>
+         <SellersItemIdentification>
+            <ID>
+               <__value>JB009</__value>
+            </ID>
+         </SellersItemIdentification>
+         <StandardItemIdentification>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>GTIN</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>9</__value>
+               </__attr>
+               <__value>1234567890126</__value>
+            </ID>
+         </StandardItemIdentification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>113</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>UNSPSC</__value>
+               </__attr>
+               <__value>32344324</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>2</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>CPV</__value>
+               </__attr>
+               <__value>65434566</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <ClassifiedTaxCategory>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>UN/ECE 5305</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>6</__value>
+               </__attr>
+               <__value>AA</__value>
+            </ID>
+            <Percent>
+               <__value>10</__value>
+            </Percent>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </ClassifiedTaxCategory>
+      </Item>
+      <Price>
+         <PriceAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>2.48</__value>
+         </PriceAmount>
+         <BaseQuantity>
+            <__attr alias="unitCode" name="unitCode">
+               <__value>C62</__value>
+            </__attr>
+            <__value>1</__value>
+         </BaseQuantity>
+         <AllowanceCharge>
+            <ChargeIndicator>
+               <__value>false</__value>
+            </ChargeIndicator>
+            <AllowanceChargeReason>
+               <__value>Contract</__value>
+            </AllowanceChargeReason>
+            <MultiplierFactorNumeric>
+               <__value>0.1</__value>
+            </MultiplierFactorNumeric>
+            <Amount>
+               <__attr alias="currencyID" name="currencyID">
+                  <__value>EUR</__value>
+               </__attr>
+               <__value>0.275</__value>
+            </Amount>
+            <BaseAmount>
+               <__attr alias="currencyID" name="currencyID">
+                  <__value>EUR</__value>
+               </__attr>
+               <__value>2.75</__value>
+            </BaseAmount>
+         </AllowanceCharge>
+      </Price>
+   </InvoiceLine>
+   <InvoiceLine>
+      <ID>
+         <__value>4</__value>
+      </ID>
+      <InvoicedQuantity>
+         <__attr alias="unitCode" name="unitCode">
+            <__value>C62</__value>
+         </__attr>
+         <__value>-1</__value>
+      </InvoicedQuantity>
+      <LineExtensionAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>-25</__value>
+      </LineExtensionAmount>
+      <OrderLineReference>
+         <LineID>
+            <__value>2</__value>
+         </LineID>
+      </OrderLineReference>
+      <TaxTotal>
+         <TaxAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>0</__value>
+         </TaxAmount>
+      </TaxTotal>
+      <Item>
+         <Name>
+            <__value>Returned</__value>
+            <__value>IBM</__value>
+            <__value>5150</__value>
+            <__value>desktop</__value>
+         </Name>
+         <SellersItemIdentification>
+            <ID>
+               <__value>JB010</__value>
+            </ID>
+         </SellersItemIdentification>
+         <StandardItemIdentification>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>GTIN</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>9</__value>
+               </__attr>
+               <__value>1234567890127</__value>
+            </ID>
+         </StandardItemIdentification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>113</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>UNSPSC</__value>
+               </__attr>
+               <__value>12344322</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>2</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>CPV</__value>
+               </__attr>
+               <__value>65434565</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <ClassifiedTaxCategory>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>UN/ECE 5305</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>6</__value>
+               </__attr>
+               <__value>E</__value>
+            </ID>
+            <Percent>
+               <__value>0</__value>
+            </Percent>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </ClassifiedTaxCategory>
+      </Item>
+      <Price>
+         <PriceAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>25</__value>
+         </PriceAmount>
+         <BaseQuantity>
+            <__attr alias="unitCode" name="unitCode">
+               <__value>C62</__value>
+            </__attr>
+            <__value>1</__value>
+         </BaseQuantity>
+      </Price>
+   </InvoiceLine>
+   <InvoiceLine>
+      <ID>
+         <__value>5</__value>
+      </ID>
+      <InvoicedQuantity>
+         <__attr alias="unitCode" name="unitCode">
+            <__value>C62</__value>
+         </__attr>
+         <__value>250</__value>
+      </InvoicedQuantity>
+      <LineExtensionAmount>
+         <__attr alias="currencyID" name="currencyID">
+            <__value>EUR</__value>
+         </__attr>
+         <__value>187.5</__value>
+      </LineExtensionAmount>
+      <AccountingCost>
+         <__value>BookingCode002</__value>
+      </AccountingCost>
+      <OrderLineReference>
+         <LineID>
+            <__value>4</__value>
+         </LineID>
+      </OrderLineReference>
+      <TaxTotal>
+         <TaxAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>37.5</__value>
+         </TaxAmount>
+      </TaxTotal>
+      <Item>
+         <Name>
+            <__value>Network</__value>
+            <__value>cable</__value>
+         </Name>
+         <SellersItemIdentification>
+            <ID>
+               <__value>JB011</__value>
+            </ID>
+         </SellersItemIdentification>
+         <StandardItemIdentification>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>GTIN</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>9</__value>
+               </__attr>
+               <__value>1234567890128</__value>
+            </ID>
+         </StandardItemIdentification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>113</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>UNSPSC</__value>
+               </__attr>
+               <__value>12344325</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <CommodityClassification>
+            <ItemClassificationCode>
+               <__attr alias="listAgencyID" name="listAgencyID">
+                  <__value>2</__value>
+               </__attr>
+               <__attr alias="listID" name="listID">
+                  <__value>CPV</__value>
+               </__attr>
+               <__value>65434564</__value>
+            </ItemClassificationCode>
+         </CommodityClassification>
+         <ClassifiedTaxCategory>
+            <ID>
+               <__attr alias="schemeID" name="schemeID">
+                  <__value>UN/ECE 5305</__value>
+               </__attr>
+               <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                  <__value>6</__value>
+               </__attr>
+               <__value>S</__value>
+            </ID>
+            <Percent>
+               <__value>20</__value>
+            </Percent>
+            <TaxScheme>
+               <ID>
+                  <__attr alias="schemeID" name="schemeID">
+                     <__value>UN/ECE 5153</__value>
+                  </__attr>
+                  <__attr alias="schemeAgencyID" name="schemeAgencyID">
+                     <__value>6</__value>
+                  </__attr>
+                  <__value>VAT</__value>
+               </ID>
+            </TaxScheme>
+         </ClassifiedTaxCategory>
+         <AdditionalItemProperty>
+            <Name>
+               <__value>Type</__value>
+            </Name>
+            <Value>
+               <__value>Cat5</__value>
+            </Value>
+         </AdditionalItemProperty>
+      </Item>
+      <Price>
+         <PriceAmount>
+            <__attr alias="currencyID" name="currencyID">
+               <__value>EUR</__value>
+            </__attr>
+            <__value>0.75</__value>
+         </PriceAmount>
+         <BaseQuantity>
+            <__attr alias="unitCode" name="unitCode">
+               <__value>C62</__value>
+            </__attr>
+            <__value>1</__value>
+         </BaseQuantity>
+      </Price>
+   </InvoiceLine>
+</Invoice>

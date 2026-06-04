@@ -22,14 +22,9 @@ set -e
 #
 # ---------------------------------------------------------------------------
 
-ixml=recipe.ixml
-ixml2xml=../xsl/Crane-ixml2xml.xsl
-xml2txt=../Crane-xml2txt.xsl
-
-
 DP0=$( cd "$(dirname "$0")" ; pwd -P )
 
-sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe" "$DP0/recipe1"
-sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe" "$DP0/recipe2"
-sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe" "$DP0/recipe3"
-sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe" "$DP0/recipe4"
+sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe.ixml" "$DP0/../xsl/Crane-ixml2xml.xsl" "$DP0/recipe1"
+sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe.ixml" "$DP0/../xsl/Crane-ixml2xml.xsl" "$DP0/recipe2"
+sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe.ixml" "$DP0/../xsl/Crane-ixml2xml.xsl" "$DP0/recipe3"
+sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe.ixml" "$DP0/../xsl/Crane-ixml2xml.xsl" "$DP0/recipe4error"

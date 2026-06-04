@@ -15,7 +15,7 @@ You provide three inputs to the Crane-txt2xml generation pipeline:
 
 1. **A "Venetian Blind" or "Garden of Eden" XSD schema** for the target XML vocabulary. All global type declarations must follow the Venetian Blind convention. If your vocabulary is defined in RELAX NG or DTD form, use [Trang](https://relaxng.org/jclark/trang.html) to produce a compatible XSD — provided the schema is expressible in XSD.
 
-2. **An Alias XML document** mapping natural-language element and attribute labels to their XML names. Each XML element name may have multiple labels (aliases). Every environment implicitly supports the raw XML element names as labels; the aliases you define are additive.
+2. **Optionally an Alias XML document** of your own mapping natural-language element and attribute labels to their XML names. Each XML element name may have multiple labels (aliases). Every environment implicitly supports the raw XML element names as labels; the aliases you define are additive. Whether this is a separate file or built-in to your code is not relevant. Conceptually, this is a just the list of allowed aliases if you choose to allow such.
 
 3. **A Cleanup XSLT stylesheet** that transforms the intermediate XML produced by the iXML processor into the final output. This stylesheet handles attribute alias resolution, namespace assignment, and any other serialization requirements of the target vocabulary.
 
@@ -49,34 +49,32 @@ Errors are detected at three stages, each catching different classes of problems
 
 The iXML grammar encodes the vocabulary's element content models. When the authored text violates element structure — misspelled element labels, wrong element order, missing required elements, elements in impermissible locations — the iXML processor reports errors.
 
-The iXML processor's error output is in XML (in the iXML namespace). The Cleanup XSLT detects this by namespace — output in the iXML namespace indicates errors; output in the target namespace indicates success. Your Cleanup XSLT should transform the iXML error XML into plain-language messages suitable for a lay author. The goal is to distill the error context into guidance the author can act on without understanding XML or iXML diagnostics.
+The iXML processor's error output is in XML (in the iXML namespace). The Cleanup XSLT imports . The goal is to distill the error context into guidance the author can act on without understanding XML or iXML diagnostics.
 
 ### Stage 2: Cleanup XSLT
 
-The Cleanup XSLT handles attribute alias resolution. If an author uses an attribute label that does not map to a recognized attribute name, the Cleanup XSLT can detect and report this. Attribute naming errors are caught here rather than at the iXML stage because the iXML grammar captures attribute names dynamically (via the `name` production) without constraining them to specific values.
+The Cleanup XSLT accommodates the iXML processor error reporting, when present, and the transformation to the output XML instance when absent. The imported `Crane-ixml2xml.xsl` fragment accommodates the error reporting. Feedback is welcome regarding unaddressed error reporting that can be improved upon.
 
 ### Stage 3: Schema Validation
 
-Post-generation schema validation catches attribute usage errors — an attribute on an element that does not permit it, a required attribute that is missing, or an attribute value that does not conform to the schema's type constraints. It also serves as a safety net for any element-level structural issues that the iXML grammar might not fully constrain.
-
-Use the vocabulary's DTD or RELAX NG schema (produced via Trang from the XSD if needed) for this validation step.
+Post-generation schema validation catches element and attribute value usage errors based on the schema's type constraints. It also serves as a safety net for any element-level structural issues that the iXML grammar might not fully constrain.
 
 ## The XSD Schema
 
-The xsd2ixml generation stylesheet requires a Venetian Blind XSD. In this convention, all type definitions are global (named) types, and element declarations reference these types. This allows the stylesheet to traverse the content models systematically and generate iXML rules for each element.
+The xsd2ixml generation stylesheet requires a Garden of Eden or a Venetian Blind XSD. In this convention, all type definitions are global (named) types, and element declarations reference these types are global or local. This allows the stylesheet to traverse the content models systematically and generate iXML rules for each element.
 
-If your vocabulary's authoritative schema is in RELAX NG or DTD form, convert it to XSD using Trang:
+If your vocabulary's authoritative schema is in RELAX NG or DTD form, the basic conversion to XSD can use Trang as a first step:
 
 ```
 trang -I rnc -O xsd schema.rnc schema.xsd
 trang -I dtd -O xsd  schema.dtd schema.xsd
 ```
 
-Verify the resulting XSD follows the Venetian Blind convention. Not all schema languages convert cleanly; manual adjustment may be necessary.
+Not all schema languages convert cleanly to the structure needed for conversion to iXML; manual adjustment may be necessary.
 
 ## The Alias XML
 
-The Alias XML document defines alternative labels for element and attribute names. Each alias maps one or more natural-language label forms to a single XML name.
+The Alias XML document (or transformation) defines alternative labels for element and attribute names. Each alias maps one or more natural-language label forms to a single XML name.
 
 Design considerations for aliases:
 
@@ -85,30 +83,20 @@ Design considerations for aliases:
 - **Multiple languages.** Different environments can define aliases in different natural languages for the same vocabulary. For example, Crane-txt2pubmed offers language-specific distributions (Crane-txt2pubmed-de, Crane-txt2pubmed-fr) where element labels are available in German, French, and so on, alongside the English XML names.
 - **Multiple aliases per name.** A single XML element name may have several aliases — abbreviations, full names, translations — all mapping to the same output element.
 
-<!-- TODO: Document the Alias XML format and schema -->
-
 ## The Cleanup XSLT
 
 The Cleanup XSLT stylesheet transforms the intermediate XML produced by the iXML processor into the final vocabulary-conformant XML output. Its responsibilities include:
 
-- **Namespace assignment.** The intermediate XML uses the namespace declared in the iXML grammar's `nineml ns` pragma. The Cleanup XSLT maps elements to the correct namespace(s) for the target vocabulary (e.g., separating UBL common basic components from aggregate components).
-- **Attribute alias resolution.** If you define attribute aliases, the Cleanup XSLT maps the authored attribute names to their canonical XML attribute names.
-- **Error detection for attributes.** Attribute labels that cannot be resolved to known attribute names should be reported as errors.
-- **Error message transformation.** When the iXML processor output is in the iXML namespace (indicating parse errors), the Cleanup XSLT transforms the error XML into plain-language messages for the author.
-
-<!-- TODO: Document the Cleanup XSLT contract (expected input structure, required output) -->
+- **Namespace assignment.** The intermediate XML is in no namespace and so any required resulting namespaces need to be inferred from context.
+- **Error message transformation.** When the iXML processor output is in the iXML namespace (indicating parse errors), the Cleanup XSLT augments the XML with plain-language guidance for the author. The resulting document is transformed to plain text for legibility.
 
 ## The Generation Pipeline
 
-The xsd2ixml XSLT stylesheet, provided in the base Crane-txt2xml distribution, reads the Venetian Blind XSD and the Alias XML to produce the iXML grammar. The generated grammar encodes:
+The `xsd2ixml.xsl` XSLT stylesheet, provided in the base Crane-txt2xml distribution, reads the appropriately-configured XSD and the alias information to produce the iXML grammar. The generated grammar encodes:
 
 - An iXML rule for each element in the vocabulary, with the element's content model expressed as the rule's definition.
 - All label alternatives (the raw XML name plus any aliases) as alternatives in each rule's label matching.
-- The boilerplate productions for attribute handling, value parsing (unquoted and quoted), whitespace, and XML name characters.
-
-The boilerplate productions are designed for element-only content models. Mixed content (text interleaved with child elements) is not supported in the current version; it is planned for a future extension using Markdown syntax within element values.
-
-<!-- TODO: Document xsd2ixml invocation and parameters -->
+- The boilerplate productions for attribute handling, value parsing (unquoted and quoted), white-space, and XML name characters.
 
 ## Packaging a Distribution
 
@@ -136,7 +124,5 @@ You are responsible for documenting the vocabulary-specific information that the
 - Which elements are required, optional, or repeatable
 - Which elements accept attributes, and which attributes are available
 - Any aliases you have defined for element and attribute labels
-
-The base Crane-txt2xml distribution includes a cheat sheet stylesheet you can use to generate a concise vocabulary reference from your XSD. The Crane-txt2ubl environment uses a more detailed HTML rendering of UBL content models; the Crane-txt2pubmed environment uses the cheat sheet approach. Choose whatever format best serves your authors.
 
 The universal text syntax rules — how labels, attributes, values, quoting, escaping, and whitespace work — are covered in the [Author's Guide](AUTHORING.md). Point your authors there rather than duplicating that content in your vocabulary documentation.

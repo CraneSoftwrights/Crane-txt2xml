@@ -123,6 +123,9 @@
     Find unique documents by their node identity, walking through the
     precedence tree.
   </para>
+  <xst:param name="c:foundSoFar">
+    <para>Which fragments have been accumulated to this point</para>
+  </xst:param>
 </xst:template>
 <xsl:template mode="c:findFragments" match="/">
   <xsl:param name="c:foundSoFar" as="document-node()*" select="()"/>
@@ -261,9 +264,9 @@
   <xst:param name="c:thisFragment">
     <para>Fragment information</para>
   </xst:param>
-  <xsl:param name="c:element">
-    <para>Element declaration</para>
-  </xsl:param>
+  <xst:param name="c:name">
+    <para>The name to base rule on</para>
+  </xst:param>
 </xst:function>
 <xsl:function name="c:ruleName" as="xs:string">
   <xsl:param name="c:thisFragment" as="map(*)"/>
@@ -285,9 +288,9 @@
   <xst:param name="c:thisFragment">
     <para>Fragment information</para>
   </xst:param>
-  <xsl:param name="c:element">
-    <para>Element declaration</para>
-  </xsl:param>
+  <xst:param name="c:name">
+    <para>The name to base rule on</para>
+  </xst:param>
 </xst:function>
 <xsl:function name="c:ruleNameAliasDeclaration" as="xs:string">
   <xsl:param name="c:thisFragment" as="map(*)"/>
@@ -494,6 +497,9 @@ __mixed_content_value>__mixed_content_value = ( __quoted | __unquoted, __WS | __
 
 <xst:function>
   <para>Return an array of all possible name conventions</para>
+  <xst:param name="c:name">
+    <para>The name to base rule on</para>
+  </xst:param>
 </xst:function>
 <xsl:function name="c:nameEntries" as="array(xs:string+)*">
   <xsl:param name="c:name" as="xs:string"/>
@@ -607,10 +613,10 @@ __mixed_content_value>__mixed_content_value = ( __quoted | __unquoted, __WS | __
 
 <xst:function>
   <para>
-    Accumulate type declarations until no more
+    Follow the types that are declared
   </para>
-  <xst:param name="c:typeName">
-    <para>Name of type in chain of types</para>
+  <xst:param name="c:typeDecl">
+    <para>The type declaration with the information</para>
   </xst:param>
 </xst:function>
 <xsl:function name="c:followTypes" as="element()*">

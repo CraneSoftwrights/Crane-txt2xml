@@ -31,7 +31,15 @@ An element label is the element's name or alias followed by a colon.
 
 When multiple attribute specifications for a given element use the same name or equivalent alias, only the last one of these is put in the XML output. This might be exploited by composing a default attribute specification initially (by program generation) and editing the result with an overriding value.
 
-An element's output content is the combination of all of that element's value specifications, joined by a single space separator between each. Use a single quoted string to have more control over all of the spaces.
+The output content of an element defined as `xs:string` is the combination of all of that element's value specifications, joined by a single space separator between each. Use a single quoted string to have more control over all of the spaces.
+
+The output content of an attribute defined as `xs:string` is a single value specification which, itself, may be a quoted string with spaces.
+
+The output content of an item defined as `xs:boolean` is one of the four values: `true`, `false`, `1`, and `0`.
+
+The output content of an item defined using any other XSD data type is a single value specification representing that token value.
+
+The vocabulary documentation should highlight 
 
 ```
 Title: Pancakes
@@ -73,7 +81,7 @@ In the example, an "`Amount`" element is created with two attributes, "`unit`" a
 
 Note that only Boolean attribute values are checked for correct syntax. At this time, the syntax of other attribute values is not checked.
 
-Attribute names are checked. Mandatory attributes are checked to be present. When more than one attribute of a given name is specified for an element, the last value specified is used. 
+Attribute names are checked. Mandatory attributes are checked to be present. The order of mandatory and optional attribute specifications is not important. When more than one attribute of a given name is specified for an element, the last value specified is used. At least one attribute specification for each of the mandatory attributes of an element must be indicated for every one of those elements.
 
 ## Label name aliases
 
@@ -139,6 +147,7 @@ A given value specification **must** be quoted or escaped in these situations:
 - the value includes `@`, which would otherwise be interpreted as the beginning of an attribute label: `"@home"`
 - the value includes `:`, which would otherwise be confused with an element label: `"Note:"`
 - the value includes `/`, which would otherwise be confused with an element's disambiguation signal: `"https://example.com"`
+- the value is one defined as mixed-content and includes a markdown signal character, which would otherwise be interpreted as an element start/end for that element represented by the signal
 
 A simple rule of thumb: if a single value specification contains anything other than plain letters, digits, hyphens, and periods, quoting it is the safe choice, though not a formal summary of constraints.
 
@@ -166,6 +175,7 @@ Escaping is in play at all times, inside a quoted or unquoted value specificatio
   - `\/` produces a literal oblique or forward slash
 - always needed in both quoted and unquoted value specifications
   - `\"` produces a literal double quote
+  - `` \` `` produces a literal back-tick
   - `\\` produces a literal backslash
   - `\{"0"-"9" | "A"-"F" | "a"-"f"}+\` produces a single Unicode character of the value of the hex characters escaped
     - e.g. `\A0\` for NBSP 
@@ -188,6 +198,11 @@ Name: \@special
 
 This produces the text content: `@special`
 
+## Back-tick quoting
+
+A string demarcated by back-ticks `` `a *string* of characters` `` is sensitive to the presence of markdown characters therein, such as shown by the use of the asterisks. But such is useful only when the vocabulary has defined certain characters as the on/off toggles of the mixed-content encoding of the content between the signals. Otherwise, it is the same as double-quoting.
+
+See the PubNoteIn-text2xml facility in the \<PubNote> project for an example of mixed-content and the use of markdown characters.
 
 ## White-space
 
@@ -255,11 +270,15 @@ Otherwise, you use white-space freely for readability (as most authors will).
 ## Structural disambiguation signals
 
 Every element that is started with `Name:` can be ended with `/Name` as an explicit indication of the element having no more content.
-This is only very rarely needed and for most vocabularies never is needed. Authors may choose to express the ends of elements for cosmetic purposes, though this is entirely optional for most vocabularies.
+As described in the next section this is only very rarely needed and for most vocabularies such never is needed.
+
+Authors may choose to express the ends of elements for cosmetic purposes when they aren't required, though this is entirely optional for most vocabularies where structural disambiguation is not needed.
 
 ### When Structural Disambiguation Is Required
 
-Disambiguation is mandatory when the XML vocabulary is structurally ambiguous. Typically this occurs when elements of the same name are optional and are permitted to appear in more than one place. Not all vocabularies are structurally ambiguous, and often it is a matter of discovering they are based on the input triggering an ambiguity.
+Disambiguation is mandatory in the areas when the XML vocabulary is structurally ambiguous. Typically this occurs when elements of the same name are optional and are permitted to appear in more than one place. Not all vocabularies are structurally ambiguous, and often it is a matter of discovering they are based on the input triggering an ambiguity.
+
+The vocabulary documentation should indicate when elements require structural disambiguation, and for the others it can be considered optional.
 
 
 ## Error Messages

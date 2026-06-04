@@ -20,4 +20,4 @@ if ! REPO="$(cd "$(dirname "$0")" && cd .. && pwd)"; then
   exit 1
 fi
 
-java -jar "$REPO/utilities/saxonhe/saxonhe.jar" -s:"$REPO/ubl/UBL-AllDocuments-2.5.xsd" -xsl:"$REPO/ubl/Crane-ubl2ixml.xsl" -o:"$REPO/ubl/ubl.ixml"
+java -jar "$REPO/utilities/saxonhe/saxonhe.jar" -s:"$REPO/Crane-txt2ubl/UBL-AllDocuments-2.5.xsd" -xsl:"$REPO/Crane-txt2ubl/Crane-ubl2ixml.xsl" -o:"$REPO/ubl/ubl.ixml"
