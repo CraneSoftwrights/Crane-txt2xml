@@ -81,6 +81,21 @@
 <xsl:variable name="c:indent" select="starts-with('yes',lower-case($indent))"
               as="xs:boolean"/>
 
+<xst:param ignore-ns='yes'>
+  <para>
+    Set this to "yes" for there to be a space after the labels
+  </para>
+</xst:param>
+<xsl:param name="label-gap" select="'yes'" as="xs:string"/>
+
+<xst:variable>
+  <para>
+    A testable boolean for the invocation parameter
+  </para>
+</xst:variable>
+<xsl:variable name="c:labelGap" as="xs:boolean"
+              select="starts-with('yes',lower-case($label-gap))"/>
+
 <xst:variable>
   <para>
     A testable boolean for the invocation parameter
@@ -227,7 +242,7 @@
       <xsl:choose>
         <xsl:when test="exists(text()[normalize-space()]) or not($c:indent)">
           <!--may even include mixed content-->
-          <xsl:text> </xsl:text>
+          <xsl:if test="$c:labelGap"><xsl:text> </xsl:text></xsl:if>
         </xsl:when>
       </xsl:choose>
       <!--the element's content-->
@@ -285,9 +300,11 @@
 <xsl:template match="@*">
   <xsl:param name="c:compact" as="xs:boolean" select="false()"/>
   <xsl:variable name="c:info" select="c:info4item(.)"/>
-  <xsl:if test="not($c:compact)"><xsl:text> </xsl:text></xsl:if>
+  <xsl:if test="not($c:compact) and
+                $c:labelGap"><xsl:text> </xsl:text></xsl:if>
   <xsl:text/>@<xsl:value-of select="c:name4item($c:info,.)"/>:<xsl:text/>
-  <xsl:if test="not($c:compact)"><xsl:text> </xsl:text></xsl:if>
+  <xsl:if test="not($c:compact) and
+                $c:labelGap"><xsl:text> </xsl:text></xsl:if>
   <xsl:choose>
     <!--any white-space in the value warrants the value to be quoted-->
     <xsl:when test="$c:compact or matches(.,'[\s&#x22;]')">

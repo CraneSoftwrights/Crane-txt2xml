@@ -8,16 +8,26 @@
                 exclude-result-prefixes="xs xst c map"
                 version="3.0">
 
-<xsl:import href="../xsl/Crane-ixml2xml.xsl"/>
-
 <xst:doc info="https://github.com/CraneSoftwrights/temp-txt2xml"
-        filename="Crane-ixml2recipe.xsl" vocabulary="DocBook">
-  <xst:title>Convert Recipe iXML to XML</xst:title>
+        filename="Crane-recipe-common.xsl" vocabulary="DocBook">
+  <xst:title>Convert Recipe XSD to iXML patterns per Crane-txt2xml</xst:title>
   <para>
-    This converts the iXML output to XML output.
+    Common bits used in multiple recipe-related stylesheets.
   </para>
 </xst:doc>
 
-<!--nothing in addition to the standard processing-->
+<xst:variable>
+  <para>The abbreviated names for token input</para>
+</xst:variable>
+<xsl:variable name="c:nameTokens" as="map(*)" select='map
+  { "Recipe": "R",
+    "Title": "T",
+    "Ingredient": "I",
+    "Amount": "A",
+    "Step": "S",
+    "Name": "N",
+    "unit": "u",
+    "approximate": "a"
+  }'/>
 
 </xsl:stylesheet>

@@ -1,0 +1,34 @@
+Recipe:
+  Title:
+    __value: Pancakes 
+  Ingredient:
+    Name:
+      __value: Flour 
+    Amount:
+      __attr: @alias: u  @name: unit 
+        __value: cups 
+      __value: 2 
+  Ingredient:
+    Name:
+      __value: Maple 
+      __value: Syrup 
+    Amount:
+      __attr: @alias: u  @name: unit 
+        __value: tablespoon 
+      __attr: @alias: a  @name: approximate 
+        __value: yes 
+      __value: 3 
+  Step:
+    __value: Mix 
+    __value: ingredients 
+    __value: together 
+  Step:
+    __value: Cook 
+    __value: on 
+    __value: a 
+    __value: greased 
+    __value: griddle 
+    __value:
+      __unicode: 1FAE7 
+  Step:
+    __value: Serve 

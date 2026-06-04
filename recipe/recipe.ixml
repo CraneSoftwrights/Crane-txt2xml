@@ -1,4 +1,4 @@
-{ 20260604-0603Z https://github.com/CraneSoftwrights/Crane-txt2xml#readme }
+{ 20260604-1355Z https://github.com/CraneSoftwrights/Crane-txt2xml#readme }
 
 
 
@@ -8,12 +8,12 @@
 
 {  }
 
-Title = __WS*, ( ( -"Title" ), -':' ), xs_string, ( __WS*, -'/', ( -"Title" ))?.
-Name = __WS*, ( ( -"Name" ), -':' ), xs_string, ( __WS*, -'/', ( -"Name" ))?.
-Step = __WS*, ( ( -"Step" ), -':' ), xs_string, ( __WS*, -'/', ( -"Step" ))?.
-Amount = __WS*, ( ( -"Amount" ), -':' ), __content__AmountType, ( __WS*, -'/', ( -"Amount" ))?.
-Ingredient = __WS*, ( ( -"Ingredient" ), -':' ), __content__IngredientType, ( __WS*, -'/', ( -"Ingredient" ))?.
-Recipe = __WS*, ( ( -"Recipe" ), -':' ), __content__RecipeType, ( __WS*, -'/', ( -"Recipe" ))?.
+Title = __WS*, ( ( -"Title" | ( -"T" ) ), -':' ), xs_string, ( __WS*, -'/', ( -"Title" | ( -"T" ) ))?.
+Name = __WS*, ( ( -"Name" | ( -"N" ) ), -':' ), xs_string, ( __WS*, -'/', ( -"Name" | ( -"N" ) ))?.
+Step = __WS*, ( ( -"Step" | ( -"S" ) ), -':' ), xs_string, ( __WS*, -'/', ( -"Step" | ( -"S" ) ))?.
+Amount = __WS*, ( ( -"Amount" | ( -"A" ) ), -':' ), __content__AmountType, ( __WS*, -'/', ( -"Amount" | ( -"A" ) ))?.
+Ingredient = __WS*, ( ( -"Ingredient" | ( -"I" ) ), -':' ), __content__IngredientType, ( __WS*, -'/', ( -"Ingredient" | ( -"I" ) ))?.
+Recipe = __WS*, ( ( -"Recipe" | ( -"R" ) ), -':' ), __content__RecipeType, ( __WS*, -'/', ( -"Recipe" | ( -"R" ) ))?.
   -__content__AmountType =  -__attrs__AmountType, xs_decimal.
     -__attrs__AmountType = 
       ( __WS*, AmountType__OPTIONAL )*, 
@@ -22,10 +22,10 @@ Recipe = __WS*, ( ( -"Recipe" ), -':' ), __content__RecipeType, ( __WS*, -'/', (
       -AmountType__OPTIONAL = ( __attr__AmountType__approximate ).
       -AmountType__MANDATORY1of1 =  ( __attr__AmountType__unit ).
     __attr__AmountType__unit>__attr = __alias__AmountType__unit, __name__AmountType__unit, __WS*, xs_string__attr.
-    @__alias__AmountType__unit>alias = -"@", ( "unit" ), -':'.
+    @__alias__AmountType__unit>alias = -"@", ( "unit" | ( "u" ) ), -':'.
     @__name__AmountType__unit>name = +"unit".
     __attr__AmountType__approximate>__attr = __alias__AmountType__approximate, __name__AmountType__approximate, __WS*, xs_string__attr.
-    @__alias__AmountType__approximate>alias = -"@", ( "approximate" ), -':'.
+    @__alias__AmountType__approximate>alias = -"@", ( "approximate" | ( "a" ) ), -':'.
     @__name__AmountType__approximate>name = +"approximate".
   -__content__IngredientType = ( Name, Amount ).
   -__content__RecipeType = ( Title, Ingredient+, Step+ ).

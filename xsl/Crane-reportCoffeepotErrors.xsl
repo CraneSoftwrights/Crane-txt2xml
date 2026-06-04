@@ -51,7 +51,7 @@
     testing the 
   </para>
 </xst:template>
-<xsl:template match="ixml[@ixml:state='failed']">
+<xsl:template match="/ixml[@ixml:state='failed']">
   <xsl:message select="'Failure reported; details in the output XML'"/>
   <failure>
     <guidance>
@@ -74,7 +74,7 @@
     testing the 
   </para>
 </xst:template>
-<xsl:template match="ixml[count(*)>1]
+<xsl:template match="/ixml[count(*)>1]
                          [exists(*[@ixml:state='ambiguous'])]">
   <xsl:variable name="baseNode"
                 select="*[@ixml:state='ambiguous'][1]"/>

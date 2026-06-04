@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+   <Title>
+      <__value>Pancakes</__value>
+   </Title>
+   <Ingredient>
+      <Name>
+         <__value>Flour</__value>
+      </Name>
+      <Amount>
+         <__attr alias="u" name="unit">
+            <__value>cups</__value>
+         </__attr>
+         <__value>2</__value>
+      </Amount>
+   </Ingredient>
+   <Ingredient>
+      <Name>
+         <__value>Maple</__value>
+         <__value>Syrup</__value>
+      </Name>
+      <Amount>
+         <__attr alias="u" name="unit">
+            <__value>tablespoon</__value>
+         </__attr>
+         <__attr alias="a" name="approximate">
+            <__value>yes</__value>
+         </__attr>
+         <__value>3</__value>
+      </Amount>
+   </Ingredient>
+   <Step>
+      <__value>Mix</__value>
+      <__value>ingredients</__value>
+      <__value>together</__value>
+   </Step>
+   <Step>
+      <__value>Cook</__value>
+      <__value>on</__value>
+      <__value>a</__value>
+      <__value>greased</__value>
+      <__value>griddle</__value>
+      <__value>
+         <__unicode>1FAE7</__unicode>
+      </__value>
+   </Step>
+   <Step>
+      <__value>Serve</__value>
+   </Step>
+</Recipe>

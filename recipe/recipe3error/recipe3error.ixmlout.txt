@@ -4,7 +4,7 @@ ixml: @parses: 2  @totalParses: 2  @state: failed
     column: 121 
     pos: 121 
     unexpected: @ 
-    permitted: #9, #A, #D, [Zs] 
+    permitted: #9, #A, #D, 'I', 'S', [Zs] 
     completions:
       completed: @rule: __value  @start: 119  @end: 120 
         input: "3 "
@@ -30,6 +30,8 @@ ixml: @parses: 2  @totalParses: 2  @state: failed
         input: "Title:Pancakes  ... :tablespoons 3 "
       open: @rule: __unquoted  @start: 119  @end: 119 
         input: 3 
+      open: @rule: __alias__AmountType__approximate  @start: 101  @end: 101 
+        input: @ 
       open: @rule: __value  @start: 94  @end: 99 
         input: Amount 
       open: @rule: __more_quoted  @start: 92  @end: 92 
@@ -41,7 +43,7 @@ ixml: @parses: 2  @totalParses: 2  @state: failed
     column: 121 
     pos: 121 
     unexpected: @ 
-    permitted: #9, #A, #D, [Zs] 
+    permitted: #9, #A, #D, 'I', 'S', [Zs] 
     completions:
       completed: @rule: __value  @start: 119  @end: 120 
         input: "3 "
@@ -67,6 +69,8 @@ ixml: @parses: 2  @totalParses: 2  @state: failed
         input: "Title:Pancakes  ... :tablespoons 3 "
       open: @rule: __unquoted  @start: 119  @end: 119 
         input: 3 
+      open: @rule: __alias__AmountType__approximate  @start: 101  @end: 101 
+        input: @ 
       open: @rule: __value  @start: 94  @end: 99 
         input: Amount 
       open: @rule: __more_quoted  @start: 92  @end: 92 

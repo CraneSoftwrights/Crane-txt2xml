@@ -1,0 +1,1 @@
+R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mix ingredients together S:Cook on a greased griddle \1FAE7\ S:Serve 

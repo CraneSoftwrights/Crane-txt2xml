@@ -9,9 +9,10 @@
                 version="3.0">
 
 <xsl:import href="../xsl/Crane-xsd2ixml.xsl"/>
+<xsl:import href="Crane-recipe-common.xsl"/>
 
 <xst:doc info="https://github.com/CraneSoftwrights/temp-txt2xml"
-        filename="Crane-ubl2ixml.xsl" vocabulary="DocBook">
+        filename="Crane-recipe2ixml.xsl" vocabulary="DocBook">
   <xst:title>Convert Recipe XSD to iXML patterns per Crane-txt2xml</xst:title>
   <para>
     This automates the generation of iXML from a schema.
@@ -54,14 +55,21 @@
 </xst:function>
 <xsl:function name="c:nameEntries" as="array(xs:string+)*">
   <xsl:param name="c:name" as="xs:string"/>
-  <xsl:variable name="c:nameAlt" as="xs:string+"
+
+  <!--the names raw as element and attribute names-->
+  <xsl:sequence select="c:nameEntriesComposed($c:name)"/>
+
+  <!--the names as words from camel case-->
+  <xsl:variable name="c:nameAlt1" as="xs:string+"
                 select="tokenize( replace( $c:name, 
                                                    '([a-z])([A-Z])','$1 $2'),
                                           '\s' )"/>
-  <xsl:sequence select="c:nameEntriesComposed($c:name)"/>
-  <xsl:if test="count($c:nameAlt) > 1">
-    <xsl:sequence select="array { $c:nameAlt }"/>
+  <xsl:if test="count($c:nameAlt1) > 1">
+    <xsl:sequence select="array { $c:nameAlt1 }"/>
   </xsl:if>
+  
+  <!--the names as abbreviated tokens-->
+  <xsl:sequence select="array { $c:nameTokens( $c:name ) }"/>
 </xsl:function>
 
 </xsl:stylesheet>

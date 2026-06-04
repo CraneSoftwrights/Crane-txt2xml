@@ -1,1 +1,0 @@
-Recipe:Title:Pancakes Ingredient:Name:Flour Amount:@unit:cups 2 Ingredient:Name:"Maple Syrup"Amount:@unit:tablespoons 3 @approximate:"yes"Step:"Mix ingredients together"Step:"Cook on a greased griddle"Step:Serve

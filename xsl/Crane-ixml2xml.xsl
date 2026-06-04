@@ -9,6 +9,8 @@
                 expand-text="yes"
                 version="3.0">
 
+<xsl:include href="Crane-reportCoffeepotErrors.xsl"/>
+
 <xst:doc info="https://github.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-ixml2xml.xsl" vocabulary="DocBook">
   <xst:title>Convert the iXML document into a raw XML document</xst:title>
@@ -40,7 +42,7 @@
   </xst:param>
 </xst:template>
 <xsl:template match="/*" priority="-2">
-  <xsl:param name="c:namespaceURI" as="xs:string" tunnel="yes"/>
+  <xsl:param name="c:namespaceURI" as="xs:string?" tunnel="yes"/>
   <xsl:param name="c:documentElementAdditional" as="node()*"/>
   <xsl:element name="{local-name(.)}" namespace="{$c:namespaceURI}">
     <xsl:copy-of select="$c:documentElementAdditional"/>
@@ -131,7 +133,7 @@
   </xst:param>
 </xst:template>
 <xsl:template match="*" priority="-4">
-  <xsl:param name="c:namespaceURI" as="xs:string" tunnel="yes"/>
+  <xsl:param name="c:namespaceURI" as="xs:string?" tunnel="yes"/>
   <xsl:element name="{local-name(.)}" namespace="{$c:namespaceURI}">
     <xsl:call-template name="c:processContent"/>
   </xsl:element>
