@@ -46,10 +46,14 @@ then the environment produces the differently nested result of XML syntax:
 
 ## How It Works
 
-Crane-txt2xml is a configurable framework. An implementer adapts the base environment for a specific XML vocabulary (such as UBL invoices or PubMed articles), producing a turnkey implementation that authors use directly.
+Crane-txt2xml is a configurable framework. An implementer adapts the base environment for a specific XML vocabulary (such as UBL invoices or PubMed articles), producing a turnkey implementation that authors use directly. Included is both the conversion of authored simple text files to XML documents, and the conversion of XML documents to simple text files for round-tripping through an editor's fingers.
 
 ```
-Authored text  ──►  Crane-txt2xml  ──►  ( XML document or Error messages )
+XML document  ──►  Crane-xml2txt  ──►  Simple text
+```
+
+```
+Simple text  ──►  Crane-txt2xml  ──►  ( XML document or Error messages )
 ```
 
 The author unpacks a self-contained distribution of a configured environment, writes text following the vocabulary's structural rules using the one common Crane-txt2xml syntax, and gets valid XML or plain-language error messages. No software installation is required beyond unzipping the distribution.

@@ -211,6 +211,7 @@
       <xsl:if test="empty(*) and empty(text())">""</xsl:if>
       <xsl:if test="$c:inMixedContent">
         <xsl:text/>/<xsl:value-of select="c:name4item($c:info,.)"/>
+        <xsl:text> </xsl:text>
       </xsl:if>
     </xsl:when>
     <xsl:when test="$c:info/@markdownSymbol = $c:parentInfo/@markdownSymbol

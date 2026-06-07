@@ -12,6 +12,8 @@ You are creating XML syntax. Your organization needs XML documents — invoices,
 
 Your text consists of **labels for elements**, **labels for attributes**, and **content for both**. The environment knows the structural rules of your XML vocabulary and uses them to produce correctly nested XML from your text.
 
+If you need to round-trip an existing XML document using this syntax for editing purposes, each environment has the equivalent of the `Crane-xml2txt.xsl` stylesheet.
+
 ## Example Vocabulary
 
 To illustrate the text syntax, this guide uses a simple Recipe vocabulary with the following structure found in the [Recipe.xsd](Recipe.xsd) XML schema:
