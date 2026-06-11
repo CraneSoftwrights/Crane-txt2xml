@@ -87,7 +87,8 @@
     </xsl:for-each>
   </xsl:variable>
   
-  <xsl:message select="'Ambiguity reported; details in the output XML'"/>
+  <xsl:message select="'Ambiguity reported for ''',c:xpath(/),
+                       '''; details in the output XML'"/>
   <ambiguous>
     <xsl:if test="exists($foundUnequalNodeLeafXPaths)">
       <guidance>

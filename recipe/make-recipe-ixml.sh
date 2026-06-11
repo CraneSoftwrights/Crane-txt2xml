@@ -3,7 +3,7 @@
 set -e
 
 # ---------------------------------------------------------------------------
-# make-ubl-ixml.sh
+# make-recipe-ixml.sh
 #
 # A shell script converting UBL XSD into iXML
 #

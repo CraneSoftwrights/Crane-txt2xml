@@ -8,7 +8,7 @@
                 exclude-result-prefixes="xs xst c map"
                 version="3.0">
 
-<xsl:import href="../xsl/Crane-xsd2ixml.xsl"/>
+<xsl:import href="../../xsl/Crane-xsd2ixml.xsl"/>
 
 <xst:doc info="https://github.com/CraneSoftwrights/temp-txt2xml"
         filename="Crane-ubl2ixml.xsl" vocabulary="DocBook">

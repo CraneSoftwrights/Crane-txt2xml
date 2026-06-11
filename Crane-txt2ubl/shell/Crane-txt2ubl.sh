@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +x
+
 # ---------------------------------------------------------------------------
 # Crane-txt2ubl.sh
 #
@@ -39,6 +41,6 @@ fi
 #  exit
 #fi
 
-$REPO/shell/Crane-txt2xml.sh $REPO/Crane-txt2ubl/ubl.ixml $REPO/Crane-txt2ubl/Crane-ixml2ubl.xsl $1
+$REPO/shell/Crane-txt2xml.sh $REPO/Crane-txt2ubl/ubl-2.5.ixml $REPO/Crane-txt2ubl/xsl/Crane-ixml2ubl.xsl "$1" "$1.xml"
 
 # end

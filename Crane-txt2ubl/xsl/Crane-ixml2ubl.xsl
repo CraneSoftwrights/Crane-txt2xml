@@ -23,7 +23,7 @@
   </para>
 </xst:doc>
 
-<xsl:import href="../xsl/Crane-ixml2xml.xsl"/>
+<xsl:import href="../../xsl/Crane-ixml2xml.xsl"/>
 
 <!--========================================================================-->
 <xst:doc>

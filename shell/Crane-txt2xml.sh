@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +x
+
 # ---------------------------------------------------------------------------
 # Crane-txt2xml.sh
 #
@@ -50,7 +52,7 @@ outputbase=$(basename "$4")
 
 # echo Processing: "$3" into "$4" ...
 
-if [ ! -f "$3" ];   then echo Input text "$4" not found ; exit 1 ; fi
+if [ ! -f "$3" ];   then echo Input text "$3" not found ; exit 1 ; fi
 if [ ! -f "$modeliXML" ]; then echo Grammar file "$modeliXML" not found ; exit 1 ; fi
 if [ ! -f "$modelXSLT" ];  then echo Massage file "$modelXSLT" not found ; exit 1 ; fi
 

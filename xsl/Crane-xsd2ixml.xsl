@@ -362,19 +362,20 @@
 {=============================================================================}
 { Mixed content and unused markdown symbols for this vocabulary }
 
--__mixed_content_member =  </xsl:text>
+-__mixed_content_member = </xsl:text>
   <xsl:variable name="c:markdownIntroducers" select="c:markdownIntroducers()"/>
-  <xsl:for-each select="$c:markdownIntroducers[normalize-space(.)]/../@lookup">
+  <xsl:for-each select="$c:elementInMixedContentNames">
     <xsl:if test="position()>1"> | </xsl:if>
-    <xsl:value-of select="."/>
+    <xsl:value-of select="'__mixed__' || ."/>
   </xsl:for-each>
   <xsl:text>.&#xa;</xsl:text>  
   <xsl:variable name="c:markdownPlacebos" as="xs:string">
    <xsl:value-of>
     <xsl:if test="not($c:markdownIntroducers='^')">__CARET = #0.&#xa;</xsl:if>
+    <xsl:if test="not($c:markdownIntroducers='|')">__PIPE  = #0.&#xa;</xsl:if>
     <xsl:if test="not($c:markdownIntroducers='+')">__PLUS  = #0.&#xa;</xsl:if>
     <xsl:if test="not($c:markdownIntroducers='/')">__SLASH = #0.&#xa;</xsl:if>
-    <xsl:if test="not($c:markdownIntroducers='*')">__STAR = #0.&#xa;</xsl:if>
+    <xsl:if test="not($c:markdownIntroducers='*')">__STAR  = #0.&#xa;</xsl:if>
     <xsl:if test="not($c:markdownIntroducers='~')">__TILDE = #0.&#xa;</xsl:if>
     <xsl:if test="not($c:markdownIntroducers='_')">__UNDER = #0.&#xa;</xsl:if>
    </xsl:value-of>
@@ -407,34 +408,38 @@ __unicode = __HEX+ , -"\".
 { some vocabularies need mixed content with its own handling }
 -__mixed_content = ( __mixed_content_value, ( __WS*, __mixed_content_value )* )?.
 __mixed_content_value>__mixed_content_value = ( __quoted | __unquoted, __WS | __mixed_content_member | -"`", -"`" | -"`" , __more_markdown, -"`" ).
--__more_markdown = ( __BSM | __quoted | __CPLSTU | ~["`" | "\" | "+" | "*" | "/" | "~" | "^" | "_" | '"' | "@" ] ),
+-__more_markdown = ( __BSM | __quoted | __CEPLSTU | ~["`" | "\" | "|" | "+" | "*" | "/" | "~" | "^" | "_" | '"' | "@" ] ),
                    __more_markdown?.
--__CPLSTU = __CARET | __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
--__BSM = -"\", ( [ "\" | "`" | "@" | ":" | "+" | "*" | "/" | "~" | "^" | "_" | '"' | "@" ]
+-__CEPLSTU = __CARET | __PIPE | __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
+-__BSM = -"\", ( [ "\" | "`" | "@" | ":" | "|" | "+" | "*" | "/" | "~" | "^" | "_" | '"' | "@" ]
          | __unicode ).
--__CARET_inner = ( __BSM | __quoted | __PLSTU | ~["`"|"\"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+-__CARET_inner = ( __BSM | __quoted | __EPLSTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
                  __CARET_inner?.
--__PLSTU = __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
+-__EPLSTU = __PIPE | __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
 -__CARET_content = __CARET_inner, -"^".
--__PLUS_inner = ( __BSM | __quoted | __CLSTU | ~["`"|"\"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+-__PIPE_inner = ( __BSM | __quoted | __CPLSTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+                __PIPE_inner?.
+-__CPLSTU = __CARET | __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
+-__PIPE_content = __PIPE_inner, -"|".
+-__PLUS_inner = ( __BSM | __quoted | __CELSTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
                 __PLUS_inner?.
--__CLSTU = __CARET | __SLASH | __STAR | __TILDE | __UNDER.
+-__CELSTU = __CARET | __PIPE | __SLASH | __STAR | __TILDE | __UNDER.
 -__PLUS_content = __PLUS_inner, -"+".
--__SLASH_inner = ( __BSM | __quoted | __CPSTU | ~["`"|"\"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+-__SLASH_inner = ( __BSM | __quoted | __CEPSTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
                  __SLASH_inner?.
--__CPSTU = __CARET | __PLUS | __STAR | __TILDE | __UNDER.
+-__CEPSTU = __CARET | __PIPE | __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
 -__SLASH_content = __SLASH_inner, -"/".
--__STAR_inner = ( __BSM | __quoted | __CPLTU | ~["`"|"\"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+-__STAR_inner = ( __BSM | __quoted | __CEPLTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
                 __STAR_inner?.
--__CPLTU = __CARET | __PLUS | __SLASH | __TILDE | __UNDER.
+-__CEPLTU = __CARET | __PIPE | __PLUS | __SLASH | __TILDE | __UNDER.
 -__STAR_content = __STAR_inner, -"*".
--__TILDE_inner = ( __BSM | __quoted | __CPLSU | ~["`"|"\"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+-__TILDE_inner = ( __BSM | __quoted | __CEPLSU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
                  __TILDE_inner?.
--__CPLSU = __CARET | __PLUS | __SLASH | __STAR | __UNDER.
+-__CEPLSU = __CARET | __PIPE | __PLUS | __SLASH | __STAR | __UNDER.
 -__TILDE_content = __TILDE_inner, -"~".
--__UNDER_inner = ( __BSM | __quoted | __CPLST | ~["`"|"\"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+-__UNDER_inner = ( __BSM | __quoted | __CEPLST | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
                  __UNDER_inner?.
--__CPLST = __CARET | __PLUS | __SLASH | __STAR | __TILDE.
+-__CEPLST = __CARET | __PIPE | __PLUS | __SLASH | __STAR | __TILDE.
 -__UNDER_content = __UNDER_inner, -"_".
 
 {EOF}
@@ -449,7 +454,37 @@ __mixed_content_value>__mixed_content_value = ( __quoted | __unquoted, __WS | __
 <xst:key>
   <para>Quick lookup of all elements in a given fragment</para>
 </xst:key>
-<xsl:key name="c:typesDefined" match="xs:complexType" use="' all ',@name"/>
+<xsl:key name="c:typesDefined" match="xs:complexType"
+         use="' all ',@name,
+              c:determinePrefix(string(/*/@targetNamespace)) || @name"/>
+
+<xst:variable>
+ <para>Quick lookup of all element names used somewhere in mixed content</para>
+</xst:variable>
+<xsl:variable name="c:elementInMixedContentNames" as="xs:string*">
+  <xsl:variable name="c:allNames" as="xs:string*">
+    <xsl:for-each select="(map:keys($c:fragments) ! $c:fragments(.))
+                          [not(?ns=$c:ignoreXSDtargetNS)]
+                          ?document//xs:complexType[@mixed]//xs:element">
+      <xsl:value-of select="c:determinePrefix(string(/*/@targetNamespace)) ||
+                            @ref"/>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:sequence select="distinct-values($c:allNames)"/>
+</xsl:variable>
+
+<xst:variable>
+ <para>Quick lookup of all element names used somewhere in mixed content</para>
+</xst:variable>
+<xsl:variable name="c:elementInElementContentNames" as="xs:string*">
+  <xsl:variable name="c:allNames" as="xs:string*">
+    <xsl:for-each select="(map:keys($c:fragments) ! $c:fragments(.))
+                          ?document//xs:complexType[not(@mixed)]//xs:element">
+      <xsl:value-of select="@ref"/>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:sequence select="distinct-values($c:allNames)"/>
+</xsl:variable>
 
 <xst:key>
   <para>Quick lookup of all types that are somehow referenced</para>
@@ -564,42 +599,63 @@ __mixed_content_value>__mixed_content_value = ( __quoted | __unquoted, __WS | __
 </xst:template>
 <xsl:template match="xs:element[@name]">
   <xsl:param name="c:thisFragment" as="map(*)" tunnel="yes"/>
+  <xsl:variable name="c:thisElement" select="."/>
   <xsl:variable name="c:thisNS" as="xs:string"
                 select="string(/*/@targetNamespace)"/>
   <xsl:variable name="c:thisQName" select="QName($c:thisNS,@name)"/>
   <xsl:variable name="c:thisPrefix" as="xs:string"
        select="c:determinePrefix(string(/*/@targetNamespace))"/>
-  <xsl:if test="normalize-space($c:thisPrefix)">
-    <xsl:text>  {$c:thisPrefix}{@name}></xsl:text>
-  </xsl:if>
-  <xsl:text>{@name} = __WS*, ( </xsl:text>
-  <xsl:call-template name="c:nameAndAliases">
-    <xsl:with-param name="c:name" select="@name"/>
-  </xsl:call-template>
-  <xsl:text>, -':' ), </xsl:text>
-
   <xsl:variable name="c:type" select="@type"/>
-  <xsl:variable name="c:prefix"
+  <xsl:variable name="c:typePrefix"
                 select="substring-before($c:type,':')"/>
-  <xsl:variable name="c:ns"
-                select="string(/*/namespace::*[name(.)=$c:prefix])"/>
-  <xsl:choose>
-    <xsl:when test="$c:ns='http://www.w3.org/2001/XMLSchema'">
-      <xsl:value-of select="'xs_' || substring-after($c:type,':')"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="'__content__' || $c:thisPrefix || $c:type"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:variable name="c:typeNS"
+                select="string(/*/namespace::*[name(.)=$c:typePrefix])"/>
+  <xsl:variable name="c:typeDecl"
+                select="key('c:typesDefined',$c:type)"/>
+
+  <xsl:variable name="c:neededElementDeclarations" as="xs:string+">
+    <xsl:if test="$c:elementInElementContentNames = ($c:thisPrefix || @name )
+         or not( $c:elementInMixedContentNames = ( $c:thisPrefix || @name ) )">
+      <xsl:value-of>
+        <xsl:if test="normalize-space($c:thisPrefix)">
+          <xsl:text>  {$c:thisPrefix}{@name}></xsl:text>
+        </xsl:if>
+        <xsl:text>{@name} = __WS*,</xsl:text>
+      </xsl:value-of>
+    </xsl:if>
+    <xsl:if test="$c:elementInMixedContentNames = ( $c:thisPrefix || @name )">
+      <xsl:text>__mixed__{$c:thisPrefix}{@name}>{@name} =</xsl:text>
+    </xsl:if>
+  </xsl:variable>
   
-  <xsl:text>, ( __WS*, -'/', </xsl:text>
-  <xsl:call-template name="c:nameAndAliases">
-    <xsl:with-param name="c:name" select="@name"/>
-  </xsl:call-template>
-  <xsl:text>){if( not( $c:thisQName = $c:forceClosedElementQNames ) )
-              (:sometimes you just need to force user to close the element
-                due to structural ambiguity:)
-              then '?' else ''}.&#xa;</xsl:text>
+  <xsl:for-each select="$c:neededElementDeclarations">
+    <xsl:value-of select="."/>
+    <xsl:for-each select="$c:thisElement">
+      <xsl:text> ( </xsl:text>
+      <xsl:call-template name="c:nameAndAliases">
+        <xsl:with-param name="c:name" select="@name"/>
+      </xsl:call-template>
+      <xsl:text>, -':' ), </xsl:text>
+    
+      <xsl:choose>
+        <xsl:when test="$c:typeNS='http://www.w3.org/2001/XMLSchema'">
+          <xsl:value-of select="'xs_' || substring-after($c:type,':')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="'__content__' || $c:thisPrefix || $c:type"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      
+      <xsl:text>, ( __WS*, -'/', </xsl:text>
+      <xsl:call-template name="c:nameAndAliases">
+        <xsl:with-param name="c:name" select="@name"/>
+      </xsl:call-template>
+      <xsl:text>){if( not( $c:thisQName = $c:forceClosedElementQNames ) )
+                  (:sometimes you just need to force user to close the element
+                    due to structural ambiguity:)
+                  then '?' else ''}.&#xa;</xsl:text>
+    </xsl:for-each>
+  </xsl:for-each>
 </xsl:template>
 
 <xst:template>
@@ -724,10 +780,6 @@ __mixed_content_value>__mixed_content_value = ( __quoted | __unquoted, __WS | __
                         select="$c:allAttrDecls[@use='required']"/>
           <xsl:variable name="c:optionalAttrDecls"
                         select="$c:allAttrDecls except $c:requiredAttrDecls"/>
-          <!--
-<xsl:message select="'DEBUG-attr',count($c:xsTypeDecls),
-  count($c:allAttrDecls),count($c:requiredAttrDecls),count($c:optionalAttrDecls)"/>
-          -->
           <xsl:choose>
             <xsl:when test="empty($c:allAttrDecls)">
               <!--no attribute declarations needed-->
@@ -895,6 +947,12 @@ __mixed_content_value>__mixed_content_value = ( __quoted | __unquoted, __WS | __
                                 if( normalize-space($c:attributeDeclarations) )
                                 then ( ' -__attrs__' || $c:n || ',' ) else ''
                                            } ('^' | __CARET_content)</xsl:text>
+           </xsl:when>
+           <xsl:when test="$c:markdown='|'">
+             <xsl:text>.&#xa;__PIPE>{$c:untypedName} = -"|", {
+                                if( normalize-space($c:attributeDeclarations) )
+                                then ( ' -__attrs__' || $c:n || ',' ) else ''
+                                            } ('|' | __PIPE_content)</xsl:text>
            </xsl:when>
            <xsl:when test="$c:markdown='+'">
              <xsl:text>.&#xa;__PLUS>{$c:untypedName} = -"+", {

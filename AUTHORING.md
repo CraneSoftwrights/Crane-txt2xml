@@ -284,8 +284,11 @@ Disambiguation is mandatory in the areas when the XML vocabulary is structurally
 
 The vocabulary documentation should indicate when elements require structural disambiguation, and for the others it can be considered optional.
 
+## Warning Messages Converting XML to Text
 
-## Error Messages
+
+
+## Error Messages Converting Text to XML
 
 When the environment detects a problem with your text, it produces an error message instead of (or in addition to) XML output. Errors are reported in plain language, not in XML syntax.
 

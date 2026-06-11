@@ -175,7 +175,8 @@
   <xsl:param name="c:inMixedContent" as="xs:boolean" select="false()"
              tunnel="yes"/>
   <xsl:variable name="c:info" select="c:info4item(.)"/>
-  <xsl:variable name="c:parentInfo" select="c:info4item(..)"/>
+  <xsl:variable name="c:ancestorMarkdownSymbols" as="attribute()*" 
+                select="ancestor::*/c:info4item(.)/@markdownSymbol"/>
   <!--the user may have asked to indent the result-->
   <xsl:choose>
     <xsl:when test="$c:indent and not($c:info/@markdownSymbol) and
@@ -214,14 +215,12 @@
         <xsl:text> </xsl:text>
       </xsl:if>
     </xsl:when>
-    <xsl:when test="$c:info/@markdownSymbol = $c:parentInfo/@markdownSymbol
-                    and $c:markdown">
-      <!--suppress the child markup, but do the child-->
-      <xsl:apply-templates select="@*,node()">
-        <xsl:with-param name="c:compact" select="true()"/>
-      </xsl:apply-templates>
-    </xsl:when>
     <xsl:when test="$c:info/@markdownSymbol and $c:markdown">
+      <xsl:if test="$c:info/@markdownSymbol = $c:ancestorMarkdownSymbols">
+        <xsl:message select="'Warning: using markdown characters instead of',
+             'start/end indicators for the XML element ' || c:xpath(.) ||
+             ' is producing known ambiguity problems in the generated text.'"/>
+      </xsl:if>
       <!--start the child-->
       <xsl:value-of select="$c:info/@markdownSymbol"/>
       <!--do the child-->
