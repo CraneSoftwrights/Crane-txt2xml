@@ -20,4 +20,8 @@ if ! REPO="$(cd "$(dirname "$0")" && cd ../.. && pwd)"; then
   exit 1
 fi
 
+echo Converting sample UBL document to text...
+$REPO/Crane-txt2ubl/shell/Crane-ubl2txt.sh $REPO/Crane-txt2ubl/UBL-invoice-2.1-Example.xml $REPO/Crane-txt2ubl/UBL-invoice-2.1-Example-text.txt
+
+echo Converting generated text to UBL document...
 $REPO/Crane-txt2ubl/shell/Crane-txt2ubl.sh $REPO/Crane-txt2ubl/UBL-invoice-2.1-Example-text.txt

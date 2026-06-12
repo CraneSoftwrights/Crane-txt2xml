@@ -1,12 +1,12 @@
 # Crane-txt2xml
 
-A configurable environment for creating XML documents by typing structured text without angle brackets.
+A configurable environment for creating XML documents from simple labelled text without angle brackets.
 
-## The Problems
+## Two Problems To Consider
 
-(1) Many people are tasked with creating XML documents manually — ad-hoc invoices, articles, metadata records — but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
+(1) Many people are tasked with creating XML documents manually, such as ad-hoc invoices, articles, and metadata records. but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
 
-(2) When working with AI Large Language Models (LLMs) the egress and ingress of structured information in XML syntax can tend to be more costly in tokens than simple text because of the fully-spelled out element and attribute names, and element end tags. Being able to export or round-trip an XML document through simple text with cryptic but unambiguous single-letter labels and no end indicators provides a mechanism for reducing costs.
+(2) When working with AI Large Language Models (LLMs) the egress and ingress of structured information in XML syntax can tend to be more costly in tokens than simple text because of the fully-spelled out element and attribute names, and element end tags. Being able simply to export or even fully round-trip an XML document through simple text with cryptic but unambiguous single-letter labels and no end indicators provides a mechanism for reducing costs.
 
 ## The Solution
 
