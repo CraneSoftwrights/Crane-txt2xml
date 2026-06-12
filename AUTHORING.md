@@ -286,7 +286,29 @@ The vocabulary documentation should indicate when elements require structural di
 
 ## Warning Messages Converting XML to Text
 
+When not using markdown characters in mixed content, one uses start and end indicators, e.g. `b:` and `/b` in the text stream to indicate the start and end of element content. For example, the following XML:
 
+```
+<b>bold stuff <i>bold and italic <b>redundant bold</b> more</i> and last bit</b>
+```
+
+... is expressed as:
+
+```
+b:"bold stuff "i:"bold and italic "b:"redundant bold"/b" more"/i" and last bit"/b
+```
+
+When using markdown characters, this example XML produces an ambiguous text result because a bold element is nested inside of another bold element, thus the start of the nested bold is incorrectly interpreted as the end of the outer bold:
+
+```
+*bold stuff /bold and italic *redundant bold* more/ and last bit*
+```
+
+In these cases the `Crane-xml2txt` process gives the warning regarding the ambiguous markdown output:
+
+`Warning: using markdown characters instead of start/end indicators for the XML element PubMedIn-mixed.xml/ArticleSet/Article/Abstract/AbstractText[2]/b[2]/i/b is producing known ambiguity problems in the generated text.`
+
+The workaround is to not use markdown for these situations and use explicit start and end indicators for mixed content descendants.
 
 ## Error Messages Converting Text to XML
 

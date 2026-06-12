@@ -9,7 +9,7 @@
 # Usage:
 #   Crane-ubl2txt.sh  input-XML  output-text
 #
-# Project: https://GitHub.com/CraneSoftwrights/Crane-txt2xml/Crane-txt2ubl
+# Project: https://GitHub.com/CraneSoftwrights/Crane-txt2xml
 #
 # ---------------------------------------------------------------------------
 
@@ -20,19 +20,19 @@ if ! REPO="$(cd "$(dirname "$0")" && cd ../.. && pwd)"; then
 fi
 
 # Invocation and command line
-if [ "" == "$1" ]; then
-  echo Usage: "$0" test-base-name >&2
+if [ "" == "$2" ]; then
+  echo Usage: "$0" input-XML output-text >&2
   echo See script header for full details >&2
   exit 1
 fi
 
-#if [ -z "$TIMED" ]; then
-#  date
-#  TIMED=1 time bash "$0" "$@"
-#  exit
-#fi
+if [ ! -f "$1" ]; then echo Input XML "$1" not found ; exit 1 ; fi
 
-$REPO/shell/Crane-txt2xml.sh $REPO/Crane-txt2ubl/ubl-2.5.ixml $REPO/Crane-txt2ubl/Crane-ixml2ubl.xsl $1
+# Remove any old result file
+if [ -f "$2" ]; then rm "$2" ; fi
 
+java -Xss64m -Xms200m -Xmx1000m -cp "$REPO/utilities/saxonhe/saxonhe.jar" net.sf.saxon.Transform -s:"$1" -xsl:"$REPO/Crane-txt2ubl/xsl/Crane-ubl2txt.xsl" -o:"$2"
+ret=$?
+if [ "$ret" -ne "0" ]; then exit $ret ; fi
 
 # end

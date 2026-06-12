@@ -10,7 +10,7 @@
 
 <xsl:import href="../../xsl/Crane-xsd2ixml.xsl"/>
 
-<xst:doc info="https://github.com/CraneSoftwrights/temp-txt2xml"
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-ubl2ixml.xsl" vocabulary="DocBook">
   <xst:title>Convert UBL XSD to iXML patterns per Crane-txt2xml</xst:title>
   <para>

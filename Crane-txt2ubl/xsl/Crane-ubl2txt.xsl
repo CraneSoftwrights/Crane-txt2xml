@@ -9,15 +9,15 @@
 
 <xsl:import href="../xsl/Crane-xml2txt.xsl"/>
 
-<xs:doc info="https://GitHub.com/RealtaOnline/PubNote"
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-ubl2txt.xsl" vocabulary="DocBook">
-  <xs:title>Configure Crane-xml2txt for use with UBL</xs:title>
+  <xst:title>Configure Crane-xml2txt for use with UBL</xst:title>
   <para>
     The off-the-shelf
     <ulink url="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
       >Crane-txt2xml</ulink> environment is configured for use with UBL. 
   </para>
-</xs:doc>
+</xst:doc>
 
 <xst:variable>
   <para>List the target namespaces of the XSD files to skip declarations</para>

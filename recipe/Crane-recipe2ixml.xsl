@@ -11,7 +11,7 @@
 <xsl:import href="../xsl/Crane-xsd2ixml.xsl"/>
 <xsl:import href="Crane-recipe-common.xsl"/>
 
-<xst:doc info="https://github.com/CraneSoftwrights/temp-txt2xml"
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-recipe2ixml.xsl" vocabulary="DocBook">
   <xst:title>Convert Recipe XSD to iXML patterns per Crane-txt2xml</xst:title>
   <para>

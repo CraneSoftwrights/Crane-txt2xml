@@ -8,7 +8,7 @@
                 exclude-result-prefixes="xs xst c ixml ctx"
                 version="3.0">
 
-<xst:doc info="$Id$"
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-reportCoffeepotErrors.xsl" vocabulary="DocBook">
   <xst:title>Report parse errors from the iXML output</xst:title>
   <para>

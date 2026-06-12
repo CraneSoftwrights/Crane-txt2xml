@@ -9,7 +9,7 @@
                 expand-text="yes"
                 version="3.0">
 
-<xst:doc info="https://github.com/CraneSoftwrights/temp-txt2xml"
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-salami2eden.xsl" vocabulary="DocBook">
   <xst:title>Convert a salami-slice XSD to garden-of-eden XSD</xst:title>
   <para>

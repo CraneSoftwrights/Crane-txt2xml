@@ -18,7 +18,7 @@ set +x
 #   test-base-name/test-base-name.ixmlout.txt - iXML XML as text
 #   test-base-name/test-base-name.xml         - XML output for text input
 #
-# Project: https://GitHub.com/CraneSoftwrights/Crane-txt2xml/Crane-txt2ubl
+# Project: https://GitHub.com/CraneSoftwrights/Crane-txt2xml
 #
 # ---------------------------------------------------------------------------
 

@@ -5,10 +5,10 @@ set -e
 # ---------------------------------------------------------------------------
 # make-recipe-ixml.sh
 #
-# A shell script converting UBL XSD into iXML
+# A shell script converting the recipe XSD into iXML
 #
 # Usage:
-#   make-ubl-ixml.sh
+#   make-recipe-ixml.sh
 #
 # Project: https://GitHub.com/CraneSoftwrights/Crane-txt2xml
 #

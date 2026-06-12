@@ -29,6 +29,7 @@ fi
 # Indent the given XML input file at argument
 
 java -Xms200m -Xmx1000m -cp "$DP0/../utilities/saxonhe/saxonhe.jar" net.sf.saxon.Transform -s:"$1" -xsl:"$REPO/xsl/indentXML.xsl" -o:"$1.indented.xml"
-if [ "$?" -ne "0" ]; then exit ; fi
+ret=$?
+if [ "$ret" -ne "0" ]; then exit $ret ; fi
 
 mv "$1.indented.xml" "$1"

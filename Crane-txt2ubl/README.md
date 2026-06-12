@@ -10,53 +10,37 @@ At this time only the complete schemas are supported and not the endorsed schema
 
 The Cleanup XSLT stylesheet is `Crane-ixml2ubl.xsl` for inferring the output namespaces from the input parsed output of the synthesized iXML grammar.
 
+Converting a text input `name.txt` into its result `name.txt.xml` leaves behind the temporary files `name.txt.xml.ixmlout.xml` (the iXML parser output) and `name.txt.xml.ixmlout.txt` (its text rendering).
+
 ## An important note regarding performance
 
 At this time the magnitude of the generated iXML schema is such that it provides only an exercise of capacities of iXML processors. The conversion of sample XML documents to text is very quick, but the conversion of text to XML documents is very slow. Slow enough to be unusable.
 
 # Manifest
 
-[`Crane-ixml2ubl.xsl`](Crane-ixml2ubl.xsl)
- - conversion of iXML output into UBL
-
-[`Crane-ixml2ubl.xsl.html`](Crane-ixml2ubl.xsl.html)
- - documentation for `Crane-ixml2ubl.xsl`
-
-[`Crane-ubl2ixml.xsl`](Crane-ubl2ixml.xsl)
- - conversion of UBL XSD into iXML grammar
-
-[`Crane-ubl2ixml.xsl.html`](Crane-ubl2ixml.xsl.html)
- - documentation for `Crane-ubl2ixml.xsl`
-
-[`Crane-ubl2txt.xsl`](Crane-ubl2txt.xsl)
- - conversion of UBL XML into Crane-txt2xml text stream with expanded labels
-
-[`Crane-ubl2txt.xsl.html`](Crane-ubl2txt.xsl.html)
- - documentation for `Crane-ubl2txt.xsl`
-
-[`make-ubl-ixml.sh`](make-ubl-ixml.sh)
- - invoke the creation of UBL XSD into the iXML grammar
-
 [`README.md`](README.md)
- - this file
+- this file
 
-[`shell`](shell)
- - the directory of shell invocations
+[`shell/`](shell)
+- the directory of shell invocation scripts
 
-[`test-ubl.sh`](test-ubl.sh)
- - invoke the UBL test
+[`ubl-2.5.ixml`](ubl-2.5.ixml)
+- the synthesized iXML grammar for UBL 2.5
 
 [`UBL-AllDocuments-2.5.xsd`](UBL-AllDocuments-2.5.xsd)
- - a wrapper XSD document model incorporating all 101 UBL document models
-
-[`UBL-invoice-2.1-Example-text`](UBL-invoice-2.1-Example-text)
- - the results of converting the example text stream into UBL XML
+- a wrapper XSD document model incorporating all 101 UBL document models
 
 [`UBL-invoice-2.1-Example-text.txt`](UBL-invoice-2.1-Example-text.txt)
- - a demonstration UBL XML document from the UBL distribution
+- a text stream rendering of the example invoice from the UBL 2.1 distribution
 
-[`ubl.ixml`](ubl.ixml)
- - the synthesized iXML grammar for UBL
+[`UBL-invoice-2.1-Example-text.txt.xml`](UBL-invoice-2.1-Example-text.txt.xml)
+- the UBL XML result of converting the example text stream
 
-[`xsd`](xsd)
- - the XSD directory of document models from the UBL distribution
+[`windows/`](windows)
+- the directory of Windows batch invocation scripts
+
+[`xsd/`](xsd)
+- the XSD directory of document models from the UBL distribution
+
+[`xsl/`](xsl)
+- the directory of UBL-specific XSLT stylesheets

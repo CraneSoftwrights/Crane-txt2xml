@@ -8,7 +8,7 @@
                 expand-text="yes"
                 version="3.0">
 
-<xst:doc info="https://github.com/CraneSoftwrights/Crane-txt2xml"
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-ixml2ubl.xsl" vocabulary="DocBook">
   <xst:title>Convert the output of iXML into a UBL document</xst:title>
   <para>

@@ -8,7 +8,7 @@
                 exclude-result-prefixes="xs xst c map"
                 version="3.0">
 
-<xst:doc info="https://github.com/CraneSoftwrights/temp-txt2xml"
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-recipe-common.xsl" vocabulary="DocBook">
   <xst:title>Convert Recipe XSD to iXML patterns per Crane-txt2xml</xst:title>
   <para>

@@ -8,11 +8,11 @@
                 exclude-result-prefixes="xs xst c map"
                 version="3.0">
 
-<xst:doc info="https://github.com/CraneSoftwrights/temp-txt2xml"
-        filename="Crane-recipe2xml.xsl" vocabulary="DocBook">
-  <xst:title>Convert Recipe iXML to XML</xst:title>
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
+        filename="indentXML.xsl" vocabulary="DocBook">
+  <xst:title>Indent an XML document</xst:title>
   <para>
-    This converts the iXML output to XML output.
+    This serializes the input XML with indentation for legibility.
   </para>
 </xst:doc>
 

@@ -10,13 +10,13 @@
 <xsl:import href="../xsl/Crane-xml2txt.xsl"/>
 <xsl:import href="Crane-recipe-common.xsl"/>
 
-<xs:doc info="https://GitHub.com/RealtaOnline/PubNote"
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-recipe2short.xsl" vocabulary="DocBook">
-  <xs:title>Configure Crane-xml2txt for use with short Recipe labels</xs:title>
+  <xst:title>Configure Crane-xml2txt for use with short Recipe labels</xst:title>
   <para>
     A demonstration of short label translation
   </para>
-</xs:doc>
+</xst:doc>
 
 <xst:param ignore-ns='yes'>
   <para>

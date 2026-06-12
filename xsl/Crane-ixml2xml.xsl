@@ -11,7 +11,7 @@
 
 <xsl:include href="Crane-reportCoffeepotErrors.xsl"/>
 
-<xst:doc info="https://github.com/CraneSoftwrights/Crane-txt2xml"
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-ixml2xml.xsl" vocabulary="DocBook">
   <xst:title>Convert the iXML document into a raw XML document</xst:title>
   <para>
@@ -140,19 +140,19 @@
 </xsl:template>
 
 <!--========================================================================-->
-<xs:doc>
-  <xs:title>Utility</xs:title>
-</xs:doc>
+<xst:doc>
+  <xst:title>Utility</xst:title>
+</xst:doc>
 
-<xs:function>
+<xst:function>
   <para>
     Return the XPath address of the given node relative to the ixml document
     element's grandchildren
   </para>
-  <xs:param name="node">
+  <xst:param name="node">
     <para>The node to report</para>
-  </xs:param>
-</xs:function>
+  </xst:param>
+</xst:function>
 <xsl:function name="c:relativeXPath" as="xs:string?">
   <xsl:param name="node" as="item()"/>
   <xsl:sequence select="(for $each in $node return
@@ -160,12 +160,12 @@ replace( if( $each instance of node() ) then c:xpath($each) else $each,
          '^/ixml/[^/]*/?','')[normalize-space(.)],'')[1]"/>
 </xsl:function>
 
-<xs:function>
+<xst:function>
   <para>Return the XPath address of the given node</para>
-  <xs:param name="node">
+  <xst:param name="node">
     <para>The node to report</para>
-  </xs:param>
-</xs:function>
+  </xst:param>
+</xst:function>
 <xsl:function name="c:xpath" as="xs:string">
   <xsl:param name="node" as="node()"/>
   <xsl:for-each select="$node">
