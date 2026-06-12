@@ -13,7 +13,7 @@ A Crane-txt2xml vocabulary environment is produced in two phases: a configuratio
 
 You provide three inputs to the Crane-txt2xml generation pipeline:
 
-1. **A "Venetian Blind" or "Garden of Eden" XSD schema** for the target XML vocabulary. All global type declarations must follow the Venetian Blind convention. If your vocabulary is defined in RELAX NG or DTD form, use [Trang](https://relaxng.org/jclark/trang.html) to produce a compatible XSD — provided the schema is expressible in XSD.
+1. **A "Venetian Blind" or "Garden of Eden" XSD schema** for the target XML vocabulary. All global type declarations must follow the Venetian Blind convention. If your vocabulary is defined in RELAX NG or DTD form, use [Trang](https://relaxng.org/jclark/trang.html) to produce a compatible XSD — provided the schema is expressible in XSD. Note that the repository includes a utility XSLT stylesheet `Crane-salami2eden.xsl` that may help in converting a "Salami Slice" XSD schema into a "Garden of Eden" XSD schema.
 
 2. **Optionally an Alias XML document** of your own mapping natural-language element and attribute labels to their XML names. Each XML element name may have multiple labels (aliases). Every environment implicitly supports the raw XML element names as labels; the aliases you define are additive. Whether this is a separate file or built-in to your code is not relevant. Conceptually, this is a just the list of allowed aliases if you choose to allow such.
 
@@ -85,6 +85,18 @@ Design considerations for aliases:
 - **Multiple languages.** Different environments can define aliases in different natural languages for the same vocabulary. For example, the \<PubNote> project offers language-specific invocations (PubNoteInText2XML-de, PubNoteInText2XML-fr) where element labels are available in German, French, and so on, alongside the English XML names.
 - **Multiple aliases per name.** A single XML element name may have several aliases — abbreviations, full names, translations — all mapping to the same output element.
 
+In the distribution is a demonstration implementation of both long and very short labels for the recipe example. Long for the non-XML user:
+
+
+```
+Recipe:Title:Pancakes Ingredient:Name:Flour Amount: @unit:cups 2 Ingredient:Name:"Maple Syrup"Amount:@unit:tablespoon @approximate:yes "3"Step:"Mix ingredients together"Step:"Cook on a greased griddle \1FAE7\"Step:Serve
+```
+
+And very short to mitigate the costly LLM ingress and egress:
+
+```
+R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mix ingredients together S:Cook on a greased griddle \1FAE7\ S:Serve 
+```
 ## The Cleanup XSLT
 
 The Cleanup XSLT stylesheet transforms the intermediate XML produced by the iXML processor into the final vocabulary-conformant XML output. Its responsibilities include:

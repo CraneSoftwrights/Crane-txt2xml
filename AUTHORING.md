@@ -16,7 +16,7 @@ If you need to round-trip an existing XML document using this syntax for editing
 
 ## Example Vocabulary
 
-To illustrate the text syntax, this guide uses a simple Recipe vocabulary with the following structure found in the [Recipe.xsd](Recipe.xsd) XML schema:
+To illustrate the text syntax, this guide uses a simple Recipe vocabulary with the following structure found in the [recipe/recipe-garden-of-eden.xsd](recipe/recipe-garden-of-eden.xsd) XML schema:
 
 - A **Recipe** contains a **Title**, one or more **Ingredient** entries, and one or more **Step** entries.
 - Each **Ingredient** contains a **Name** and an **Amount**.
@@ -235,13 +235,19 @@ Recipe:
 Compressed, all on one line, white-space separated:
 
 ```
-Recipe: Title: Pancakes Ingredient: Name: Flour Amount: @unit: cups 2 Ingredient: Name: "Maple Syrup" Amount: @unit: tablespoons @approximate: "yes" 3 Step: "Mix ingredients together" Step: "Cook on a greased griddle" Step: Serve
+Recipe: Title: Pancakes Ingredient: Name: Flour Amount: @unit: cups 2 Ingredient: Name: "Maple Syrup" Amount: @unit: tablespoon @approximate: "yes" 3 Step: "Mix ingredients together" Step: "Cook on a greased griddle" Step: Serve
 ```
 
-Very compressed, with only the absolute minimum required white-space around unquoted value specifications (always after, sometimes before):
+More compressed, with only the absolute minimum required white-space around unquoted value specifications (always after, sometimes before):
 
 ```
-Recipe:Title:Pancakes Ingredient:Name:Flour Amount:@unit:cups 2 Ingredient:Name:"Maple Syrup"Amount:@unit:tablespoons @approximate:"yes" 3 Step:"Mix ingredients together"Step:"Cook on a greased griddle"Step:Serve
+Recipe:Title:Pancakes Ingredient:Name:Flour Amount: @unit:cups 2 Ingredient:Name:"Maple Syrup"Amount:@unit:tablespoon @approximate:yes "3"Step:"Mix ingredients together"Step:"Cook on a greased griddle \1FAE7\"Step:Serve
+```
+
+Ultra compressed, with only single-letter labels promoting less token consumption during LLM ingress and egress:
+
+```
+R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mix ingredients together S:Cook on a greased griddle \1FAE7\ S:Serve 
 ```
 
 All produce the same XML conforming to [recipe/recipe-garden-of-eden.xsd](recipe/recipe-garden-of-eden.xsd):
@@ -284,9 +290,31 @@ Disambiguation is mandatory in the areas when the XML vocabulary is structurally
 
 The vocabulary documentation should indicate when elements require structural disambiguation, and for the others it can be considered optional.
 
-## Warning Messages Converting XML to Text
 
-When not using markdown characters in mixed content, one uses start and end indicators, e.g. `b:` and `/b` in the text stream to indicate the start and end of element content. For example, the following XML:
+Consider a document structure where element models are very simple: A contains B, then optionally C, and then D. B optionally contains C. Both C and D are empty.
+
+This text input to transform into a fully populated instance reads as follows, without ambiguity, and so without any need for end-of-content indicators:
+```
+A: B: C: C: D:
+```
+This text input is structurally ambiguous because the element C could be either a child of B or a child of A, both validly:
+```
+A: B: C: D:
+```
+The explicit signalling of ending B before C unambiguously indicates that C is a child of A.
+```
+A: B: /B C: D:
+```
+The explicit signalling of ending B after C unambiguously indicates that C is a child of B.
+```
+A: B: C: /B D:
+```
+Without the explicit end-of-content signal any guess made by the transformation could very well be wrong for the user, so the user is obliged to signal what is needed.
+
+
+## Warning Messages Converting Mixed-content XML to Text
+
+When not using markdown characters in mixed content, one must use both start and end indicators for an embedded element, e.g. `b:` and `/b` in the text stream to indicate the start and end of element content. For example, the following XML:
 
 ```
 <b>bold stuff <i>bold and italic <b>redundant bold</b> more</i> and last bit</b>
@@ -298,17 +326,17 @@ When not using markdown characters in mixed content, one uses start and end indi
 b:"bold stuff "i:"bold and italic "b:"redundant bold"/b" more"/i" and last bit"/b
 ```
 
-When using markdown characters, this example XML produces an ambiguous text result because a bold element is nested inside of another bold element, thus the start of the nested bold is incorrectly interpreted as the end of the outer bold:
+When using markdown characters within batching back-ticks, then instead of both start and end indicators, this example XML produces an ambiguous text result because a bold element is nested inside of another bold element, thus the start of the nested bold is incorrectly interpreted as the end of the outer bold:
 
 ```
-*bold stuff /bold and italic *redundant bold* more/ and last bit*
+` undecorated stuff *bold stuff /bold and italic *redundant bold* more/ and last bit* followed by stuff `
 ```
 
 In these cases the `Crane-xml2txt` process gives the warning regarding the ambiguous markdown output:
 
 `Warning: using markdown characters instead of start/end indicators for the XML element PubMedIn-mixed.xml/ArticleSet/Article/Abstract/AbstractText[2]/b[2]/i/b is producing known ambiguity problems in the generated text.`
 
-The workaround is to not use markdown for these situations and use explicit start and end indicators for mixed content descendants.
+The workaround is to not use markdown for these situations and use explicit start and end indicators for mixed content descendants. Note the use of quotes around text strings in mixed content helps to avoid white-space ambiguity.
 
 ## Error Messages Converting Text to XML
 
@@ -336,12 +364,14 @@ Successfully generating the XML output guarantees the order and structure of ele
 | Syntax | Meaning | Example |
 |---|---|---|
 | `label:` | Element content start | `Title: Pancakes` |
-| `/label` | Element content end   | `/step`
+| `/label` | Element content end   | `/Step`
 | `@label:` | Attribute value herald | `@unit: cups` |
 | value | Unquoted value specification | `Pancakes` |
-| `"value"` | Quoted value specification | `"Maple Syrup"` |
+| `"value"` | Double-quoted value specification | `"Maple Syrup"` |
+| `` `markdown` `` | Back-tick-quoted value specification | `` `*shout*` `` |
 | `\"` | Escaped quote in a value specification | `"say \"hello\""` |
 | `\:` | Escaped colon in a value specification | `NotALabel\:` | 
 | `\@` | Escaped at-sign in a value specification | `\@AlsoNotALabel` | 
 | `\\` | Escaped backslash in a value specification | `"path\\to\\file"` |
-| `\hex\` | Escaped Unicode characterin a value specification | `\1FAE7\` |
+| `\/` | Escaped forward slash in a value specification | `\/NotAnEndIndicator` |
+| `\hex\` | Escaped Unicode character in a value specification | `\1FAE7\` |

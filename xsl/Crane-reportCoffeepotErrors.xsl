@@ -18,10 +18,6 @@
   <para>
     This stylesheet interprets the ixml report to produce an error report.
   </para>
-  <para>
-    This stylesheet is reliant on XPath 3, which means it cannot be used with
-    Saxon HE (Home Edition). The package distribution includes only Saxon HE.
-  </para>
 </xst:doc>
 
 <!--========================================================================-->

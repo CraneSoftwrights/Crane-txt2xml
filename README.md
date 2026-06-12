@@ -2,9 +2,11 @@
 
 A configurable environment for creating XML documents by typing structured text without angle brackets.
 
-## The Problem
+## The Problems
 
-Many people are tasked with creating XML documents manually — ad-hoc invoices, articles, metadata records — but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
+(1) Many people are tasked with creating XML documents manually — ad-hoc invoices, articles, metadata records — but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
+
+(2) When working with AI Large Language Models (LLMs) the ingress and egress of XML documents can tend to be more costly than simple text because of the fully-spelled out element and attribute names, and element end tags. Being able to round-trip an XML document through simple text with cryptic but unambiguous single-letter labels and no end indicators provides a mechanism for reducing costs.
 
 ## The Solution
 
@@ -46,19 +48,21 @@ then the environment produces the differently nested result of XML syntax:
 
 ## How It Works
 
-Crane-txt2xml is a configurable framework. An implementer adapts the base environment for a specific XML vocabulary (such as UBL invoices or PubMed articles), producing a turnkey implementation that authors use directly. Included is both the conversion of authored simple text files to XML documents, and the conversion of XML documents to simple text files for round-tripping through an editor's fingers.
+Crane-txt2xml is a configurable framework. An implementer adapts the base environment for a specific XML vocabulary (such as UBL invoices or PubMed articles), producing a turnkey implementation that authors use directly. Included is both the conversion of authored simple text files to XML documents, and the conversion of XML documents to simple text files for round-tripping through a Large Language Model or a non-XML user's fingers.
 
 ```
-XML document  ──►  Crane-xml2txt  ──►  Simple text
+XML document  ──►  Crane-xml2txt  ──►  Simple text  ──►  LLM or non-XML user
 ```
 
 ```
-Simple text  ──►  Crane-txt2xml  ──►  ( XML document or Error messages )
+LLM or non-XML user   ──►  Simple text  ──►  Crane-txt2xml  ──►  ( XML document or Error messages )
 ```
 
 The author unpacks a self-contained distribution of a configured environment, writes text following the vocabulary's structural rules using the one common Crane-txt2xml syntax, and gets valid XML or plain-language error messages. No software installation is required beyond unzipping the distribution.
 
 Under the hood, Crane-txt2xml uses [Invisible XML (iXML)](https://invisiblexml.org/) to parse the authored text into XML, followed by an XSLT transformation to produce the final output. Authors do not need to know this.
+
+A caveat regarding using this strategy for LLM ingress and egress is that existing LLM tools are robust with built-in XML syntax processing and would have to be taught the compressed simple syntax with every stateless interaction. This is costly in itself, but it would pay dividends if the LLM is able to deal with a very large dataset compressed using the abbreviated labels.
 
 ## Who This Is For
 

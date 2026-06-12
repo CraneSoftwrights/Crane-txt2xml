@@ -1,8 +1,8 @@
 # Roadmap
 
-Phase 1 is considered completed and functionally usable and ready for public consumption.
+Phase 1 is considered completed and functionally usable and ready for public consumption. Note that the performance challenge for UBL is expected to be addressed by tool manufacturers and revised software will be included in future releases.
 
-Phase 2 is considered basically completed and functional, but in need of more polish and documentation.
+Phase 2 is considered basically completed and functional, but in need of more testing, polish, and documentation.
 
 Phase 3 is anticipated to be related to harvesting JATS content for draft PubMed in/submission documents. Whether this phase happens or not is based on feedback and expected need for such functionality.
 
