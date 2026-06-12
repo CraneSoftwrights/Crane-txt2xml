@@ -7,7 +7,7 @@
                 exclude-result-prefixes="xs xst c"
                 version="2.0">
 
-<xsl:import href="../xsl/Crane-xml2txt.xsl"/>
+<xsl:import href="../../xsl/Crane-xml2txt.xsl"/>
 
 <xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-ubl2txt.xsl" vocabulary="DocBook">

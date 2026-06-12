@@ -18,7 +18,8 @@ set +x
 #   input.txt                - text input for XML output
 #   input/output.ixmlout.xml - iXML output XML
 #   input/output.ixmlout.txt - iXML XML as text
-#   input/output.xml         - XML output for text input
+#   input/output.xml         - if error: text file of messages
+#                            - if no error: XML output for text input
 #
 # Project: https://GitHub.com/CraneSoftwrights/Crane-txt2xml
 #
@@ -56,33 +57,35 @@ if [ ! -f "$3" ];   then echo Input text "$3" not found ; exit 1 ; fi
 if [ ! -f "$modeliXML" ]; then echo Grammar file "$modeliXML" not found ; exit 1 ; fi
 if [ ! -f "$modelXSLT" ];  then echo Massage file "$modelXSLT" not found ; exit 1 ; fi
 
-# Remove any old intermediate files
+# Remove any old intermediate and final files
 if [ -f "$outputdir/$outputbase.ixmlout.xml" ]; then rm "$outputdir/$outputbase.ixmlout.xml" ; fi
 if [ -f "$outputdir/$outputbase.ixmlout.txt" ]; then rm "$outputdir/$outputbase.ixmlout.txt" ; fi
+if [ -f "$outputdir/$outputbase.err.txt" ];     then rm "$outputdir/$outputbase.err.txt" ; fi
+if [ -f "$4" ]; then rm "$4" ; fi
 
-# echo Parse the input text into intermediate XML
-java -Xss64m -jar "$REPO/utilities/coffeepot/coffeepot.jar" -i "$3" -g "$modeliXML" -o "$outputdir/$outputbase.ixmlout.xml" --input-newline --parse-count:2
+# echo Parse the input text into intermediate XML or error text
+java -Xss64m -jar "$REPO/utilities/coffeepot/coffeepot.jar" -i "$3" -g "$modeliXML" -o "$outputdir/$outputbase.ixmlout.xml" --mark-ambiguities --input-newline 2>&1
+ret=$? 
+if [ "$ret" -ne "0" ]; then
+  mv "$outputdir/$outputbase.ixmlout.xml" "$outputdir/$outputbase.err.txt"
+  exit $ret
+fi
+
+# echo Convert the intermediate XML into final XML or error text
+java -Xss64m -Xms200m -Xmx1000m -cp "$REPO/utilities/saxonhe/saxonhe.jar" net.sf.saxon.Transform -s:"$outputdir/$outputbase.ixmlout.xml" -xsl:"$modelXSLT" -o:"$4" 2>"$outputdir/$outputbase.err.txt"
 ret=$?
-#if [ "$ret" -ne "0" ]; then exit $ret ; fi
 
-# echo Convert the intermediate XML into final XML
-java -Xss64m -Xms200m -Xmx1000m -cp "$REPO/utilities/saxonhe/saxonhe.jar" net.sf.saxon.Transform -s:"$outputdir/$outputbase.ixmlout.xml" -xsl:"$modelXSLT" -o:"$4"
-ret=$?
-if [ "$ret" -ne "0" ]; then exit $ret ; fi
+# echo The intermediate file no longer is needed
+if [ -f "$outputdir/$outputbase.ixmlout.xml" ]; then rm "$outputdir/$outputbase.ixmlout.xml" ; fi
 
-# echo Convert intermedate XML into raw text for reporting
-"$REPO/shell/Crane-xml2txt.sh" "$outputdir/$outputbase.ixmlout.xml" "$outputdir/$outputbase.ixmlout.txt"
-ret=$?
-if [ "$ret" -ne "0" ]; then exit $ret ; fi
+# if there was an error then any output is bogus and the error file should have details
+if [ "$ret" -ne "0" ]; then 
+  echo Error reported for: "$3"
+  if [ -f "$4" ]; then rm "$4" ; fi
+  exit $ret
+fi
 
-#echo Convert output XML into text for review
-#"$REPO/shell/Crane-xml2txt.sh" "$4" "$4.txt"
-#ret=$?
-#if [ "$ret" -ne "0" ]; then exit $ret ; fi
-
-# echo Indent the iXML output for legibility
-"$REPO/shell/indentXML.sh" "$outputdir/$outputbase.ixmlout.xml"
-ret=$?
-if [ "$ret" -ne "0" ]; then exit $ret ; fi
+# if there was no error then any error file should be bogus
+if [ -f "$outputdir/$outputbase.err.txt" ]; then rm "$outputdir/$outputbase.err.txt" ; fi
 
 # end

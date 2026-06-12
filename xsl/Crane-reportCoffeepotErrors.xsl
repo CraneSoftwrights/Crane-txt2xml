@@ -39,6 +39,29 @@
 <xst:doc>
   <xst:title></xst:title>
 </xst:doc>
+  
+<xst:template>
+  <para>
+    Convert the output to an error message in text when not successful
+  </para>
+</xst:template>
+<xsl:template match="/">
+  <xsl:choose>
+    <xsl:when test="exists(ixml) or exists(fail)">
+      <!--massage the Coffeepot output as desired-->
+      <xsl:variable name="c:errorXML">
+        <xsl:next-match/>
+      </xsl:variable>
+      <xsl:message terminate="yes">
+        <xsl:apply-templates mode="c:xml2txtSimple" select="$c:errorXML"/>
+      </xsl:message>
+    </xsl:when>
+    <xsl:otherwise>
+      <!--as you were ... produce the desired output-->
+      <xsl:next-match/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 <xst:template>
   <para>
@@ -46,17 +69,24 @@
     testing the 
   </para>
 </xst:template>
-<xsl:template match="/ixml[@ixml:state='failed']">
-  <xsl:message select="'Failure reported; details in the output XML'"/>
+<xsl:template match="/*[@ixml:state='failed']">
   <failure>
     <guidance>
       <xsl:choose>
-        <xsl:when test="fail/unexpected='@'">
+        <xsl:when test="unexpected='@'">
           <xsl:text>An attribute specification is unexpected; check </xsl:text>
           <xsl:text>that element content has not been specified </xsl:text>
           <xsl:text>before the attribute is specified.</xsl:text>
         </xsl:when>
-        <xsl:otherwise>Failure guidance coming soon</xsl:otherwise>
+        <xsl:otherwise>
+          <xsl:text>Guidance for this failure has not been composed </xsl:text>
+          <xsl:text>in this version of the tool. Please check for </xsl:text>
+          <xsl:text>updates at </xsl:text>
+         <xsl:text>https://github.com/CraneSoftwrights/Crane-txt2xml</xsl:text>
+          <xsl:text> and, if nothing new, please file an issue at </xsl:text>
+  <xsl:text>https://github.com/CraneSoftwrights/Crane-txt2xml/issues</xsl:text>
+          <xsl:text> along with test data to trigger the failure.</xsl:text>
+        </xsl:otherwise>
       </xsl:choose>
     </guidance>
     <xsl:copy-of select="."/>
@@ -196,5 +226,22 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<!--========================================================================-->
+<xst:doc>
+  <xst:title>Error serialization</xst:title>
+</xst:doc>
+
+<xsl:template mode="c:xml2txtSimple" match="*">
+  <xsl:if test="parent::*"><xsl:text>&#xa;</xsl:text></xsl:if>
+  <xsl:for-each select="ancestor::*"><xsl:text>  </xsl:text></xsl:for-each>
+  <xsl:value-of select="name(.) || ': '"/>
+  <xsl:for-each select="@*">
+    <xsl:value-of select="'@' || name(.) || ': ' || . || ' '"/>
+  </xsl:for-each>
+  <xsl:apply-templates mode="#current"/>
+  <xsl:if test="not(parent::*)"><xsl:text>&#xa;</xsl:text></xsl:if>
+</xsl:template>
+
 
 </xsl:stylesheet>
