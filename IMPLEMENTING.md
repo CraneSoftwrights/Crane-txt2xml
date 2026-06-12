@@ -139,4 +139,6 @@ You are responsible for documenting the vocabulary-specific information that the
 - Which elements accept attributes, and which attributes are available
 - Any aliases you have defined for element and attribute labels
 
-The universal text syntax rules — how labels, attributes, values, quoting, escaping, and whitespace work — are covered in the [Author's Guide](AUTHORING.md). Point your users there rather than duplicating that content in your vocabulary documentation.
+The universal text syntax rules — how labels, attributes, values, quoting, escaping, and whitespace work — are covered in the guide. Point your users there rather than duplicating that content in your vocabulary documentation.
+
+If your users are creating prompts for instructing LLMs on the emission of XML in Crane-txt2xml syntax, you should review the "Sample Prompt" section for a guideline regarding the detailed prompt to compose.
