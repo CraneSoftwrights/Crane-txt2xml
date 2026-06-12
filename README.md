@@ -2,6 +2,9 @@
 
 A configurable environment for creating XML documents from simple labelled text without angle brackets.
 
+> [!CAUTION]
+> At this time the Windows environment is untested due to limitations in the currently available ARM Java. It would be very helpful if anyone available can help test the Windows invocations please. 
+
 ## Two Problems To Consider
 
 (1) Many people are tasked with creating XML documents manually, such as ad-hoc invoices, articles, and metadata records. but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
