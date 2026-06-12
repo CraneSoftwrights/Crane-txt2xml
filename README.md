@@ -6,7 +6,7 @@ A configurable environment for creating XML documents by typing structured text 
 
 (1) Many people are tasked with creating XML documents manually — ad-hoc invoices, articles, metadata records — but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
 
-(2) When working with AI Large Language Models (LLMs) the ingress and egress of XML documents can tend to be more costly in tokens than simple text because of the fully-spelled out element and attribute names, and element end tags. Being able to round-trip an XML document through simple text with cryptic but unambiguous single-letter labels and no end indicators provides a mechanism for reducing costs.
+(2) When working with AI Large Language Models (LLMs) the egress and ingress of structured information in XML syntax can tend to be more costly in tokens than simple text because of the fully-spelled out element and attribute names, and element end tags. Being able to export or round-trip an XML document through simple text with cryptic but unambiguous single-letter labels and no end indicators provides a mechanism for reducing costs.
 
 ## The Solution
 
@@ -48,21 +48,23 @@ then the environment produces the differently nested result of XML syntax:
 
 ## How It Works
 
-Crane-txt2xml is a configurable framework. An implementer adapts the base environment for a specific XML vocabulary (such as UBL invoices or PubMed articles), producing a turnkey implementation that authors use directly. Included is both the conversion of authored simple text files to XML documents, and the conversion of XML documents to simple text files for round-tripping through a Large Language Model or a non-XML user's fingers.
-
-```
-XML document  ──►  Crane-xml2txt  ──►  Simple text  ──►  LLM or non-XML user
-```
+Crane-txt2xml is a configurable framework. An implementer adapts the base environment for a specific XML vocabulary (such as UBL invoices or PubMed articles), producing a turnkey implementation that authors or LLM users use directly. Included is both the conversion of authored or exported simple text files to XML documents, and the conversion of XML documents to simple text files for round-tripping through a Large Language Model or a non-XML user's fingers.
 
 ```
 LLM or non-XML user   ──►  Simple text  ──►  Crane-txt2xml  ──►  ( XML document or Error messages )
 ```
 
-The author unpacks a self-contained distribution of a configured environment, writes text following the vocabulary's structural rules using the one common Crane-txt2xml syntax, and gets valid XML or plain-language error messages. No software installation is required beyond unzipping the distribution.
+```
+XML document  ──►  Crane-xml2txt  ──►  Simple text  ──►  LLM or non-XML user
+```
+
+The user unpacks a self-contained distribution of a configured environment. Either an author creates a file or the LLM is instructed for egress to generate a file with simple text labels that preface structured information. The text syntax labeling is easy to learn and easy to instruct an LLM to perform reliably and cheaply.
+
+The resulting simple and compact labeled text follows the vocabulary's structural rules using the one common Crane-txt2xml syntax, and gets as output either valid XML or plain-language error messages. No software installation is required beyond unzipping the distribution.
 
 Under the hood, Crane-txt2xml uses [Invisible XML (iXML)](https://invisiblexml.org/) to parse the authored text into XML, followed by an XSLT transformation to produce the final output. Authors do not need to know this.
 
-A caveat regarding using this strategy for LLM ingress and egress is that existing LLM tools are robust with built-in XML syntax processing and would have to be taught the compressed simple syntax with every stateless interaction. This is costly in itself, but it would pay dividends if the LLM is able to deal with a very large dataset compressed using the abbreviated labels.
+An important caveat regarding using this strategy for LLM ingress is that while existing LLM tools are robust with built-in XML syntax processing, they would have to be taught the compressed simple syntax with every stateless interaction. This is costly in itself, but it would pay dividends if the LLM is able to deal with a very large dataset compressed using the abbreviated labels.
 
 ## Who This Is For
 
@@ -75,9 +77,13 @@ A caveat regarding using this strategy for LLM ingress and egress is that existi
 **Executives and evaluators** need to understand what Crane-txt2xml does and whether it fits their organization's needs, and whether or not there exists a configured environment that already can suit their requirements.
 - **[Known environments](ENVIRONMENTS.md)** — Each vocabulary environment provides its own documentation covering the specific elements, attributes, and structures available to authors. These serve both as usable environments and as examples for implementers creating their own.
 
+## A conference paper and presentation video
+
+See the [XML Prague Conference 2026 landing page](https://www.xmlprague.cz/) for links to the PDF proceedings of the conference and watch [G. Ken Holman's 30-minute presentation (starting 59 minutes in)](https://www.youtube.com/watch?v=vqL7uzEkYIk&t=59m00s) titled "Crane-txt2xml - an attempt to socialize XML for non-XML'ers". 
+
 ## Final important note
 
-This environment is not suited for every possible XML vocabulary. Please see the Implementer's guide below for the specific constraints. In general, regularly-structured schemas following the Venetian Blind practice of global declarations, with little or no mixed content, should be able to be adapted. 
+This environment is not suited for every possible XML vocabulary. Please see the Implementer's guide below for the specific constraints. In general, regularly-structured schemas following the Garden of Eden or the Venetian Blind practice of global declarations, with little or no mixed content, should be able to be adapted. 
 
 ---
 

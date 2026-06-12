@@ -1,18 +1,20 @@
-# Crane-txt2xml Author's Guide
+# Crane-txt2xml Syntax Guide for Authoring or LLM Egress
 
-This guide describes how to write structured text that the Crane-txt2xml environment converts into XML. It covers the text syntax universal to all vocabulary environments built with Crane-txt2xml.
+This guide describes how to write or emit structured text that the Crane-txt2xml environment converts into XML. It covers the text syntax universal to all vocabulary environments built with Crane-txt2xml.
 
-This guide does **not** cover which elements and attributes are available in your particular vocabulary, how they nest, or which are required, repeatable, or optional. That information comes from your vocabulary's own documentation, provided by whoever set up your environment. Moreover, there is no "raw" or "anonymous" mode of operation that is not governed by an explicit schema structure with named elements dictating the nesting of constructs.
+This guide does **not** cover which elements and attributes are available in your particular XML vocabulary, how they nest, or which are required, repeatable, or optional. That information comes from your vocabulary's own documentation, provided by whoever set up your environment. Moreover, there is no "raw" or "anonymous" mode of operation that is not governed by an explicit schema structure with named elements dictating the nesting of constructs.
 
-## What You Are Doing As An Author
+## What You Are Doing Creating This Syntax
 
-You are creating XML syntax. Your organization needs XML documents — invoices, articles, data records — and you are providing the content using simple text following simple conventions. The Crane-txt2xml environment creates the XML syntax (angle brackets, closing tags, namespace declarations) so you do not have to type or see any of the angle brackets.
+You are creating XML documents by authoring or emitting simple text following the Crane-txt2xml syntax conventions. 
+
+Your organization needs XML documents — invoices, articles, data records — and providing the content using flat labeled text following simple conventions to be converted into structured output. The Crane-txt2xml environment creates the XML syntax (angle brackets, closing tags, namespace declarations) so you do not have to type or see or pay the LLM token overhead for any of the angle brackets.
 
 ![Authoring in Crane-txt2xml environments](images/authoring.png)
 
 Your text consists of **labels for elements**, **labels for attributes**, and **content for both**. The environment knows the structural rules of your XML vocabulary and uses them to produce correctly nested XML from your text.
 
-If you need to round-trip an existing XML document using this syntax for editing purposes, each environment has the equivalent of the `Crane-xml2txt.xsl` stylesheet.
+If you need to round-trip an existing XML document using this syntax for editing purposes, each environment has the equivalent of the `Crane-xml2txt.xsl` stylesheet to output structured content using simple text labels following the Crane-txt2xml syntax. See the end of these instructions for more details regarding going from XML to text.
 
 ## Example Vocabulary
 
@@ -202,11 +204,31 @@ Name: \@special
 
 This produces the text content: `@special`
 
-## Back-tick quoting
+## Back-tick Quoting for Mixed-content
 
-A string demarcated by back-ticks `` `a *string* of characters` `` is sensitive to the presence of markdown characters therein, such as shown by the use of the asterisks. But such is useful only when the vocabulary has defined certain characters as the on/off toggles of the mixed-content encoding of the content between the signals. Otherwise, it is the same as double-quoting.
+A string demarcated by back-ticks `` `a *string* of characters` `` is sensitive to the presence of markdown characters therein, such as shown by the use of the asterisks. But such is useful only when the vocabulary has defined certain characters as the on/off toggles of the mixed-content encoding of the content between the signals. Otherwise, characters are interpreted the same as for double-quoting where markdown characters are just characters.
 
-See the PubNoteIn-text2xml facility in the \<PubNote> project for an example of mixed-content and the use of markdown characters.
+Your vocabulary documentation will give you a legend of which `^`, `+`, `/`, `*`, `~`, `_`, and `|` markdown characters are interpreted as which elements.
+
+See the PubNoteIn-text2xml facility in the \<PubNote> project for an example of mixed-content and the use of markdown characters, such as `*` for boldface `b:` `/b`, and `/` for italic `i:` `/i` (note how the slash is interpreted differently in different contexts):
+
+```
+AbstractText: `some *bold* text ` b: `bold and /italic/ text` /b " more * text"
+```
+
+... recognizes the markdown characters inside the back-ticks but not inside the double quotes:
+
+```
+<AbstractText>some <b>bold</b> text <b>bold and <i>italic</i> text</b> more * text</AbstractText>
+```
+
+Backslash escaping is effective inside back-tick quoted content.
+
+Doubly-nesting markdown characters is ineffective and will produce ambiguity errors in the output, such as this incorrectly-formed example where boldface is nested deep inside of boldface:
+```
+myElement: This has *bold /italic and bold *yet more bold* regular bold and italic/ just bold* and nothing
+```
+
 
 ## White-space
 
@@ -224,18 +246,18 @@ Recipe:
     Amount: @unit: cups 2
   Ingredient:
     Name: "Maple Syrup"
-    Amount: @unit: tablespoons
+    Amount: @unit: tablespoon
             @approximate: "yes"
             3    
   Step: "Mix ingredients together"
-  Step: "Cook on a greased griddle"
+  Step: "Cook on a greased griddle 🫧"
   Step: Serve
 ```
 
 Compressed, all on one line, white-space separated:
 
 ```
-Recipe: Title: Pancakes Ingredient: Name: Flour Amount: @unit: cups 2 Ingredient: Name: "Maple Syrup" Amount: @unit: tablespoon @approximate: "yes" 3 Step: "Mix ingredients together" Step: "Cook on a greased griddle" Step: Serve
+Recipe: Title: Pancakes Ingredient: Name: Flour Amount: @unit: cups 2 Ingredient: Name: "Maple Syrup" Amount: @unit: tablespoon @approximate: "yes" 3 Step: "Mix ingredients together" Step: "Cook on a greased griddle  \1FAE7\" Step: Serve
 ```
 
 More compressed, with only the absolute minimum required white-space around unquoted value specifications (always after, sometimes before):
@@ -244,7 +266,7 @@ More compressed, with only the absolute minimum required white-space around unqu
 Recipe:Title:Pancakes Ingredient:Name:Flour Amount: @unit:cups 2 Ingredient:Name:"Maple Syrup"Amount:@unit:tablespoon @approximate:yes "3"Step:"Mix ingredients together"Step:"Cook on a greased griddle \1FAE7\"Step:Serve
 ```
 
-Ultra compressed, with only single-letter labels promoting less token consumption during LLM ingress and egress:
+Ultra compressed, with only single-letter labels promoting less token consumption during LLM egress (or even ingress with caveats):
 
 ```
 R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mix ingredients together S:Cook on a greased griddle \1FAE7\ S:Serve 
@@ -261,10 +283,10 @@ All produce the same XML conforming to [recipe/recipe-garden-of-eden.xsd](recipe
   </Ingredient>
   <Ingredient>
     <Name>Maple Syrup</Name>
-    <Amount unit="tablespoons" approximate="yes">3</Amount>
+    <Amount unit="tablespoon" approximate="yes">3</Amount>
   </Ingredient>
   <Step>Mix ingredients together</Step>
-  <Step>Cook on a greased griddle</Step>
+  <Step>Cook on a greased griddle 🫧</Step>
   <Step>Serve</Step>
 </Recipe>
 ```
@@ -312,32 +334,6 @@ A: B: C: /B D:
 Without the explicit end-of-content signal any guess made by the transformation could very well be wrong for the user, so the user is obliged to signal what is needed.
 
 
-## Warning Messages Converting Mixed-content XML to Text
-
-When not using markdown characters in mixed content, one must use both start and end indicators for an embedded element, e.g. `b:` and `/b` in the text stream to indicate the start and end of element content. For example, the following XML:
-
-```
-<b>bold stuff <i>bold and italic <b>redundant bold</b> more</i> and last bit</b>
-```
-
-... is expressed as:
-
-```
-b:"bold stuff "i:"bold and italic "b:"redundant bold"/b" more"/i" and last bit"/b
-```
-
-When using markdown characters within batching back-ticks, then instead of both start and end indicators, this example XML produces an ambiguous text result because a bold element is nested inside of another bold element, thus the start of the nested bold is incorrectly interpreted as the end of the outer bold:
-
-```
-` undecorated stuff *bold stuff /bold and italic *redundant bold* more/ and last bit* followed by stuff `
-```
-
-In these cases the `Crane-xml2txt` process gives the warning regarding the ambiguous markdown output:
-
-`Warning: using markdown characters instead of start/end indicators for the XML element PubMedIn-mixed.xml/ArticleSet/Article/Abstract/AbstractText[2]/b[2]/i/b is producing known ambiguity problems in the generated text.`
-
-The workaround is to not use markdown for these situations and use explicit start and end indicators for mixed content descendants. Note the use of quotes around text strings in mixed content helps to avoid white-space ambiguity.
-
 ## Error Messages Converting Text to XML
 
 When the environment detects a problem with your text, it produces an error message instead of (or in addition to) XML output. Errors are reported in plain language, not in XML syntax.
@@ -375,3 +371,89 @@ Successfully generating the XML output guarantees the order and structure of ele
 | `\\` | Escaped backslash in a value specification | `"path\\to\\file"` |
 | `\/` | Escaped forward slash in a value specification | `\/NotAnEndIndicator` |
 | `\hex\` | Escaped Unicode character in a value specification | `\1FAE7\` |
+
+# Sample Prompt for Emitting Structured Content From An LLM
+
+You are emitting structured data in Crane-txt2xml notation, a compact labeled-text
+format that will be mechanically converted to XML. Do not emit any XML. Do not emit
+any prose or explanation. Emit only Crane-txt2xml notation.
+
+The notation rules are:
+
+- An element is indicated by its label followed immediately by a colon: `Title:`
+- An attribute is indicated by `@` followed by its label and a colon: `@unit:`
+- An attribute specification must appear before any text content of its element.
+- A value is either unquoted (a single token with no spaces, colons, at-signs, or
+  forward slashes, followed by at least one white-space character) or double-quoted
+  (surrounded by `"`). When in doubt, quote.
+- Special characters within a value are backslash-escaped: `\"` for a literal
+  double-quote, `\:` for a colon, `\@` for an at-sign, `\/` for a forward slash,
+  `\\` for a backslash, and `\HHHH\` for a Unicode character by hex codepoint.
+- White-space between labels and values is insignificant. You may use indentation
+  and line breaks freely, or compress to a single line. Compression saves tokens.
+- The schema governs nesting. You do not close elements unless the vocabulary
+  documentation explicitly requires a `/Label` end indicator for disambiguation.
+- Boolean values must be one of: `true`, `false`, `1`, `0`.
+- For xs:string elements, multiple unquoted tokens are joined by a single space.
+  Use a quoted value when precise spacing is required.
+
+The vocabulary for this task has the following labels and structure:
+
+\[OPERATOR: INSERT YOUR VOCABULARY LABELS (e.g. "R:", "T:", etc.), REQUIRED/OPTIONAL END-INDICATOR STATUS, AND NESTING RULES HERE AND MODIFY AN EXAMPLE SUCH AS THE FOLLOWING ACCORDING TO YOUR VOCABULARY\]
+
+An illustrative example would be:
+```
+R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mix ingredients together S:Cook on a greased griddle \1FAE7\ S:Serve 
+```
+to represent the structure:
+
+```xml
+<Recipe>
+  <Title>Pancakes</Title>
+  <Ingredient>
+    <Name>Flour</Name>
+    <Amount unit="cups">2</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Maple Syrup</Name>
+    <Amount unit="tablespoon" approximate="yes">3</Amount>
+  </Ingredient>
+  <Step>Mix ingredients together</Step>
+  <Step>Cook on a greased griddle 🫧</Step>
+  <Step>Serve</Step>
+</Recipe>
+```
+
+Emit the data I provide in this notation. Begin immediately with the root element
+label. Emit no preamble.
+
+# Converting XML to Text
+
+Every environment includes a method of converting XML to text, based on the `Crane-xml2txt.xsl` stylesheet, that accommodates knowledge of the given XML vocabulary.
+
+For example, the [`Crane-txt2ubl/xsl/Crane-ubl2txt.xsl`](Crane-txt2ubl/xsl/Crane-ubl2txt.xsl) stylesheet knows that when serializing the `<AllowanceCharge>` element that both the start `AllowanceCharge:` and end `/AllowanceCharge` indicators are required to accommodate the inherent structural ambiguity. 
+
+When not using markdown characters in mixed content, one must use both start and end indicators for an embedded element, e.g. `b:` and `/b` in the text stream to indicate the start and end of element content. For example, the following XML:
+
+```
+<b>bold stuff <i>bold and italic <b>redundant bold</b> more</i> and last bit</b>
+```
+
+... is expressed as:
+
+```
+b:"bold stuff "i:"bold and italic "b:"redundant bold"/b" more"/i" and last bit"/b
+```
+
+When using markdown characters within batching back-ticks, then instead of both start and end indicators, this example XML produces an ambiguous text result because a bold element is nested inside of another bold element, thus the start of the nested bold is incorrectly interpreted as the end of the outer bold:
+
+```
+` undecorated stuff *bold stuff /bold and italic *redundant bold* more/ and last bit* followed by stuff `
+```
+
+In these cases the `Crane-xml2txt.xsl` process gives the warning regarding the ambiguous markdown output:
+
+`Warning: using markdown characters instead of start/end indicators for the XML element PubMedIn-mixed.xml/ArticleSet/Article/Abstract/AbstractText[2]/b[2]/i/b is producing known ambiguity problems in the generated text.`
+
+The workaround is to not use markdown for these situations and use explicit start and end indicators for mixed content descendants. Note the use of quotes around text strings in mixed content helps to avoid white-space ambiguity.
+
