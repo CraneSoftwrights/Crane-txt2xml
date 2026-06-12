@@ -2,7 +2,7 @@
 
 A configurable environment for creating XML documents from simple labelled text without angle brackets.
 
-> [!CAUTION]
+> [!IMPORTANT]
 > At this time the Windows environment is untested due to limitations in the currently available ARM Java. It would be very helpful if anyone available can help test the Windows invocations please. 
 
 ## Two Problems To Consider
