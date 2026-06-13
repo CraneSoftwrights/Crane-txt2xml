@@ -2,7 +2,69 @@
 
 A demonstration configuration of the Crane-txt2xml environment for a simple recipe vocabulary, exercising the four XSD authoring styles.
 
-Running the test script converts each test input `name.txt` into its result `name.xml`, leaving behind the temporary files `name.xml.ixmlout.xml` (the iXML parser output) and `name.xml.ixmlout.txt` (its text rendering).
+There are four XSD schema expressions of the document mdoel a simple recipe XML structure, Garden of Eden (global element declarations and global type declarations), Russian Doll (local element declarations and local type declarations), Salami Slice (global element declarations and local type declarations), and Venetian Blind (local element declarations and global type declaration).
+
+There are two invocations:
+- `make-recipe-ixml.bat`/`make-recipe-ixml.sh`
+  - create the iXML from the Garden of Eden XSD
+- `test-recipe.bat`/`test-recipe.sh`
+  - run the three test files
+
+An indented sample XML instance is:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+  <Title>Pancakes</Title>
+  <Ingredient>
+    <Name>Flour</Name>
+    <Amount unit="cups">2</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Maple Syrup</Name>
+    <Amount unit="tablespoon" approximate="yes">3</Amount>
+  </Ingredient>
+  <Step>Mix ingredients together</Step>
+  <Step>Cook on a greased griddle 🫧</Step>
+  <Step>Serve</Step>
+</Recipe>
+```
+An indented simple text expression of the sample, without errors, is [recipe1.txt](recipe1.txt), producing [recipe1.xml](recipe1.xml):
+```
+Recipe:
+  Title: Pancakes
+  Ingredient:
+    Name: Flour
+    Amount: @unit:cups 2
+  Ingredient:
+    Name:"Maple Syrup"
+    Amount: @unit:tablespoon @approximate:yes "3"
+  Step: Mix ingredients together
+  Step: "Cook on a greased griddle \1FAE7\"
+  Step:Serve
+```
+A compressed simple text expression of the sample, without errors, is [recipe2.txt](recipe2.txt), producing [recipe2.xml](recipe2.xml):
+```
+Recipe:Title:Pancakes Ingredient:Name:Flour Amount: @unit:cups 2 Ingredient:Name:"Maple Syrup"Amount:@unit:tablespoon @approximate:yes "3"Step:"Mix ingredients together"Step:"Cook on a greased griddle \1FAE7\"Step:Serve
+```
+
+A compressed simple text expression with a syntax violation is [recipe3error.txt](recipe3error.txt), producing the [recipe3error.xml.err.txt](recipe3error.xml.err.txt) error file that, in part, reads:
+```
+failure: 
+  guidance: An attribute specification is unexpected; check that element content has not been specified before the attribute is specified. If it isn't an attribute label, then the at-sign needs to be escaped with a backslash in front of it.
+  fail: @ixml:state: failed 
+    line: 1
+    column: 121
+    pos: 121
+    unexpected: @
+
+```
+
+An ultra-compressed text expression is is [recipeTokens1.txt](recipeTokens1.txt) that one could emit from an LLM to represent a recipe would be far shorter and less expensive in tokens, yet the abbreviated labels produce the identical recipe XML output as above:
+```
+R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mix ingredients together S:Cook on a greased griddle \1FAE7\ S:Serve 
+```
+
+
 
 # Manifest
 

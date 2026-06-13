@@ -1,6 +1,6 @@
 # Crane-txt2xml
 
-A configurable environment for creating XML documents from simple labelled text without angle brackets.
+A configurable environment for transforming simple labelled text without angle brackets into structured XML documents.
 
 ## Two Problems To Consider
 
