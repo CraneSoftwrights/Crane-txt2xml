@@ -75,6 +75,7 @@ An important caveat regarding using this strategy for LLM ingress is that while 
 - **[Implementer's guide](IMPLEMENTING.md)** — How to create a vocabulary environment: the required inputs, the generation pipeline, error handling, packaging, and documentation responsibilities.
 
 **Executives and evaluators** need to understand what Crane-txt2xml does and whether it fits their organization's needs, and whether or not there exists a configured environment that already can suit their requirements.
+- **[Toy Recipe Example](recipe/README.md)** — An illustration of the features of this environment using a toy XML vocabulary to easily assess the process.
 - **[Known environments](ENVIRONMENTS.md)** — Each vocabulary environment provides its own documentation covering the specific elements, attributes, and structures available to authors. These serve both as usable environments and as examples for implementers creating their own.
 
 ## A conference paper and presentation video
