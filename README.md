@@ -3,7 +3,7 @@
 A configurable environment for creating XML documents from simple labelled text without angle brackets.
 
 > [!IMPORTANT]
-> At this time the Windows environment is untested due to limitations in the currently available ARM Java. It would be very helpful if anyone available can help test the Windows invocations please. 
+> This environment requires Java class file version 55.0 (Java 11) or higher, and has been tested only on Java 17.
 
 ## Two Problems To Consider
 
@@ -54,7 +54,7 @@ then the environment produces the differently nested result of XML syntax:
 Crane-txt2xml is a configurable framework. An implementer adapts the base environment for a specific XML vocabulary (such as UBL invoices or PubMed articles), producing a turnkey implementation that authors or LLM users use directly. Included is both the conversion of authored or exported simple text files to XML documents, and the conversion of XML documents to simple text files for round-tripping through a Large Language Model or a non-XML user's fingers.
 
 ```
-LLM or non-XML user   ──►  Simple text  ──►  Crane-txt2xml  ──►  ( XML document or Error text )
+LLM or non-XML user   ──►  Simple text  ──►  Crane-txt2xml  ──►  ( XML document or Error messages )
 ```
 
 ```

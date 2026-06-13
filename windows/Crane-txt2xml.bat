@@ -52,7 +52,7 @@ if exist "%outputdir%%outputbase%.err.txt"     del "%outputdir%%outputbase%.err.
 if exist "%~4" del "%~4"
 
 rem Parse the input text into intermediate XML or error text
-java -Xss64m -jar "%REPO%\utilities\coffeepot\coffeepot.jar" -i "%~3" -g "%modeliXML%" -o "%outputdir%%outputbase%.ixmlout.xml" --mark-ambiguities --input-newline 2>&1
+java -Xss16m -jar "%REPO%\utilities\coffeepot\coffeepot.jar" -i "%~3" -g "%modeliXML%" -o "%outputdir%%outputbase%.ixmlout.xml" --mark-ambiguities --input-newline 2>&1
 set ret=%errorlevel%
 if not "%ret%"=="0" (
   ren "%outputdir%%outputbase%.ixmlout.xml" "%outputbase%.err.txt"
@@ -60,7 +60,7 @@ if not "%ret%"=="0" (
 )
 
 rem Convert the intermediate XML into final XML or error text
-java -Xss64m -Xms200m -Xmx1000m -cp "%REPO%\utilities\saxonhe\saxonhe.jar" net.sf.saxon.Transform -s:"%outputdir%%outputbase%.ixmlout.xml" -xsl:"%modelXSLT%" -o:"%~4" 2>"%outputdir%%outputbase%.err.txt"
+java -Xss16m -cp "%REPO%\utilities\saxonhe\saxonhe.jar" net.sf.saxon.Transform -s:"%outputdir%%outputbase%.ixmlout.xml" -xsl:"%modelXSLT%" -o:"%~4" 2>"%outputdir%%outputbase%.err.txt"
 set ret=%errorlevel%
 
 rem The intermediate file no longer is needed

@@ -12,9 +12,8 @@ The Cleanup XSLT stylesheet is `Crane-ixml2ubl.xsl` for inferring the output nam
 
 Converting a text input `name.txt` into its result `name.txt.xml` leaves behind the temporary files `name.txt.xml.ixmlout.xml` (the iXML parser output) and `name.txt.xml.ixmlout.txt` (its text rendering).
 
-## An important note regarding performance
-
-At this time the magnitude of the generated iXML schema is such that it provides only an exercise of capacities of iXML processors. The conversion of sample XML documents to text is very quick, but the conversion of text to XML documents is very slow. Slow enough to be unusable.
+> [!IMPORTANT]
+> At this time the magnitude of the generated iXML schema for UBL is such that it provides only an exercise of capacities of iXML processors. The conversion of sample XML documents to text is very quick, but the conversion of text to XML documents is very slow and consumes a big stack and a very large Java heap. Slow enough to be unusable and big enough not to run on many machines.
 
 # Manifest
 
@@ -29,6 +28,9 @@ At this time the magnitude of the generated iXML schema is such that it provides
 
 [`UBL-AllDocuments-2.5.xsd`](UBL-AllDocuments-2.5.xsd)
 - a wrapper XSD document model incorporating all 101 UBL document models
+
+[`UBL-invoice-2.1-Example.xml`](UBL-invoice-2.1-Example.xml)
+- an example XML invoice from the UBL 2.1 distribution
 
 [`UBL-invoice-2.1-Example-text.txt`](UBL-invoice-2.1-Example-text.txt)
 - a text stream rendering of the example invoice from the UBL 2.1 distribution

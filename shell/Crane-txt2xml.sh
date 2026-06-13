@@ -64,7 +64,7 @@ if [ -f "$outputdir/$outputbase.err.txt" ];     then rm "$outputdir/$outputbase.
 if [ -f "$4" ]; then rm "$4" ; fi
 
 # echo Parse the input text into intermediate XML or error text
-java -Xss64m -jar "$REPO/utilities/coffeepot/coffeepot.jar" -i "$3" -g "$modeliXML" -o "$outputdir/$outputbase.ixmlout.xml" --mark-ambiguities --input-newline 2>&1
+java -Xss16m -jar "$REPO/utilities/coffeepot/coffeepot.jar" -i "$3" -g "$modeliXML" -o "$outputdir/$outputbase.ixmlout.xml" --mark-ambiguities --input-newline 2>&1
 ret=$? 
 if [ "$ret" -ne "0" ]; then
   mv "$outputdir/$outputbase.ixmlout.xml" "$outputdir/$outputbase.err.txt"
@@ -72,7 +72,7 @@ if [ "$ret" -ne "0" ]; then
 fi
 
 # echo Convert the intermediate XML into final XML or error text
-java -Xss64m -Xms200m -Xmx1000m -cp "$REPO/utilities/saxonhe/saxonhe.jar" net.sf.saxon.Transform -s:"$outputdir/$outputbase.ixmlout.xml" -xsl:"$modelXSLT" -o:"$4" 2>"$outputdir/$outputbase.err.txt"
+java -cp "$REPO/utilities/saxonhe/saxonhe.jar" net.sf.saxon.Transform -s:"$outputdir/$outputbase.ixmlout.xml" -xsl:"$modelXSLT" -o:"$4" 2>"$outputdir/$outputbase.err.txt"
 ret=$?
 
 # echo The intermediate file no longer is needed
