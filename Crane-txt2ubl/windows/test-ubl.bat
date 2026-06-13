@@ -22,6 +22,6 @@ set ret=%errorlevel%
 if not "%ret%"=="0" exit /b %ret%
 
 echo Converting generated text to UBL document...
-call "%REPO%\Crane-txt2ubl\windows\Crane-txt2ubl.bat" "%REPO%\Crane-txt2ubl\UBL-invoice-2.1-Example-text.txt"
+call "%REPO%\Crane-txt2ubl\windows\Crane-txt2ubl.bat" "%REPO%\Crane-txt2ubl\UBL-invoice-2.1-Example-text.txt" "%REPO%\Crane-txt2ubl\UBL-invoice-2.1-Example-text.xml"
 set ret=%errorlevel%
 if not "%ret%"=="0" exit /b %ret%

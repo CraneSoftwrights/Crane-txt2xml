@@ -7,18 +7,17 @@ rem A Windows batch script for invoking the Crane-txt2xml workflow on the
 rem inputs
 rem
 rem Usage:
-rem   Crane-txt2xml.bat  model.ixml  model.xsl  input.txt  output.xml
+rem   Crane-txt2xml.bat  modeliXML  modelXSLT  inputText  outputXML
 rem
 rem Assumptions:
 rem
-rem   model.ixml - iXML grammar
-rem   model.xsl  - iXML output massage stylesheet
+rem   modeliXML  - iXML grammar
+rem   modelXSLT  - iXML output massage stylesheet
 rem
-rem   input.txt                - text input for XML output
-rem   input/output.ixmlout.xml - iXML output XML
-rem   input/output.ixmlout.txt - iXML XML as text
-rem   input/output.xml         - if error: text file of messages
-rem                            - if no error: XML output for text input
+rem   inputText             - text input for XML output
+rem   outputXML.ixmlout.xml - iXML output XML (deleted)
+rem   outputXML.err.txt     - if error: text file of messages
+rem   outputXML             - if no error: XML output for text input
 rem
 rem Project: https://GitHub.com/CraneSoftwrights/Crane-txt2xml
 rem
@@ -36,8 +35,10 @@ if "%~4"=="" (
 
 set "modeliXML=%~1"
 set "modelXSLT=%~2"
-set "outputdir=%~dp4"
-set "outputbase=%~nx4"
+set "inputFile=%~3"
+set "outputFile=%~4"
+set "intermediate=%~3.ixmlout.xml"
+set "errorFile=%~4.err.txt"
 
 rem echo Processing: "%~3" into "%~4" ...
 
@@ -46,25 +47,24 @@ if not exist "%modeliXML%" echo Grammar file "%modeliXML%" not found && exit /b 
 if not exist "%modelXSLT%" echo Massage file "%modelXSLT%" not found && exit /b 1
 
 rem Remove any old intermediate and final files
-if exist "%outputdir%%outputbase%.ixmlout.xml" del "%outputdir%%outputbase%.ixmlout.xml"
-if exist "%outputdir%%outputbase%.ixmlout.txt" del "%outputdir%%outputbase%.ixmlout.txt"
-if exist "%outputdir%%outputbase%.err.txt"     del "%outputdir%%outputbase%.err.txt"
-if exist "%~4" del "%~4"
+if exist "%intermediate%" del "%intermediate%"
+if exist "%errorFile%"    del "%errorFile%"
+if exist "%~4"            del "%~4"
 
 rem Parse the input text into intermediate XML or error text
-java -Xss16m -jar "%REPO%\utilities\coffeepot\coffeepot.jar" -i "%~3" -g "%modeliXML%" -o "%outputdir%%outputbase%.ixmlout.xml" --mark-ambiguities --input-newline 2>&1
+java -Xss16m -jar "%REPO%\utilities\coffeepot\coffeepot.jar" -i "%~3" -g "%modeliXML%" -o "%intermediate%" --mark-ambiguities --input-newline 2>&1
 set ret=%errorlevel%
 if not "%ret%"=="0" (
-  ren "%outputdir%%outputbase%.ixmlout.xml" "%outputbase%.err.txt"
+  ren "%intermediate%" "%outputbase%.err.txt"
   exit /b %ret%
 )
 
 rem Convert the intermediate XML into final XML or error text
-java -Xss16m -cp "%REPO%\utilities\saxonhe\saxonhe.jar" net.sf.saxon.Transform -s:"%outputdir%%outputbase%.ixmlout.xml" -xsl:"%modelXSLT%" -o:"%~4" 2>"%outputdir%%outputbase%.err.txt"
+java -Xss16m -cp "%REPO%\utilities\saxonhe\saxonhe.jar" net.sf.saxon.Transform -s:"%intermediate%" -xsl:"%modelXSLT%" -o:"%~4" 2>"%errorFile%"
 set ret=%errorlevel%
 
 rem The intermediate file no longer is needed
-if exist "%outputdir%%outputbase%.ixmlout.xml" del "%outputdir%%outputbase%.ixmlout.xml"
+if exist "%intermediate%" del "%intermediate%"
 
 rem If there was an error then any output is bogus and the error file should have details
 if not "%ret%"=="0" (
@@ -74,6 +74,6 @@ if not "%ret%"=="0" (
 )
 
 rem If there was no error then any error file should be bogus
-if exist "%outputdir%%outputbase%.err.txt" del "%outputdir%%outputbase%.err.txt"
+if exist "%errorFile%" del "%errorFile%"
 
 rem end

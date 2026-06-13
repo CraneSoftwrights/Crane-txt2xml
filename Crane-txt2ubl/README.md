@@ -10,10 +10,62 @@ At this time only the complete schemas are supported and not the endorsed schema
 
 The Cleanup XSLT stylesheet is `Crane-ixml2ubl.xsl` for inferring the output namespaces from the input parsed output of the synthesized iXML grammar.
 
-Converting a text input `name.txt` into its result `name.txt.xml` leaves behind the temporary files `name.txt.xml.ixmlout.xml` (the iXML parser output) and `name.txt.xml.ixmlout.txt` (its text rendering).
+Crane-txt2ubl converts a text input `name.txt` into either its successful result `name.txt.xml` or an error report `name.
 
 > [!IMPORTANT]
 > At this time the magnitude of the generated iXML schema for UBL is such that it provides only an exercise of capacities of iXML processors. The conversion of sample XML documents to text is very quick, but the conversion of text to XML documents is very slow and consumes a big stack and a very large Java heap. Slow enough to be unusable and big enough not to run on many machines.
+
+# Invocations
+
+Converting UBL XML input to text output:
+- Windows: `Crane-ubl2txt.bat  inputXML  outputTEXT`
+- Shell: `Crane-ubl2txt.sh  inputXML  outputTEXT`
+
+Converting text input to UBL XML output:
+- Windows: `Crane-txt2ubl.bat  inputTEXT  outputXML`
+- Shell: `Crane-txt2ubl.sh  inputTEXT  outputXML`
+
+# Vocabulary notes
+
+## Labels
+
+The element and attribute labels can be entered in two different ways:
+
+- the actual spelling of the element name: e.g. `DocumentCurrencyCode`
+- splitting the camelCase letters with a space: e.g. `Document Currency Code`
+
+## Mandatory end indicators
+
+At this time only a single structural ambiguity has been detected that requires a mandatory end indicator:
+
+- `AllowanceCharge:` due to the optional child `TaxTotal` and following sibling `TaxTotal`
+
+## Example snippet
+
+From [UBL-invoice-2.1-Example-text](UBL-invoice-2.1-Example-text):
+
+```
+  Invoice Line:
+    ID: 1 
+    Note: Scratch on box 
+    Invoiced Quantity: @unit Code: C62  1 
+    Line Extension Amount: @currency ID: EUR  1273 
+    Accounting Cost: BookingCode001 
+    Order Line Reference:
+      Line ID: 1 
+    Allowance Charge:
+      Charge Indicator: false 
+      Allowance Charge Reason: Damage 
+      Amount: @currency ID: EUR  12 
+    /Allowance Charge 
+    Allowance Charge:
+      Charge Indicator: true 
+      Allowance Charge Reason: Testing 
+      Amount: @currency ID: EUR  10 
+    /Allowance Charge 
+    Tax Total:
+      Tax Amount: @currency ID: EUR  254.6 
+```
 
 # Manifest
 

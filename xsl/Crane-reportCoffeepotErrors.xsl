@@ -24,45 +24,15 @@
 <xst:doc>
   <xst:title>Invocation parameters and input file</xst:title>
   <para>
-    The input file is an XML document with {}ixml as the document element.
+    The input file is an XML document with @ixml:state on the document element.
   </para>
 </xst:doc>
   
-<!--
-<xst:param ignore-ns='yes'>
-  <para>
-  </para>
-</xst:param>
-<xsl:param name="" select="''" as="xs:string"/>
--->
 <!--========================================================================-->
 <xst:doc>
-  <xst:title></xst:title>
+  <xst:title>Main logic</xst:title>
 </xst:doc>
   
-<xst:template>
-  <para>
-    Convert the output to an error message in text when not successful
-  </para>
-</xst:template>
-<xsl:template match="/">
-  <xsl:choose>
-    <xsl:when test="exists(ixml) or exists(fail)">
-      <!--massage the Coffeepot output as desired-->
-      <xsl:variable name="c:errorXML">
-        <xsl:next-match/>
-      </xsl:variable>
-      <xsl:message terminate="yes">
-        <xsl:apply-templates mode="c:xml2txtSimple" select="$c:errorXML"/>
-      </xsl:message>
-    </xsl:when>
-    <xsl:otherwise>
-      <!--as you were ... produce the desired output-->
-      <xsl:next-match/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
 <xst:template>
   <para>
     Walk the tree reporting the beginning of sub-trees that are unequal,
@@ -76,7 +46,25 @@
         <xsl:when test="unexpected='@'">
           <xsl:text>An attribute specification is unexpected; check </xsl:text>
           <xsl:text>that element content has not been specified </xsl:text>
-          <xsl:text>before the attribute is specified.</xsl:text>
+          <xsl:text>before the attribute is specified. If it isn't </xsl:text>
+          <xsl:text>an attribute label, then the at-sign needs to </xsl:text>
+          <xsl:text>be escaped with a backslash in front of it.</xsl:text>
+        </xsl:when>
+        <xsl:when test="unexpected=':'">
+          <xsl:text>The label as typed is unexpected; check for a </xsl:text>
+          <xsl:text>simple spelling mistake in the label. If it </xsl:text>
+          <xsl:text>isn't a label, then the colon needs to be </xsl:text>
+          <xsl:text>escaped with a backslash in front of it.</xsl:text>
+        </xsl:when>
+        <xsl:when test="unexpected='/'">
+          <xsl:text>The end indicator is unexpected; check for a </xsl:text>
+          <xsl:text>simple spelling mistake in the label. If it </xsl:text>
+          <xsl:text>isn't a label, then the slash needs to be </xsl:text>
+          <xsl:text>escaped with a backslash in front of it.</xsl:text>
+        </xsl:when>
+        <xsl:when test="unexpected='\'">
+          <xsl:text>The backslash escape is unexpected and is </xsl:text>
+          <xsl:text>suitable only for a limited set of characters.</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <xsl:text>Guidance for this failure has not been composed </xsl:text>
@@ -231,6 +219,29 @@
 <xst:doc>
   <xst:title>Error serialization</xst:title>
 </xst:doc>
+
+<xst:template>
+  <para>
+    Convert the output to an error message in text when not successful
+  </para>
+</xst:template>
+<xsl:template match="/">
+  <xsl:choose>
+    <xsl:when test="exists(ixml) or exists(fail)">
+      <!--massage the Coffeepot output as desired-->
+      <xsl:variable name="c:errorXML">
+        <xsl:next-match/>
+      </xsl:variable>
+      <xsl:message terminate="yes">
+        <xsl:apply-templates mode="c:xml2txtSimple" select="$c:errorXML"/>
+      </xsl:message>
+    </xsl:when>
+    <xsl:otherwise>
+      <!--as you were ... produce the desired output-->
+      <xsl:next-match/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 <xsl:template mode="c:xml2txtSimple" match="*">
   <xsl:if test="parent::*"><xsl:text>&#xa;</xsl:text></xsl:if>

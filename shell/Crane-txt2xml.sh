@@ -8,18 +8,17 @@ set +x
 # A shell script for invoking the Crane-txt2xml workflow on the inputs
 #
 # Usage:
-#   Crane-txt2xml.sh  model.ixml  model.xsl  input.txt  output.xml
+#   Crane-txt2xml.sh  modeliXML  modelXSLT  inputText  outputXML
 #
 # Assumptions:
 #
-#   model.ixml - iXML grammar
-#   model.xsl  - iXML output massage stylesheet
+#   modeliXML  - iXML grammar
+#   modelXSLT  - iXML output massage stylesheet
 #
-#   input.txt                - text input for XML output
-#   input/output.ixmlout.xml - iXML output XML
-#   input/output.ixmlout.txt - iXML XML as text
-#   input/output.xml         - if error: text file of messages
-#                            - if no error: XML output for text input
+#   inputText                - text input for XML output
+#   outputXML.ixmlout.xml    - intermediate iXML output XML (deleted)
+#   outputXML.err.txt        - if error: text file of guidance
+#   outputXML                - if no error: XML output for text input
 #
 # Project: https://GitHub.com/CraneSoftwrights/Crane-txt2xml
 #
@@ -46,10 +45,10 @@ fi
 
 modeliXML="$1"
 modelXSLT="$2"
-inputdir=$(dirname "$3")
-inputbase=$(basename "$3")
-outputdir=$(dirname "$4")
-outputbase=$(basename "$4")
+inputFile="$3"
+outputFile="$4"
+intermediate="$3.ixmlout.xml"
+errorFile="$4.err.txt"
 
 # echo Processing: "$3" into "$4" ...
 
@@ -58,25 +57,24 @@ if [ ! -f "$modeliXML" ]; then echo Grammar file "$modeliXML" not found ; exit 1
 if [ ! -f "$modelXSLT" ];  then echo Massage file "$modelXSLT" not found ; exit 1 ; fi
 
 # Remove any old intermediate and final files
-if [ -f "$outputdir/$outputbase.ixmlout.xml" ]; then rm "$outputdir/$outputbase.ixmlout.xml" ; fi
-if [ -f "$outputdir/$outputbase.ixmlout.txt" ]; then rm "$outputdir/$outputbase.ixmlout.txt" ; fi
-if [ -f "$outputdir/$outputbase.err.txt" ];     then rm "$outputdir/$outputbase.err.txt" ; fi
+if [ -f "$intermediate" ]; then rm "$intermediate" ; fi
+if [ -f "$errorFile" ];     then rm "$errorFile" ; fi
 if [ -f "$4" ]; then rm "$4" ; fi
 
 # echo Parse the input text into intermediate XML or error text
-java -Xss16m -jar "$REPO/utilities/coffeepot/coffeepot.jar" -i "$3" -g "$modeliXML" -o "$outputdir/$outputbase.ixmlout.xml" --mark-ambiguities --input-newline 2>&1
+java -Xss16m -jar "$REPO/utilities/coffeepot/coffeepot.jar" -i "$3" -g "$modeliXML" -o "$intermediate" --mark-ambiguities --input-newline 2>&1
 ret=$? 
 if [ "$ret" -ne "0" ]; then
-  mv "$outputdir/$outputbase.ixmlout.xml" "$outputdir/$outputbase.err.txt"
+  mv "$intermediate" "$errorFile"
   exit $ret
 fi
 
 # echo Convert the intermediate XML into final XML or error text
-java -cp "$REPO/utilities/saxonhe/saxonhe.jar" net.sf.saxon.Transform -s:"$outputdir/$outputbase.ixmlout.xml" -xsl:"$modelXSLT" -o:"$4" 2>"$outputdir/$outputbase.err.txt"
+java -cp "$REPO/utilities/saxonhe/saxonhe.jar" net.sf.saxon.Transform -s:"$intermediate" -xsl:"$modelXSLT" -o:"$4" 2>"$errorFile"
 ret=$?
 
 # echo The intermediate file no longer is needed
-if [ -f "$outputdir/$outputbase.ixmlout.xml" ]; then rm "$outputdir/$outputbase.ixmlout.xml" ; fi
+if [ -f "$intermediate" ]; then rm "$intermediate" ; fi
 
 # if there was an error then any output is bogus and the error file should have details
 if [ "$ret" -ne "0" ]; then 
@@ -86,6 +84,6 @@ if [ "$ret" -ne "0" ]; then
 fi
 
 # if there was no error then any error file should be bogus
-if [ -f "$outputdir/$outputbase.err.txt" ]; then rm "$outputdir/$outputbase.err.txt" ; fi
+if [ -f "$errorFile" ]; then rm "$errorFile" ; fi
 
 # end

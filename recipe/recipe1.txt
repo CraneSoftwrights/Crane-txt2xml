@@ -8,4 +8,4 @@ Recipe:
     Amount: @unit:tablespoon @approximate:yes "3"
   Step:"Mix ingredients together"
   Step:"Cook on a greased griddle \1FAE7\"
-  Step:Serve\1FAE7\
+  Step:Serve

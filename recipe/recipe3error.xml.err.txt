@@ -1,5 +1,5 @@
 failure: 
-  guidance: An attribute specification is unexpected; check that element content has not been specified before the attribute is specified.
+  guidance: An attribute specification is unexpected; check that element content has not been specified before the attribute is specified. If it isn't an attribute label, then the at-sign needs to be escaped with a backslash in front of it.
   fail: @ixml:state: failed 
     line: 1
     column: 121
@@ -39,7 +39,7 @@ failure:
         input: p
       open: @rule: Recipe @start: 1 @end: 7 
         input: Recipe:
-Error at xsl:message on line 55 column 36 of Crane-reportCoffeepotErrors.xsl:
-  XTMM9000  Processing terminated by xsl:message at line 55 in Crane-reportCoffeepotErrors.xsl
-  In template rule with match="/" on line 48 of Crane-reportCoffeepotErrors.xsl
-Processing terminated by xsl:message at line 55 in Crane-reportCoffeepotErrors.xsl
+Error at xsl:message on line 235 column 36 of Crane-reportCoffeepotErrors.xsl:
+  XTMM9000  Processing terminated by xsl:message at line 235 in Crane-reportCoffeepotErrors.xsl
+  In template rule with match="/" on line 228 of Crane-reportCoffeepotErrors.xsl
+Processing terminated by xsl:message at line 235 in Crane-reportCoffeepotErrors.xsl
