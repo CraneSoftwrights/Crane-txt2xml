@@ -5,10 +5,10 @@ A demonstration configuration of the Crane-txt2xml environment for a simple reci
 There are four XSD schema expressions of the document mdoel a simple recipe XML structure, Garden of Eden (global element declarations and global type declarations), Russian Doll (local element declarations and local type declarations), Salami Slice (global element declarations and local type declarations), and Venetian Blind (local element declarations and global type declaration).
 
 There are two invocations:
-- `make-recipe-ixml.bat`/`make-recipe-ixml.sh`
+- [`make-recipe-ixml.bat`](make-recipe-ixml.bat)/[`make-recipe-ixml.sh`](make-recipe-ixml.sh)
   - create the iXML from the Garden of Eden XSD
-- `test-recipe.bat`/`test-recipe.sh`
-  - run the three test files
+- [`test-recipe.bat`](test-recipe.bat)/[`test-recipe.sh`](test-recipe.sh)
+  - run the four test files
 
 An indented sample XML instance is:
 ```
