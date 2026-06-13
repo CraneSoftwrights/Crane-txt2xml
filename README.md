@@ -2,9 +2,6 @@
 
 A configurable environment for creating XML documents from simple labelled text without angle brackets.
 
-> [!IMPORTANT]
-> This environment requires Java class file version 55.0 (Java 11) or higher, and has been tested only on Java 17.
-
 ## Two Problems To Consider
 
 (1) Many people are tasked with creating XML documents manually, such as ad-hoc invoices, articles, and metadata records. but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
@@ -54,7 +51,7 @@ then the environment produces the differently nested result of XML syntax:
 Crane-txt2xml is a configurable framework. An implementer adapts the base environment for a specific XML vocabulary (such as UBL invoices or PubMed articles), producing a turnkey implementation that authors or LLM users use directly. Included is both the conversion of authored or exported simple text files to XML documents, and the conversion of XML documents to simple text files for round-tripping through a Large Language Model or a non-XML user's fingers.
 
 ```
-LLM or non-XML user   ──►  Simple text  ──►  Crane-txt2xml  ──►  ( XML document or Error messages )
+LLM or non-XML user   ──►  Simple text  ──►  Crane-txt2xml  ──►  ( XML document or Error text )
 ```
 
 ```
@@ -71,7 +68,7 @@ An important caveat regarding using this strategy for LLM ingress is that while 
 
 ## Who This Is For
 
-**Authors** create XML by typing text. They need to know the text syntax (universal across all environments) and the structural rules of their specific vocabulary (provided by the implementer).
+**Authors** create XML by typing text or by exporting text from an LLM. They need to know the text syntax (universal across all environments) and the structural rules of their specific vocabulary (provided by the implementer).
 - **[Author's guide](AUTHORING.md)** — The text syntax: how to write element labels, attribute labels, and values. Applicable to all vocabulary environments.
 
 **Implementers** create vocabulary environments. They adapt Crane-txt2xml for a specific XML vocabulary by providing schema information, label mappings, and a serialization stylesheet. They package the result for their authors and document the vocabulary's elements and attributes.
@@ -82,7 +79,7 @@ An important caveat regarding using this strategy for LLM ingress is that while 
 
 ## A conference paper and presentation video
 
-See the [XML Prague Conference 2026 landing page](https://www.xmlprague.cz/) for links to the PDF proceedings of the conference and watch [G. Ken Holman's 30-minute presentation (starting 59 minutes in)](https://www.youtube.com/watch?v=vqL7uzEkYIk&t=59m00s) titled "Crane-txt2xml - an attempt to socialize XML for non-XML'ers". 
+See the [XML Prague Conference 2026 landing page](https://www.xmlprague.cz/) for links to the PDF proceedings of the conference and watch [G. Ken Holman's 30-minute video recording (starting 59 minutes in)](https://www.youtube.com/watch?v=vqL7uzEkYIk&t=59m00s) titled "Crane-txt2xml - an attempt to socialize XML for non-XML'ers". 
 
 ## Final important note
 
