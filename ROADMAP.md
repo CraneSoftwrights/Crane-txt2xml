@@ -9,3 +9,9 @@ Phase 3 is anticipated to be related to harvesting JATS content for draft PubMed
 An ongoing effort is underway to improve all documentation. Community feedback is important to this phase.
 
 Please see the [discussions tab above](https://github.com/CraneSoftwrights/Crane-txt2xml/discussions) for open discussions.
+
+# Future work
+
+One low-hanging-fruit item is to expand on the pattern grammar for XSD data types in order not to rely on post-generation validation to validate the content of XML token content.
+
+Any suggestion of future work to consider is welcomed by [filing an issue](https://github.com/CraneSoftwrights/Crane-txt2xml/issues).

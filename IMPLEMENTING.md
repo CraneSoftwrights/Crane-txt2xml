@@ -4,6 +4,8 @@ This guide is for XML practitioners creating a vocabulary environment, adapting 
 
 It assumes familiarity with XML, XSD, XSLT, and the basics of Invisible XML (iXML). If you are an author looking to write text or a user looking to instruct an LLM to emit text for an existing Crane-txt2xml environment, see the [Author's Guide](AUTHORING.md).
 
+For illustrative and documentation purposes, the [`recipe`](recipe/) directory has resources cited below that can be followed for guidance on integration and configuration. 
+
 ## Architecture Overview
 
 A Crane-txt2xml vocabulary environment is produced in two phases: a configuration phase (your work as implementer) and a runtime phase (the author's or LLM's experience).
@@ -39,6 +41,28 @@ The conversion experience is a simple pipeline:
 
 The user interacts with this pipeline through a turnkey mechanism (command-line invocation, drag-and-drop, or whatever delivery method you choose). They see either the final XML output or plain-language error messages.
 
+## Technologies and Software
+
+Included in this distribution are the following open-source software components:
+
+### Coffeepot
+
+For the interpretation of iXML syntax and conversion of simple text into XML syntax:
+
+[https://codeberg.org/NineML/nineml/releases](https://codeberg.org/NineML/nineml/releases)
+
+### Saxon
+
+For the execution of XSLT in the generation of iXML syntax and in the massage of XML syntax:
+
+[https://www.saxonica.com/html/download/download_page.html](https://www.saxonica.com/html/download/download_page.html)
+
+### xslstyle
+
+For the generation of documentation of the XSLT stylesheets:
+
+[https://github.com/CraneSoftwrights/xslstyle/](https://github.com/CraneSoftwrights/xslstyle/)
+
 ## Error Handling
 
 Errors are detected at three stages, each catching different classes of problems:
@@ -61,7 +85,7 @@ Post-generation schema validation catches element and attribute value usage erro
 
 ## The XSD Schema
 
-The xsd2ixml generation stylesheet requires a Garden of Eden or a Venetian Blind XSD. In this convention, all type definitions are global (named) types, and element declarations reference these types are global or local. This allows the stylesheet to traverse the content models systematically and generate iXML rules for each element.
+The [`xsl/Crane-xsd2ixml.xsl`](xsl/Crane-xsd2ixml.xsl) generation stylesheet requires a Garden of Eden or a Venetian Blind XSD. In this convention, all type definitions are global (named) types, and element declarations reference these types are global or local. This allows the stylesheet to traverse the content models systematically and generate iXML rules for each element.
 
 If your vocabulary's authoritative schema is in RELAX NG or DTD form, the basic conversion to XSD can use Trang as a first step:
 
@@ -106,11 +130,13 @@ The Cleanup XSLT stylesheet transforms the intermediate XML produced by the iXML
 
 ## The Generation Pipeline
 
-The `xsd2ixml.xsl` XSLT stylesheet, provided in the base Crane-txt2xml distribution, reads the appropriately-configured XSD and the alias information to produce the iXML grammar. The generated grammar encodes:
+The [`xsl/Crane-xsd2ixml.xsl`](xsl/Crane-xsd2ixml.xsl) XSLT stylesheet, provided in the base Crane-txt2xml distribution, reads the appropriately-configured XSD and the alias information to produce the iXML grammar. The generated grammar encodes:
 
 - An iXML rule for each element in the vocabulary, with the element's content model expressed as the rule's definition.
 - All label alternatives (the raw XML name plus any aliases) as alternatives in each rule's label matching.
 - The boilerplate productions for attribute handling, value parsing (unquoted and quoted), white-space, and XML name characters.
+
+See [`recipe/Crane-recipe2ixml.xsl`](recipe/Crane-recipe2ixml.xsl) for an illustration and documentation for the importation of the [`xsl/Crane-xsd2ixml.xsl`](xsl/Crane-xsd2ixml.xsl) stylesheet.
 
 ## Packaging a Distribution
 
@@ -142,3 +168,7 @@ You are responsible for documenting the vocabulary-specific information that the
 The universal text syntax rules — how labels, attributes, values, quoting, escaping, and whitespace work — are covered in the guide. Point your users there rather than duplicating that content in your vocabulary documentation.
 
 If your users are creating prompts for instructing LLMs on the emission of XML in Crane-txt2xml syntax, you should review the "Sample Prompt" section for a guideline regarding the detailed prompt to compose.
+
+# Future work
+
+See [the roadmap](ROADMAP.md) for details.

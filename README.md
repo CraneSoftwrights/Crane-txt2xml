@@ -2,6 +2,9 @@
 
 A configurable environment for transforming simple labelled text without angle brackets into structured XML documents.
 
+> [!IMPORTANT]
+> The word "configurable" is important: this is not an off-the-shelf solution for converting any text to all possible XML. This is an environment with which an [implementer](IMPLEMENTING.md) creates the user experience for a particular XML vocabulary and then makes that packaged environment available to their users, hopefully choosing to include it in [the list of environments here](ENVIRONMENTS.md).
+
 ## Two Problems To Consider
 
 (1) Many people are tasked with creating XML documents manually, such as ad-hoc invoices, articles, and metadata records. but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
@@ -14,13 +17,13 @@ Crane-txt2xml is used in environments equipping authors to create valid XML by t
 
 The structural rules of the XML vocabulary, as expressed in its governing schema, determine how elements nest. The author simply labels content; the environment handles the XML syntax. Elements are identified by labels ending with a colon. Attributes are prefixed with `@`. Values are either unquoted words or quoted strings. Decoration white-space is the author's choice for readability, as it has no effect on the result.
 
-When an author writes the simple text:
+When an author or LLM write the simple text:
 
 ```
 a: b: @x: xyz c: hello d:
 ```
 
-and the schema for the environment dictates that the element "c" is a child of element "b":
+and a notional syntax for the schema for the environment dictates that the element "c" is a child of element "b":
 
 ```
 A ::= B, D.
@@ -33,13 +36,13 @@ then the environment produces the XML syntax:
 <a><b x="xyz"><c>hello</c></b><d/></a>
 ```
 
-And for the same simple text, should the schema dictate that the element "c" is a sibling of element "b":
+And for the same simple text, should the schema dictate instead that the element "c" is a sibling of element "b":
 
 ```
 A ::= B, C, D.
 ```
 
-then the environment produces the differently nested result of XML syntax:
+then the environment produces the differently nested result of XML syntax for the same simple text:
 
 ```xml
 <a><b x="xyz"/><c>hello</c><d/></a>
@@ -71,11 +74,11 @@ An important caveat regarding using this strategy for LLM ingress is that while 
 **Authors** create XML by typing text or by exporting text from an LLM. They need to know the text syntax (universal across all environments) and the structural rules of their specific vocabulary (provided by the implementer).
 - **[Author's guide](AUTHORING.md)** — The text syntax: how to write element labels, attribute labels, and values. Applicable to all vocabulary environments.
 
-**Implementers** create vocabulary environments. They adapt Crane-txt2xml for a specific XML vocabulary by providing schema information, label mappings, and a serialization stylesheet. They package the result for their authors and document the vocabulary's elements and attributes.
+**Implementers** create the vocabulary environments for users. They adapt Crane-txt2xml for a specific XML vocabulary by providing schema information, label mappings, and a serialization stylesheet. They package the result for their authors and document the vocabulary's elements and attributes.
 - **[Implementer's guide](IMPLEMENTING.md)** — How to create a vocabulary environment: the required inputs, the generation pipeline, error handling, packaging, and documentation responsibilities.
 
 **Executives and evaluators** need to understand what Crane-txt2xml does and whether it fits their organization's needs, and whether or not there exists a configured environment that already can suit their requirements.
-- **[Toy Recipe Example](recipe/README.md)** — An illustration of the features of this environment using a toy XML vocabulary to easily assess the process.
+- **[Toy Recipe Example](recipe/README.md)** — A complete illustration of the features of this environment using a toy XML vocabulary to easily assess the process.
 - **[Known environments](ENVIRONMENTS.md)** — Each vocabulary environment provides its own documentation covering the specific elements, attributes, and structures available to authors. These serve both as usable environments and as examples for implementers creating their own.
 
 ## A conference paper and presentation video
