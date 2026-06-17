@@ -32,7 +32,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 [https://codeberg.org/NineML/nineml/releases](https://codeberg.org/NineML/nineml/releases)
 
 ## Saxon
-[utilities/saxon12he/LICENSE](utilities/saxon12he/LICENSE)  
+[utilities/saxonhe/notices/LICENSE.txt](utilities/saxonhe/notices/LICENSE.txt)  
 [https://www.saxonica.com/html/download/download_page.html](https://www.saxonica.com/html/download/download_page.html)
 
 ## xslstyle

@@ -10,7 +10,7 @@ At this time only the complete schemas are supported and not the endorsed schema
 
 The Cleanup XSLT stylesheet is `Crane-ixml2ubl.xsl` for inferring the output namespaces from the input parsed output of the synthesized iXML grammar.
 
-Crane-txt2ubl converts a text input `name.txt` into either its successful result `name.txt.xml` or an error report `name.
+The `Crane-txt2ubl.*` script converts a text input (the first argument) into either its successful XML result (the second argument) or a text error report explaining its unsuccessful result (the standard error port).
 
 > [!IMPORTANT]
 > At this time the magnitude of the generated iXML schema for UBL is such that it provides only an exercise of capacities of iXML processors. The conversion of sample XML documents to text is very quick, but the conversion of text to XML documents is very slow and consumes a big stack and a very large Java heap. Slow enough to be unusable and big enough not to run on many machines.
@@ -22,8 +22,8 @@ Converting UBL XML input to text output:
 - Shell: `Crane-ubl2txt.sh  inputXML  outputTEXT`
 
 Converting text input to UBL XML output:
-- Windows: `Crane-txt2ubl.bat  inputTEXT  outputXML`
-- Shell: `Crane-txt2ubl.sh  inputTEXT  outputXML`
+- Windows: `Crane-txt2ubl.bat  inputTEXT  outputXML 2>errorTEXT`
+- Shell: `Crane-txt2ubl.sh  inputTEXT  outputXML 2>errorTEXT`
 
 # Vocabulary notes
 
@@ -40,9 +40,9 @@ At this time only a single structural ambiguity has been detected that requires 
 
 - `AllowanceCharge:` due to the optional child `TaxTotal` and following sibling `TaxTotal`
 
-## Example snippet
+## Example input snippet
 
-From [UBL-invoice-2.1-Example-text](UBL-invoice-2.1-Example-text):
+From [UBL-invoice-2.1-Example-text.txt](UBL-invoice-2.1-Example-text.txt) is the following partial snippet:
 
 ```
   Invoice Line:
@@ -67,6 +67,10 @@ From [UBL-invoice-2.1-Example-text](UBL-invoice-2.1-Example-text):
       Tax Amount: @currency ID: EUR  254.6 
 ```
 
+## Example result transformation
+
+See [UBL-invoice-2.1-Example-text.xml](UBL-invoice-2.1-Example-text.xml) for the transformation results.
+
 # Manifest
 
 [`README.md`](README.md)
@@ -81,13 +85,13 @@ From [UBL-invoice-2.1-Example-text](UBL-invoice-2.1-Example-text):
 [`UBL-AllDocuments-2.5.xsd`](UBL-AllDocuments-2.5.xsd)
 - a wrapper XSD document model incorporating all 101 UBL document models
 
-[`UBL-invoice-2.1-Example.xml`](UBL-invoice-2.1-Example.xml)
+[`UBL-Invoice-2.1-Example.xml`](UBL-invoice-2.1-Example.xml)
 - an example XML invoice from the UBL 2.1 distribution
 
-[`UBL-invoice-2.1-Example-text.txt`](UBL-invoice-2.1-Example-text.txt)
+[`UBL-Invoice-2.1-Example-text.txt`](UBL-invoice-2.1-Example-text.txt)
 - a text stream rendering of the example invoice from the UBL 2.1 distribution
 
-[`UBL-invoice-2.1-Example-text.txt.xml`](UBL-invoice-2.1-Example-text.txt.xml)
+[`UBL-Invoice-2.1-Example-text.xml`](UBL-invoice-2.1-Example-text.xml)
 - the UBL XML result of converting the example text stream
 
 [`windows/`](windows)

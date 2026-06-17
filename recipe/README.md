@@ -64,6 +64,9 @@ An ultra-compressed text expression is is [recipeTokens1.txt](recipeTokens1.txt)
 R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mix ingredients together S:Cook on a greased griddle \1FAE7\ S:Serve 
 ```
 
+For the conversion of XML to text one can choose between two stylesheets:
+- [`../xsl/Crane-xml2txt.xsl`](../xsl/Crane-xml2txt.xsl) using element and attribute names as labels
+- [Crane-recipe2short.xsl](Crane-recipe2short.xsl) using abbreviated single-letter names as labels
 
 
 # Manifest
@@ -119,7 +122,7 @@ R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mi
 [`recipe3error.txt`](recipe3error.txt)
 - a recipe text file incorrectly specifying an element's attribute before the element's content
 
-[`recipe3error.xml`](recipe3error.xml)
+[`recipe3error.xml.err.txt`](recipe3error.xml.err.txt)
 - the failure report resulting from converting recipe3error.txt
 
 [`recipeTokens1.txt`](recipeTokens1.txt)

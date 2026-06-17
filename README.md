@@ -4,6 +4,8 @@ A configurable environment for transforming simple labelled text without angle b
 
 > [!IMPORTANT]
 > The word "configurable" is important: this is not an off-the-shelf solution for converting any text to all possible XML. This is an environment with which an [implementer](IMPLEMENTING.md) creates the user experience for a particular XML vocabulary and then makes that packaged environment available to their users, hopefully choosing to include it in [the list of environments here](ENVIRONMENTS.md).
+ 
+See the [Installation and invocation wiki page](https://github.com/CraneSoftwrights/Crane-txt2xml/wiki/Installation-and-invocation) for guidance on installing this repository in your environment.
 
 ## Two Problems To Consider
 
@@ -17,7 +19,7 @@ Crane-txt2xml is used in environments equipping authors to create valid XML by t
 
 The structural rules of the XML vocabulary, as expressed in its governing schema, determine how elements nest. The author simply labels content; the environment handles the XML syntax. Elements are identified by labels ending with a colon. Attributes are prefixed with `@`. Values are either unquoted words or quoted strings. Decoration white-space is the author's choice for readability, as it has no effect on the result.
 
-When an author or LLM write the simple text:
+When an author or LLM writes the simple text:
 
 ```
 a: b: @x: xyz c: hello d:
@@ -26,8 +28,8 @@ a: b: @x: xyz c: hello d:
 and a notional syntax for the schema for the environment dictates that the element "c" is a child of element "b":
 
 ```
-A ::= B, D.
-B ::= C.
+a ::= b, d.
+b ::= c.
 ```
 
 then the environment produces the XML syntax:
@@ -39,7 +41,7 @@ then the environment produces the XML syntax:
 And for the same simple text, should the schema dictate instead that the element "c" is a sibling of element "b":
 
 ```
-A ::= B, C, D.
+a ::= b, c, d.
 ```
 
 then the environment produces the differently nested result of XML syntax for the same simple text:

@@ -8,21 +8,29 @@ For illustrative and documentation purposes, the [`recipe`](recipe/) directory h
 
 ## Architecture Overview
 
-A Crane-txt2xml vocabulary environment is produced in two phases: a configuration phase (your work as implementer) and a runtime phase (the author's or LLM's experience).
+A Crane-txt2xml vocabulary environment is produced in two phases: a configuration phase (your work as implementer) and a runtime phase (the author's or LLM user's experience).
 
 
 ### Configuration Phase
 
 You provide three inputs to the Crane-txt2xml generation pipeline:
 
-1. **A "Venetian Blind" or "Garden of Eden" XSD schema** for the target XML vocabulary. All global type declarations must follow the Venetian Blind convention. If your vocabulary is defined in RELAX NG or DTD form, use [Trang](https://relaxng.org/jclark/trang.html) to produce a compatible XSD — provided the schema is expressible in XSD. Note that the repository includes a utility XSLT stylesheet `Crane-salami2eden.xsl` that may help in converting a "Salami Slice" XSD schema into a "Garden of Eden" XSD schema.
+1. **A "Venetian Blind" or "Garden of Eden" XSD schema** for the target XML vocabulary. If your vocabulary is defined in RELAX NG or DTD form, use [Trang](https://relaxng.org/jclark/trang.html) to produce a compatible XSD — provided the schema is expressible in XSD. Note that the repository includes a utility XSLT stylesheet `Crane-salami2eden.xsl` that may help in converting a "Salami Slice" XSD schema into a "Garden of Eden" XSD schema.
 
-2. **Optionally an Alias XML document or algorithm** of your own mapping natural-language element and attribute labels to their XML names. Each XML element name may have multiple labels (aliases). Every environment implicitly supports the raw XML element names as labels; the aliases you define are additive. Whether this is a separate file or built-in to your code is not relevant. Conceptually, this is a just the list of allowed aliases if you choose to allow such. Perhaps natural-language names for humans and short names for LLMs.
+    See the [`recipe/`](recipe/) directory for four versions of the XSD for the simple recipe examples.
 
-3. **A Cleanup XSLT stylesheet** that transforms the intermediate XML produced by the iXML processor into the final output. This stylesheet handles attribute alias resolution, namespace assignment, and any other serialization requirements of the target vocabulary.
+2. **An Alias XML document or algorithm** of your own with an iXML declaration of the output document element and, optionally, a mapping natural-language element and attribute labels to their XML names. Each XML element name may have multiple labels (aliases). Every environment implicitly supports the raw XML element names as labels; the aliases you define are additive. Whether this is a separate file or built-in to your code is not relevant. Conceptually, this is a just the list of allowed aliases if you choose to allow such. Perhaps natural-language names for humans and short names for LLMs.
 
-The first two inputs are processed along with the **xsd2ixml XSLT stylesheet** (provided in the base Crane-txt2xml distribution), which generates an **iXML grammar** tailored to the vocabulary, encoding the content models from the XSD and the label alternatives from the Alias XML.
-The **Cleanup XSLT stylesheet** that you provide is bundled with the generated grammar for use at runtime.
+    See [`recipe/Crane-recipe2ixml.xsl`](recipe/Crane-recipe2ixml.xsl) for how the recipe example defines both element names (for humans) and single-letter names (for LLMs) as aliases for labeling. 
+    See [`Crane-txt2ubl/xsl/Crane-ubl2ixml.xsl`](Crane-txt2ubl/xsl/Crane-ubl2ixml.xsl) for how the UBL example accommodates namespaces and camel-case labels.
+    
+
+3. **A Cleanup XSLT stylesheet** that transforms the intermediate XML produced by the iXML processor into the final output. This stylesheet handles error reporting and namespace assignment or any other serialization requirements of the target vocabulary.
+
+    See [`xsl/Crane-ixml2xml.xsl`](xsl/Crane-ixml2xml.xsl) for the recipe example and any vocabulary that does not need special handling of the XML serialization. See [`Crane-txt2ubl/xsl/Crane-ixml2ubl.xsl`](Crane-txt2ubl/xsl/Crane-ixml2ubl.xsl) for the UBL example that does need such special handling. See [`xsl/Crane-reportCoffeepotErrors.xsl`](xsl/Crane-reportCoffeepotErrors.xsl) used by both for the interpretation of iXML error reports.
+
+The first two inputs are used to synthesize an **iXML grammar** tailored to the vocabulary, encoding the content models from the XSD and the label alternatives from the Alias XML.
+The **Cleanup XSLT stylesheet** that you provide is bundled with the generated grammar for use at runtime for error interpretation and result serialization.
 
 ![Crane-txt2xml data flow](images/data-flow.png)
 
@@ -69,15 +77,19 @@ Errors are detected at three stages, each catching different classes of problems
 
 ### Stage 1: iXML Parsing
 
-The iXML grammar encodes the vocabulary's element content models. When the labelled text violates element structure — misspelled element labels, wrong element order, missing required elements, elements in impermissible locations — the iXML processor reports errors.
+The iXML grammar encodes the vocabulary's element content models. When the labelled text violates element structure — misspelled element labels, wrong element order, missing required elements, elements in impermissible locations — the iXML processor reports errors. Successful output includes specifically-named patterns useful for subsequent massage into the final result. 
+
+The Coffeepot iXML processor returns both successful and unsuccessful results in a single XML result using the standard error output port for subsequent interpretation to discern the actual result status.
 
 ### Stage 2: Cleanup XSLT
 
-The Cleanup XSLT accommodates the iXML processor error reporting, when present, and the transformation to the output XML instance when absent. See [`Crane-txt2ubl/xsl/Crane-ixml2ubl.xsl`](Crane-txt2ubl/xsl/Crane-ixml2ubl.xsl) for an example.
+The raw Cleanup XSLT [`xsl/Crane-ixml2xml.xsl`](xsl/Crane-ixml2xml.xsl) fragment accommodates both the successful and unsuccessful output from parsing the iXML grammar. It is used standalone for creating the recipe XML output as that output has no requirements for namespaces or special handling.
 
-The included [`xsl/Crane-reportCoffeepotErrors.xsl`](xsl/Crane-reportCoffeepotErrors.xsl) fragment accommodates the error reporting. Feedback is welcome regarding unaddressed error reporting that can be improved upon.
+The included [`xsl/Crane-reportCoffeepotErrors.xsl`](xsl/Crane-reportCoffeepotErrors.xsl) fragment accommodates the error reporting to the standard error port using Saxon's implementation of `<xsl:message>`. Feedback is welcome regarding unaddressed guidance reporting that can be improved upon. As more patterns of unexpected content are recognized, this fragment will be updated with more guidance for users. Please [file an issue](https://GitHub.com/CraneSoftwrights/Crane-txt2xml/issues) with any suggestions for new guidance, complete with test files illustrating the unguided failure. 
 
-The included [`xsl/Crane-ixml2xml.xsl`](xsl/Crane-ixml2xml.xsl) fragment accommodates the successful output from parsing the iXML grammar.
+When the Saxon XSLT processor returns a non-zero failure execution error code, the text content of the standard error port is the significant output. When Saxon returns a zero successful execution error code, the XML content of the standard output port is the significant output.
+
+The Cleanup XSLT example [`Crane-txt2ubl/xsl/Crane-ixml2ubl.xsl`](Crane-txt2ubl/xsl/Crane-ixml2ubl.xsl) illustrates how the iXML output can be accommodated for XML vocabularies with namespaces or special needs.
 
 ### Stage 3: Schema Validation
 
@@ -106,7 +118,7 @@ Design considerations for aliases:
 
 - **Raw XML names always are supported.** A label always can be the actual XML element name (e.g., `AccountingSupplierParty:`) regardless of what aliases exist. Aliases are additive.
 - **Multi-word labels.** Aliases may contain whitespace. For example, the UBL implementation breaks camelCase element names into separate words: `Invoice Line:` as an alias for `InvoiceLine`. The iXML grammar accommodates optional whitespace within multi-word labels.
-- **Multiple languages.** Different environments can define aliases in different natural languages for the same vocabulary. For example, the \<PubNote> project offers language-specific invocations (PubNoteInText2XML-de, PubNoteInText2XML-fr) where element labels are available in German, French, and so on, alongside the English XML names.
+- **Multiple languages.** Different environments can define aliases in different natural languages for the same vocabulary. For example, the \<PubNote> project offers language-specific invocations (PubNoteInText2XML-de, PubNoteInText2XML-fr, PubNoteInText2XML-en) where element labels are available in German, French, and so on, alongside the English XML names.
 - **Multiple aliases per name.** A single XML element name may have several aliases — abbreviations, full names, translations — all mapping to the same output element.
 
 In the distribution is a demonstration implementation of both long and very short labels for the recipe example. Long for the non-XML user:
@@ -150,10 +162,6 @@ The user's experience should be turnkey. Package your vocabulary environment as 
 - Your vocabulary documentation (element/attribute reference, structural guidance)
 - A link or reference to the [Author's Guide](AUTHORING.md) for the universal text syntax rules
 
-The user should be able to unzip the distribution, drag a sample text file onto the invocation, and see the corresponding XML output immediately. This confirms the environment is working and gives the user a concrete example to study before writing their own text.
-
-How you implement the drag-and-drop mechanism and command-line invocation is your choice and will depend on your target platform(s). The base Crane-txt2xml distribution provides reference implementations you can adapt.
-
 ## Documenting Your Vocabulary
 
 You are responsible for documenting the vocabulary-specific information that the [Author's Guide](AUTHORING.md) deliberately omits:
@@ -167,7 +175,7 @@ You are responsible for documenting the vocabulary-specific information that the
 
 The universal text syntax rules — how labels, attributes, values, quoting, escaping, and whitespace work — are covered in the guide. Point your users there rather than duplicating that content in your vocabulary documentation.
 
-If your users are creating prompts for instructing LLMs on the emission of XML in Crane-txt2xml syntax, you should review the "Sample Prompt" section for a guideline regarding the detailed prompt to compose.
+If your users are creating prompts for instructing LLMs on the emission of XML in Crane-txt2xml syntax, you should review the ["Sample Prompt" section of the Authoring Guide](AUTHORING.md) for a guideline regarding the detailed prompt to compose.
 
 # Future work
 

@@ -38,13 +38,13 @@ We'd also love PRs. If you're thinking of a large PR, we advise opening up an is
 
 ## Submitting a pull request
 
-1. [Fork](fork) and clone the repository being sure to recurse through submodules (described above).
+1. [Fork](https://github.com/CraneSoftwrights/Crane-txt2xml/fork) and clone the repository being sure to recurse through submodules (described above).
 1. Make sure the environment runs on your machine.
 1. Create a new branch: `git checkout -b my-branch-name`.
 1. Make your change, add tests, and make sure the original tests still pass.
 1. Please draft the [CHANGELOG.md](CHANGELOG.md) entry for your changes, to be finalized by the repository maintainer upon approval and merge.
 1. Please do not update the version-*.md file in your pull request. Versioning and packaging are handled by the repository maintainer upon approval and merge.
-1. Push to your fork and [submit a pull request][pr].
+1. Push to your fork and [submit a pull request][https://github.com/CraneSoftwrights/Crane-txt2xml/pulls].
 1. Pat yourself on the back.
 1. We’ll take it from there and be in touch after review.
 

@@ -21,7 +21,7 @@ ls -la $REPO/utilities/saxonhe/saxonhe.jar
 echo \(note that SXWN9040 is innocuous and inevitable with recent design decisions by Saxonica\)
 find "$REPO" \
   -name xslstyle -prune \
-  -o \( -name '*.xsl' \
+  -o \( -name '*.xsl' ! -name 'Crane-recipe2ixml.xsl' ! -name 'Crane-reportCoffeepotErrors.xsl' \
     -exec sh -c '
       file=$1
       repo=$2
