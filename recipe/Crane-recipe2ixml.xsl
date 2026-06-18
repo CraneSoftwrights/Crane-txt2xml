@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<?xml-stylesheet type="text/xsl" href="../xslstyle/xslstyle-docbook.xsl"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xst="http://www.CraneSoftwrights.com/ns/xslstyle"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:map="http://www.w3.org/2005/xpath-functions/map"
+                xmlns:c="urn:X-Crane"
+                exclude-result-prefixes="xs xst c map"
+                version="3.0">
+
+<xsl:import href="../xsl/Crane-xsd2ixml.xsl"/>
+<xsl:import href="Crane-recipe-common.xsl"/>
+
+<xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
+        filename="Crane-recipe2ixml.xsl" vocabulary="DocBook">
+  <xst:title>Convert Recipe XSD to iXML patterns per Crane-txt2xml</xst:title>
+  <para>
+    This automates the generation of iXML from a schema.
+  </para>
+</xst:doc>
+
+<!--========================================================================-->
+<xst:doc>
+  <xst:title>Invocation parameters and input file</xst:title>
+  <para>
+    The input file is an XSD grammar in the Venetian Blind structure
+  </para>
+  <para>
+    If the input has the description of mixed content, this is assumed to 
+    be simple text.
+  </para>
+</xst:doc>
+
+<!--========================================================================-->
+<xst:doc>
+  <xst:title>Main logic</xst:title>
+</xst:doc>
+
+<xst:template>
+  <para>
+    Declare the document element of the input schema with trailing white-space
+  </para>
+</xst:template>
+<xsl:template name="c:preamble">
+
+  -__document_element = Recipe, -__WS*.
+
+</xsl:template>
+
+<xst:function>
+  <para>Return an array of all possible name conventions</para>
+  <xst:param name="c:name">
+    <para>The base name from which the possibilities are calculated</para>
+  </xst:param>
+</xst:function>
+<xsl:function name="c:nameEntries" as="array(xs:string+)*">
+  <xsl:param name="c:name" as="xs:string"/>
+
+  <!--the names raw as element and attribute names-->
+  <xsl:sequence select="c:nameEntriesComposed($c:name)"/>
+
+  <!--the names as words from camel case-->
+  <xsl:variable name="c:nameAlt1" as="xs:string+"
+                select="tokenize( replace( $c:name, 
+                                                   '([a-z])([A-Z])','$1 $2'),
+                                          '\s' )"/>
+  <xsl:if test="count($c:nameAlt1) > 1">
+    <xsl:sequence select="array { $c:nameAlt1 }"/>
+  </xsl:if>
+  
+  <!--the names as abbreviated tokens-->
+  <xsl:sequence select="array { $c:nameTokens( $c:name ) }"/>
+</xsl:function>
+
+</xsl:stylesheet>

@@ -1,0 +1,6 @@
+# Ignore build directory used for release packaging
+build/
+
+# Miscellaneous local development
+*.tar.gz
+tarball.sh

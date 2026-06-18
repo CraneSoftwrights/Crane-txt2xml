@@ -1,0 +1,3 @@
+[submodule "xslstyle"]
+	path = xslstyle
+	url = https://github.com/CraneSoftwrights/xslstyle

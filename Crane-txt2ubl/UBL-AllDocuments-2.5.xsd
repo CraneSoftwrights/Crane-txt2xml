@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Manually created:
+shell:
+ls xsd/maindoc/ >list.txt
+oXygenXML:
+Replace: UBL-(.+?)-2.5.xsd -> xmlns:$1="urn:oasis:names:specification:ubl:schema:xsd:$1-2"
+Replace: UBL-(.+?)-2.5.xsd -> <xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:$1-2" schemaLocation="xsd/maindoc/$0"/>
+Replace: UBL-(.+?)-2.5.xsd -> <xs:element ref="$1:$1"/>
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:ApplicationResponse="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2"
+xmlns:AttachedDocument="urn:oasis:names:specification:ubl:schema:xsd:AttachedDocument-2"
+xmlns:AwardedNotification="urn:oasis:names:specification:ubl:schema:xsd:AwardedNotification-2"
+xmlns:BillOfLading="urn:oasis:names:specification:ubl:schema:xsd:BillOfLading-2"
+xmlns:BusinessCard="urn:oasis:names:specification:ubl:schema:xsd:BusinessCard-2"
+xmlns:BusinessInformation="urn:oasis:names:specification:ubl:schema:xsd:BusinessInformation-2"
+xmlns:CallForTenders="urn:oasis:names:specification:ubl:schema:xsd:CallForTenders-2"
+xmlns:Catalogue="urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2"
+xmlns:CatalogueDeletion="urn:oasis:names:specification:ubl:schema:xsd:CatalogueDeletion-2"
+xmlns:CatalogueItemSpecificationUpdate="urn:oasis:names:specification:ubl:schema:xsd:CatalogueItemSpecificationUpdate-2"
+xmlns:CataloguePricingUpdate="urn:oasis:names:specification:ubl:schema:xsd:CataloguePricingUpdate-2"
+xmlns:CatalogueRequest="urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2"
+xmlns:CertificateOfOrigin="urn:oasis:names:specification:ubl:schema:xsd:CertificateOfOrigin-2"
+xmlns:CommonTransportationReport="urn:oasis:names:specification:ubl:schema:xsd:CommonTransportationReport-2"
+xmlns:ContractAwardNotice="urn:oasis:names:specification:ubl:schema:xsd:ContractAwardNotice-2"
+xmlns:ContractNotice="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2"
+xmlns:CreditNote="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2"
+xmlns:DebitNote="urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2"
+xmlns:DeliveryNote="urn:oasis:names:specification:ubl:schema:xsd:DeliveryNote-2"
+xmlns:DespatchAdvice="urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2"
+xmlns:DigitalAgreement="urn:oasis:names:specification:ubl:schema:xsd:DigitalAgreement-2"
+xmlns:DigitalCapability="urn:oasis:names:specification:ubl:schema:xsd:DigitalCapability-2"
+xmlns:DocumentStatus="urn:oasis:names:specification:ubl:schema:xsd:DocumentStatus-2"
+xmlns:DocumentStatusRequest="urn:oasis:names:specification:ubl:schema:xsd:DocumentStatusRequest-2"
+xmlns:Enquiry="urn:oasis:names:specification:ubl:schema:xsd:Enquiry-2"
+xmlns:EnquiryResponse="urn:oasis:names:specification:ubl:schema:xsd:EnquiryResponse-2"
+xmlns:ExceptionCriteria="urn:oasis:names:specification:ubl:schema:xsd:ExceptionCriteria-2"
+xmlns:ExceptionNotification="urn:oasis:names:specification:ubl:schema:xsd:ExceptionNotification-2"
+xmlns:ExportCustomsDeclaration="urn:oasis:names:specification:ubl:schema:xsd:ExportCustomsDeclaration-2"
+xmlns:ExpressionOfInterestRequest="urn:oasis:names:specification:ubl:schema:xsd:ExpressionOfInterestRequest-2"
+xmlns:ExpressionOfInterestResponse="urn:oasis:names:specification:ubl:schema:xsd:ExpressionOfInterestResponse-2"
+xmlns:Forecast="urn:oasis:names:specification:ubl:schema:xsd:Forecast-2"
+xmlns:ForecastRevision="urn:oasis:names:specification:ubl:schema:xsd:ForecastRevision-2"
+xmlns:ForwardingInstructions="urn:oasis:names:specification:ubl:schema:xsd:ForwardingInstructions-2"
+xmlns:FreightInvoice="urn:oasis:names:specification:ubl:schema:xsd:FreightInvoice-2"
+xmlns:FulfilmentCancellation="urn:oasis:names:specification:ubl:schema:xsd:FulfilmentCancellation-2"
+xmlns:GoodsCertificate="urn:oasis:names:specification:ubl:schema:xsd:GoodsCertificate-2"
+xmlns:GoodsItemItinerary="urn:oasis:names:specification:ubl:schema:xsd:GoodsItemItinerary-2"
+xmlns:GoodsItemPassport="urn:oasis:names:specification:ubl:schema:xsd:GoodsItemPassport-2"
+xmlns:GuaranteeCertificate="urn:oasis:names:specification:ubl:schema:xsd:GuaranteeCertificate-2"
+xmlns:ImportCustomsDeclaration="urn:oasis:names:specification:ubl:schema:xsd:ImportCustomsDeclaration-2"
+xmlns:InstructionForReturns="urn:oasis:names:specification:ubl:schema:xsd:InstructionForReturns-2"
+xmlns:InventoryReport="urn:oasis:names:specification:ubl:schema:xsd:InventoryReport-2"
+xmlns:Invoice="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+xmlns:InvoiceStatusRequest="urn:oasis:names:specification:ubl:schema:xsd:InvoiceStatusRequest-2"
+xmlns:InvoiceStatusResponse="urn:oasis:names:specification:ubl:schema:xsd:InvoiceStatusResponse-2"
+xmlns:ItemInformationRequest="urn:oasis:names:specification:ubl:schema:xsd:ItemInformationRequest-2"
+xmlns:Manifest="urn:oasis:names:specification:ubl:schema:xsd:Manifest-2"
+xmlns:Order="urn:oasis:names:specification:ubl:schema:xsd:Order-2"
+xmlns:OrderCancellation="urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2"
+xmlns:OrderChange="urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2"
+xmlns:OrderResponse="urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2"
+xmlns:OrderResponseSimple="urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2"
+xmlns:PackingList="urn:oasis:names:specification:ubl:schema:xsd:PackingList-2"
+xmlns:PriorInformationNotice="urn:oasis:names:specification:ubl:schema:xsd:PriorInformationNotice-2"
+xmlns:ProcurementStatus="urn:oasis:names:specification:ubl:schema:xsd:ProcurementStatus-2"
+xmlns:ProcurementStatusRequest="urn:oasis:names:specification:ubl:schema:xsd:ProcurementStatusRequest-2"
+xmlns:ProductActivity="urn:oasis:names:specification:ubl:schema:xsd:ProductActivity-2"
+xmlns:ProofOfReexportation="urn:oasis:names:specification:ubl:schema:xsd:ProofOfReexportation-2"
+xmlns:ProofOfReexportationReminder="urn:oasis:names:specification:ubl:schema:xsd:ProofOfReexportationReminder-2"
+xmlns:ProofOfReexportationRequest="urn:oasis:names:specification:ubl:schema:xsd:ProofOfReexportationRequest-2"
+xmlns:PurchaseReceipt="urn:oasis:names:specification:ubl:schema:xsd:PurchaseReceipt-2"
+xmlns:QualificationApplicationRequest="urn:oasis:names:specification:ubl:schema:xsd:QualificationApplicationRequest-2"
+xmlns:QualificationApplicationResponse="urn:oasis:names:specification:ubl:schema:xsd:QualificationApplicationResponse-2"
+xmlns:Quotation="urn:oasis:names:specification:ubl:schema:xsd:Quotation-2"
+xmlns:ReceiptAdvice="urn:oasis:names:specification:ubl:schema:xsd:ReceiptAdvice-2"
+xmlns:Reminder="urn:oasis:names:specification:ubl:schema:xsd:Reminder-2"
+xmlns:RemittanceAdvice="urn:oasis:names:specification:ubl:schema:xsd:RemittanceAdvice-2"
+xmlns:RequestForQuotation="urn:oasis:names:specification:ubl:schema:xsd:RequestForQuotation-2"
+xmlns:RetailEvent="urn:oasis:names:specification:ubl:schema:xsd:RetailEvent-2"
+xmlns:SelfBilledCreditNote="urn:oasis:names:specification:ubl:schema:xsd:SelfBilledCreditNote-2"
+xmlns:SelfBilledInvoice="urn:oasis:names:specification:ubl:schema:xsd:SelfBilledInvoice-2"
+xmlns:Statement="urn:oasis:names:specification:ubl:schema:xsd:Statement-2"
+xmlns:StockAvailabilityReport="urn:oasis:names:specification:ubl:schema:xsd:StockAvailabilityReport-2"
+xmlns:Tender="urn:oasis:names:specification:ubl:schema:xsd:Tender-2"
+xmlns:TenderContract="urn:oasis:names:specification:ubl:schema:xsd:TenderContract-2"
+xmlns:TendererQualification="urn:oasis:names:specification:ubl:schema:xsd:TendererQualification-2"
+xmlns:TendererQualificationResponse="urn:oasis:names:specification:ubl:schema:xsd:TendererQualificationResponse-2"
+xmlns:TenderReceipt="urn:oasis:names:specification:ubl:schema:xsd:TenderReceipt-2"
+xmlns:TenderStatus="urn:oasis:names:specification:ubl:schema:xsd:TenderStatus-2"
+xmlns:TenderStatusRequest="urn:oasis:names:specification:ubl:schema:xsd:TenderStatusRequest-2"
+xmlns:TenderWithdrawal="urn:oasis:names:specification:ubl:schema:xsd:TenderWithdrawal-2"
+xmlns:TradeItemLocationProfile="urn:oasis:names:specification:ubl:schema:xsd:TradeItemLocationProfile-2"
+xmlns:TransitCustomsDeclaration="urn:oasis:names:specification:ubl:schema:xsd:TransitCustomsDeclaration-2"
+xmlns:TransportationStatus="urn:oasis:names:specification:ubl:schema:xsd:TransportationStatus-2"
+xmlns:TransportationStatusRequest="urn:oasis:names:specification:ubl:schema:xsd:TransportationStatusRequest-2"
+xmlns:TransportExecutionPlan="urn:oasis:names:specification:ubl:schema:xsd:TransportExecutionPlan-2"
+xmlns:TransportExecutionPlanRequest="urn:oasis:names:specification:ubl:schema:xsd:TransportExecutionPlanRequest-2"
+xmlns:TransportProgressStatus="urn:oasis:names:specification:ubl:schema:xsd:TransportProgressStatus-2"
+xmlns:TransportProgressStatusRequest="urn:oasis:names:specification:ubl:schema:xsd:TransportProgressStatusRequest-2"
+xmlns:TransportServiceDescription="urn:oasis:names:specification:ubl:schema:xsd:TransportServiceDescription-2"
+xmlns:TransportServiceDescriptionRequest="urn:oasis:names:specification:ubl:schema:xsd:TransportServiceDescriptionRequest-2"
+xmlns:UnawardedNotification="urn:oasis:names:specification:ubl:schema:xsd:UnawardedNotification-2"
+xmlns:UnsubscribeFromProcedureRequest="urn:oasis:names:specification:ubl:schema:xsd:UnsubscribeFromProcedureRequest-2"
+xmlns:UnsubscribeFromProcedureResponse="urn:oasis:names:specification:ubl:schema:xsd:UnsubscribeFromProcedureResponse-2"
+xmlns:UtilityStatement="urn:oasis:names:specification:ubl:schema:xsd:UtilityStatement-2"
+xmlns:WasteMovement="urn:oasis:names:specification:ubl:schema:xsd:WasteMovement-2"
+xmlns:WasteNotification="urn:oasis:names:specification:ubl:schema:xsd:WasteNotification-2"
+xmlns:Waybill="urn:oasis:names:specification:ubl:schema:xsd:Waybill-2"
+xmlns:WeightStatement="urn:oasis:names:specification:ubl:schema:xsd:WeightStatement-2"
+xmlns:WorkReport="urn:oasis:names:specification:ubl:schema:xsd:WorkReport-2"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="2.5">
+   <!-- ===== Imports ===== -->
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2" schemaLocation="xsd/maindoc/UBL-ApplicationResponse-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:AttachedDocument-2" schemaLocation="xsd/maindoc/UBL-AttachedDocument-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:AwardedNotification-2" schemaLocation="xsd/maindoc/UBL-AwardedNotification-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:BillOfLading-2" schemaLocation="xsd/maindoc/UBL-BillOfLading-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:BusinessCard-2" schemaLocation="xsd/maindoc/UBL-BusinessCard-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:BusinessInformation-2" schemaLocation="xsd/maindoc/UBL-BusinessInformation-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CallForTenders-2" schemaLocation="xsd/maindoc/UBL-CallForTenders-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Catalogue-2" schemaLocation="xsd/maindoc/UBL-Catalogue-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CatalogueDeletion-2" schemaLocation="xsd/maindoc/UBL-CatalogueDeletion-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CatalogueItemSpecificationUpdate-2" schemaLocation="xsd/maindoc/UBL-CatalogueItemSpecificationUpdate-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CataloguePricingUpdate-2" schemaLocation="xsd/maindoc/UBL-CataloguePricingUpdate-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CatalogueRequest-2" schemaLocation="xsd/maindoc/UBL-CatalogueRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CertificateOfOrigin-2" schemaLocation="xsd/maindoc/UBL-CertificateOfOrigin-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonTransportationReport-2" schemaLocation="xsd/maindoc/UBL-CommonTransportationReport-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ContractAwardNotice-2" schemaLocation="xsd/maindoc/UBL-ContractAwardNotice-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ContractNotice-2" schemaLocation="xsd/maindoc/UBL-ContractNotice-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2" schemaLocation="xsd/maindoc/UBL-CreditNote-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2" schemaLocation="xsd/maindoc/UBL-DebitNote-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:DeliveryNote-2" schemaLocation="xsd/maindoc/UBL-DeliveryNote-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:DespatchAdvice-2" schemaLocation="xsd/maindoc/UBL-DespatchAdvice-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:DigitalAgreement-2" schemaLocation="xsd/maindoc/UBL-DigitalAgreement-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:DigitalCapability-2" schemaLocation="xsd/maindoc/UBL-DigitalCapability-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:DocumentStatus-2" schemaLocation="xsd/maindoc/UBL-DocumentStatus-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:DocumentStatusRequest-2" schemaLocation="xsd/maindoc/UBL-DocumentStatusRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Enquiry-2" schemaLocation="xsd/maindoc/UBL-Enquiry-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:EnquiryResponse-2" schemaLocation="xsd/maindoc/UBL-EnquiryResponse-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ExceptionCriteria-2" schemaLocation="xsd/maindoc/UBL-ExceptionCriteria-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ExceptionNotification-2" schemaLocation="xsd/maindoc/UBL-ExceptionNotification-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ExportCustomsDeclaration-2" schemaLocation="xsd/maindoc/UBL-ExportCustomsDeclaration-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ExpressionOfInterestRequest-2" schemaLocation="xsd/maindoc/UBL-ExpressionOfInterestRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ExpressionOfInterestResponse-2" schemaLocation="xsd/maindoc/UBL-ExpressionOfInterestResponse-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Forecast-2" schemaLocation="xsd/maindoc/UBL-Forecast-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ForecastRevision-2" schemaLocation="xsd/maindoc/UBL-ForecastRevision-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ForwardingInstructions-2" schemaLocation="xsd/maindoc/UBL-ForwardingInstructions-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:FreightInvoice-2" schemaLocation="xsd/maindoc/UBL-FreightInvoice-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:FulfilmentCancellation-2" schemaLocation="xsd/maindoc/UBL-FulfilmentCancellation-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:GoodsCertificate-2" schemaLocation="xsd/maindoc/UBL-GoodsCertificate-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:GoodsItemItinerary-2" schemaLocation="xsd/maindoc/UBL-GoodsItemItinerary-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:GoodsItemPassport-2" schemaLocation="xsd/maindoc/UBL-GoodsItemPassport-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:GuaranteeCertificate-2" schemaLocation="xsd/maindoc/UBL-GuaranteeCertificate-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ImportCustomsDeclaration-2" schemaLocation="xsd/maindoc/UBL-ImportCustomsDeclaration-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:InstructionForReturns-2" schemaLocation="xsd/maindoc/UBL-InstructionForReturns-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:InventoryReport-2" schemaLocation="xsd/maindoc/UBL-InventoryReport-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" schemaLocation="xsd/maindoc/UBL-Invoice-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:InvoiceStatusRequest-2" schemaLocation="xsd/maindoc/UBL-InvoiceStatusRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:InvoiceStatusResponse-2" schemaLocation="xsd/maindoc/UBL-InvoiceStatusResponse-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ItemInformationRequest-2" schemaLocation="xsd/maindoc/UBL-ItemInformationRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Manifest-2" schemaLocation="xsd/maindoc/UBL-Manifest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Order-2" schemaLocation="xsd/maindoc/UBL-Order-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:OrderCancellation-2" schemaLocation="xsd/maindoc/UBL-OrderCancellation-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:OrderChange-2" schemaLocation="xsd/maindoc/UBL-OrderChange-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:OrderResponse-2" schemaLocation="xsd/maindoc/UBL-OrderResponse-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:OrderResponseSimple-2" schemaLocation="xsd/maindoc/UBL-OrderResponseSimple-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:PackingList-2" schemaLocation="xsd/maindoc/UBL-PackingList-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:PriorInformationNotice-2" schemaLocation="xsd/maindoc/UBL-PriorInformationNotice-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ProcurementStatus-2" schemaLocation="xsd/maindoc/UBL-ProcurementStatus-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ProcurementStatusRequest-2" schemaLocation="xsd/maindoc/UBL-ProcurementStatusRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ProductActivity-2" schemaLocation="xsd/maindoc/UBL-ProductActivity-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ProofOfReexportation-2" schemaLocation="xsd/maindoc/UBL-ProofOfReexportation-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ProofOfReexportationReminder-2" schemaLocation="xsd/maindoc/UBL-ProofOfReexportationReminder-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ProofOfReexportationRequest-2" schemaLocation="xsd/maindoc/UBL-ProofOfReexportationRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:PurchaseReceipt-2" schemaLocation="xsd/maindoc/UBL-PurchaseReceipt-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:QualificationApplicationRequest-2" schemaLocation="xsd/maindoc/UBL-QualificationApplicationRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:QualificationApplicationResponse-2" schemaLocation="xsd/maindoc/UBL-QualificationApplicationResponse-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Quotation-2" schemaLocation="xsd/maindoc/UBL-Quotation-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:ReceiptAdvice-2" schemaLocation="xsd/maindoc/UBL-ReceiptAdvice-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Reminder-2" schemaLocation="xsd/maindoc/UBL-Reminder-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:RemittanceAdvice-2" schemaLocation="xsd/maindoc/UBL-RemittanceAdvice-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:RequestForQuotation-2" schemaLocation="xsd/maindoc/UBL-RequestForQuotation-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:RetailEvent-2" schemaLocation="xsd/maindoc/UBL-RetailEvent-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:SelfBilledCreditNote-2" schemaLocation="xsd/maindoc/UBL-SelfBilledCreditNote-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:SelfBilledInvoice-2" schemaLocation="xsd/maindoc/UBL-SelfBilledInvoice-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Statement-2" schemaLocation="xsd/maindoc/UBL-Statement-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:StockAvailabilityReport-2" schemaLocation="xsd/maindoc/UBL-StockAvailabilityReport-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Tender-2" schemaLocation="xsd/maindoc/UBL-Tender-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TenderContract-2" schemaLocation="xsd/maindoc/UBL-TenderContract-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TendererQualification-2" schemaLocation="xsd/maindoc/UBL-TendererQualification-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TendererQualificationResponse-2" schemaLocation="xsd/maindoc/UBL-TendererQualificationResponse-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TenderReceipt-2" schemaLocation="xsd/maindoc/UBL-TenderReceipt-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TenderStatus-2" schemaLocation="xsd/maindoc/UBL-TenderStatus-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TenderStatusRequest-2" schemaLocation="xsd/maindoc/UBL-TenderStatusRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TenderWithdrawal-2" schemaLocation="xsd/maindoc/UBL-TenderWithdrawal-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TradeItemLocationProfile-2" schemaLocation="xsd/maindoc/UBL-TradeItemLocationProfile-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TransitCustomsDeclaration-2" schemaLocation="xsd/maindoc/UBL-TransitCustomsDeclaration-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TransportationStatus-2" schemaLocation="xsd/maindoc/UBL-TransportationStatus-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TransportationStatusRequest-2" schemaLocation="xsd/maindoc/UBL-TransportationStatusRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TransportExecutionPlan-2" schemaLocation="xsd/maindoc/UBL-TransportExecutionPlan-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TransportExecutionPlanRequest-2" schemaLocation="xsd/maindoc/UBL-TransportExecutionPlanRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TransportProgressStatus-2" schemaLocation="xsd/maindoc/UBL-TransportProgressStatus-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TransportProgressStatusRequest-2" schemaLocation="xsd/maindoc/UBL-TransportProgressStatusRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TransportServiceDescription-2" schemaLocation="xsd/maindoc/UBL-TransportServiceDescription-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:TransportServiceDescriptionRequest-2" schemaLocation="xsd/maindoc/UBL-TransportServiceDescriptionRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:UnawardedNotification-2" schemaLocation="xsd/maindoc/UBL-UnawardedNotification-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:UnsubscribeFromProcedureRequest-2" schemaLocation="xsd/maindoc/UBL-UnsubscribeFromProcedureRequest-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:UnsubscribeFromProcedureResponse-2" schemaLocation="xsd/maindoc/UBL-UnsubscribeFromProcedureResponse-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:UtilityStatement-2" schemaLocation="xsd/maindoc/UBL-UtilityStatement-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:WasteMovement-2" schemaLocation="xsd/maindoc/UBL-WasteMovement-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:WasteNotification-2" schemaLocation="xsd/maindoc/UBL-WasteNotification-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:Waybill-2" schemaLocation="xsd/maindoc/UBL-Waybill-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:WeightStatement-2" schemaLocation="xsd/maindoc/UBL-WeightStatement-2.5.xsd"/>
+<xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:WorkReport-2" schemaLocation="xsd/maindoc/UBL-WorkReport-2.5.xsd"/>
+   <!-- ===== Element Declarations ===== -->
+   <xs:element name="UBL" type="UBLType"/>
+   <xs:complexType name="UBLType">
+      <xs:choice>
+<xs:element ref="ApplicationResponse:ApplicationResponse"/>
+<xs:element ref="AttachedDocument:AttachedDocument"/>
+
+<xs:element ref="AwardedNotification:AwardedNotification"/>
+<xs:element ref="BillOfLading:BillOfLading"/>
+<xs:element ref="BusinessCard:BusinessCard"/>
+<xs:element ref="BusinessInformation:BusinessInformation"/>
+<xs:element ref="CallForTenders:CallForTenders"/>
+<xs:element ref="Catalogue:Catalogue"/>
+<xs:element ref="CatalogueDeletion:CatalogueDeletion"/>
+<xs:element ref="CatalogueItemSpecificationUpdate:CatalogueItemSpecificationUpdate"/>
+<xs:element ref="CataloguePricingUpdate:CataloguePricingUpdate"/>
+<xs:element ref="CatalogueRequest:CatalogueRequest"/>
+<xs:element ref="CertificateOfOrigin:CertificateOfOrigin"/>
+<xs:element ref="CommonTransportationReport:CommonTransportationReport"/>
+<xs:element ref="ContractAwardNotice:ContractAwardNotice"/>
+<xs:element ref="ContractNotice:ContractNotice"/>
+<xs:element ref="CreditNote:CreditNote"/>
+<xs:element ref="DebitNote:DebitNote"/>
+<xs:element ref="DeliveryNote:DeliveryNote"/>
+<xs:element ref="DespatchAdvice:DespatchAdvice"/>
+<xs:element ref="DigitalAgreement:DigitalAgreement"/>
+<xs:element ref="DigitalCapability:DigitalCapability"/>
+<xs:element ref="DocumentStatus:DocumentStatus"/>
+<xs:element ref="DocumentStatusRequest:DocumentStatusRequest"/>
+<xs:element ref="Enquiry:Enquiry"/>
+<xs:element ref="EnquiryResponse:EnquiryResponse"/>
+<xs:element ref="ExceptionCriteria:ExceptionCriteria"/>
+<xs:element ref="ExceptionNotification:ExceptionNotification"/>
+<xs:element ref="ExportCustomsDeclaration:ExportCustomsDeclaration"/>
+<xs:element ref="ExpressionOfInterestRequest:ExpressionOfInterestRequest"/>
+<xs:element ref="ExpressionOfInterestResponse:ExpressionOfInterestResponse"/>
+<xs:element ref="Forecast:Forecast"/>
+<xs:element ref="ForecastRevision:ForecastRevision"/>
+<xs:element ref="ForwardingInstructions:ForwardingInstructions"/>
+<xs:element ref="FreightInvoice:FreightInvoice"/>
+<xs:element ref="FulfilmentCancellation:FulfilmentCancellation"/>
+<xs:element ref="GoodsCertificate:GoodsCertificate"/>
+<xs:element ref="GoodsItemItinerary:GoodsItemItinerary"/>
+<xs:element ref="GoodsItemPassport:GoodsItemPassport"/>
+<xs:element ref="GuaranteeCertificate:GuaranteeCertificate"/>
+<xs:element ref="ImportCustomsDeclaration:ImportCustomsDeclaration"/>
+<xs:element ref="InstructionForReturns:InstructionForReturns"/>
+<xs:element ref="InventoryReport:InventoryReport"/>
+<xs:element ref="Invoice:Invoice"/>
+<xs:element ref="InvoiceStatusRequest:InvoiceStatusRequest"/>
+<xs:element ref="InvoiceStatusResponse:InvoiceStatusResponse"/>
+<xs:element ref="ItemInformationRequest:ItemInformationRequest"/>
+<xs:element ref="Manifest:Manifest"/>
+<xs:element ref="Order:Order"/>
+<xs:element ref="OrderCancellation:OrderCancellation"/>
+<xs:element ref="OrderChange:OrderChange"/>
+<xs:element ref="OrderResponse:OrderResponse"/>
+<xs:element ref="OrderResponseSimple:OrderResponseSimple"/>
+<xs:element ref="PackingList:PackingList"/>
+<xs:element ref="PriorInformationNotice:PriorInformationNotice"/>
+<xs:element ref="ProcurementStatus:ProcurementStatus"/>
+<xs:element ref="ProcurementStatusRequest:ProcurementStatusRequest"/>
+<xs:element ref="ProductActivity:ProductActivity"/>
+<xs:element ref="ProofOfReexportation:ProofOfReexportation"/>
+<xs:element ref="ProofOfReexportationReminder:ProofOfReexportationReminder"/>
+<xs:element ref="ProofOfReexportationRequest:ProofOfReexportationRequest"/>
+<xs:element ref="PurchaseReceipt:PurchaseReceipt"/>
+<xs:element ref="QualificationApplicationRequest:QualificationApplicationRequest"/>
+<xs:element ref="QualificationApplicationResponse:QualificationApplicationResponse"/>
+<xs:element ref="Quotation:Quotation"/>
+<xs:element ref="ReceiptAdvice:ReceiptAdvice"/>
+<xs:element ref="Reminder:Reminder"/>
+<xs:element ref="RemittanceAdvice:RemittanceAdvice"/>
+<xs:element ref="RequestForQuotation:RequestForQuotation"/>
+<xs:element ref="RetailEvent:RetailEvent"/>
+<xs:element ref="SelfBilledCreditNote:SelfBilledCreditNote"/>
+<xs:element ref="SelfBilledInvoice:SelfBilledInvoice"/>
+<xs:element ref="Statement:Statement"/>
+<xs:element ref="StockAvailabilityReport:StockAvailabilityReport"/>
+<xs:element ref="Tender:Tender"/>
+<xs:element ref="TenderContract:TenderContract"/>
+<xs:element ref="TendererQualification:TendererQualification"/>
+<xs:element ref="TendererQualificationResponse:TendererQualificationResponse"/>
+<xs:element ref="TenderReceipt:TenderReceipt"/>
+<xs:element ref="TenderStatus:TenderStatus"/>
+<xs:element ref="TenderStatusRequest:TenderStatusRequest"/>
+<xs:element ref="TenderWithdrawal:TenderWithdrawal"/>
+<xs:element ref="TradeItemLocationProfile:TradeItemLocationProfile"/>
+<xs:element ref="TransitCustomsDeclaration:TransitCustomsDeclaration"/>
+<xs:element ref="TransportationStatus:TransportationStatus"/>
+<xs:element ref="TransportationStatusRequest:TransportationStatusRequest"/>
+<xs:element ref="TransportExecutionPlan:TransportExecutionPlan"/>
+<xs:element ref="TransportExecutionPlanRequest:TransportExecutionPlanRequest"/>
+<xs:element ref="TransportProgressStatus:TransportProgressStatus"/>
+<xs:element ref="TransportProgressStatusRequest:TransportProgressStatusRequest"/>
+<xs:element ref="TransportServiceDescription:TransportServiceDescription"/>
+<xs:element ref="TransportServiceDescriptionRequest:TransportServiceDescriptionRequest"/>
+<xs:element ref="UnawardedNotification:UnawardedNotification"/>
+<xs:element ref="UnsubscribeFromProcedureRequest:UnsubscribeFromProcedureRequest"/>
+<xs:element ref="UnsubscribeFromProcedureResponse:UnsubscribeFromProcedureResponse"/>
+<xs:element ref="UtilityStatement:UtilityStatement"/>
+<xs:element ref="WasteMovement:WasteMovement"/>
+<xs:element ref="WasteNotification:WasteNotification"/>
+<xs:element ref="Waybill:Waybill"/>
+<xs:element ref="WeightStatement:WeightStatement"/>
+<xs:element ref="WorkReport:WorkReport"/> 
+      </xs:choice>
+   </xs:complexType>
+</xs:schema>

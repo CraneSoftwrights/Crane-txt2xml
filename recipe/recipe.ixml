@@ -1,0 +1,194 @@
+{ 20260613-1120Z https://github.com/CraneSoftwrights/Crane-txt2xml#readme }
+
+
+
+  -__document_element = Recipe, -__WS*.
+
+
+
+{  }
+
+Title = __WS*, ( ( -"Title" | ( -"T" ) ), -':' ), xs_string, ( __WS*, -'/', ( -"Title" | ( -"T" ) ))?.
+Name = __WS*, ( ( -"Name" | ( -"N" ) ), -':' ), xs_string, ( __WS*, -'/', ( -"Name" | ( -"N" ) ))?.
+Step = __WS*, ( ( -"Step" | ( -"S" ) ), -':' ), xs_string, ( __WS*, -'/', ( -"Step" | ( -"S" ) ))?.
+Amount = __WS*, ( ( -"Amount" | ( -"A" ) ), -':' ), __content__AmountType, ( __WS*, -'/', ( -"Amount" | ( -"A" ) ))?.
+Ingredient = __WS*, ( ( -"Ingredient" | ( -"I" ) ), -':' ), __content__IngredientType, ( __WS*, -'/', ( -"Ingredient" | ( -"I" ) ))?.
+Recipe = __WS*, ( ( -"Recipe" | ( -"R" ) ), -':' ), __content__RecipeType, ( __WS*, -'/', ( -"Recipe" | ( -"R" ) ))?.
+  -__content__AmountType =  -__attrs__AmountType, xs_decimal.
+    -__attrs__AmountType = 
+      ( __WS*, AmountType__OPTIONAL )*, 
+      ( __WS*, AmountType__MANDATORY1of1 ), 
+      ( __WS*, (  AmountType__OPTIONAL | AmountType__MANDATORY1of1 ) )*.
+      -AmountType__OPTIONAL = ( __attr__AmountType__approximate ).
+      -AmountType__MANDATORY1of1 =  ( __attr__AmountType__unit ).
+    __attr__AmountType__unit>__attr = __alias__AmountType__unit, __name__AmountType__unit, __WS*, xs_string__attr.
+    @__alias__AmountType__unit>alias = -"@", ( "unit" | ( "u" ) ), -':'.
+    @__name__AmountType__unit>name = +"unit".
+    __attr__AmountType__approximate>__attr = __alias__AmountType__approximate, __name__AmountType__approximate, __WS*, xs_string__attr.
+    @__alias__AmountType__approximate>alias = -"@", ( "approximate" | ( "a" ) ), -':'.
+    @__name__AmountType__approximate>name = +"approximate".
+  -__content__IngredientType = ( Name, Amount ).
+  -__content__RecipeType = ( Title, Ingredient+, Step+ ).
+
+
+{ http://www.w3.org/2001/XMLSchema }
+
+  -xs_string = __WS*, __values.
+  -xs_string__attr = __value.
+  -xs_boolean =  __WS*,( ( -'"', __WS*, __boolean, __WS*, -'"' ) | __boolean ).
+  -xs_boolean__attr =  __WS*,( ( -'"', __WS*, __boolean, __WS*, -'"' ) | __boolean ).
+  -xs_decimal = __WS*, __value.
+  -xs_decimal__attr = __value.
+  -xs_float = __WS*, __value.
+  -xs_float__attr = __value.
+  -xs_double = __WS*, __value.
+  -xs_double__attr = __value.
+  -xs_duration = __WS*, __value.
+  -xs_duration__attr = __value.
+  -xs_dateTime = __WS*, __value.
+  -xs_dateTime__attr = __value.
+  -xs_time = __WS*, __value.
+  -xs_time__attr = __value.
+  -xs_date = __WS*, __value.
+  -xs_date__attr = __value.
+  -xs_gYearMonth = __WS*, __value.
+  -xs_gYearMonth__attr = __value.
+  -xs_gYear = __WS*, __value.
+  -xs_gYear__attr = __value.
+  -xs_gMonthDay = __WS*, __value.
+  -xs_gMonthDay__attr = __value.
+  -xs_gDay = __WS*, __value.
+  -xs_gDay__attr = __value.
+  -xs_gMonth = __WS*, __value.
+  -xs_gMonth__attr = __value.
+  -xs_hexBinary = __WS*, __value.
+  -xs_hexBinary__attr = __value.
+  -xs_base64Binary = __WS*, __value.
+  -xs_base64Binary__attr = __value.
+  -xs_anyURI = __WS*, __value.
+  -xs_anyURI__attr = __value.
+  -xs_QName = __WS*, __value.
+  -xs_QName__attr = __value.
+  -xs_NOTATION = __WS*, __value.
+  -xs_NOTATION__attr = __value.
+  -xs_normalizedString = __WS*, __values.
+  -xs_normalizedString__attr = __value.
+  -xs_token = __WS*, __values.
+  -xs_token__attr = __value.
+  -xs_language = __WS*, __value.
+  -xs_language__attr = __value.
+  -xs_NMTOKEN = __WS*, __value.
+  -xs_NMTOKEN__attr = __value.
+  -xs_NMTOKENS = __WS*, __values.
+  -xs_NMTOKENS__attr = __value.
+  -xs_Name = __WS*, __value.
+  -xs_Name__attr = __value.
+  -xs_NCName = __WS*, __value.
+  -xs_NCName__attr = __value.
+  -xs_ID = __WS*, __value.
+  -xs_ID__attr = __value.
+  -xs_IDREF = __WS*, __value.
+  -xs_IDREF__attr = __value.
+  -xs_IDREFS = __WS*, __values.
+  -xs_IDREFS__attr = __value.
+  -xs_ENTITY = __WS*, __value.
+  -xs_ENTITY__attr = __value.
+  -xs_ENTITIES = __WS*, __values.
+  -xs_ENTITIES__attr = __value.
+  -xs_integer = __WS*, __value.
+  -xs_integer__attr = __value.
+  -xs_nonPositiveInteger = __WS*, __value.
+  -xs_nonPositiveInteger__attr = __value.
+  -xs_negativeInteger = __WS*, __value.
+  -xs_negativeInteger__attr = __value.
+  -xs_long = __WS*, __value.
+  -xs_long__attr = __value.
+  -xs_int = __WS*, __value.
+  -xs_int__attr = __value.
+  -xs_short = __WS*, __value.
+  -xs_short__attr = __value.
+  -xs_byte = __WS*, __value.
+  -xs_byte__attr = __value.
+  -xs_nonNegativeInteger = __WS*, __value.
+  -xs_nonNegativeInteger__attr = __value.
+  -xs_unsignedLong = __WS*, __value.
+  -xs_unsignedLong__attr = __value.
+  -xs_unsignedInt = __WS*, __value.
+  -xs_unsignedInt__attr = __value.
+  -xs_unsignedShort = __WS*, __value.
+  -xs_unsignedShort__attr = __value.
+  -xs_unsignedByte = __WS*, __value.
+  -xs_unsignedByte__attr = __value.
+  -xs_positiveInteger = __WS*, __value.
+  -xs_positiveInteger__attr = __value.
+
+{=============================================================================}
+{ Mixed content and unused markdown symbols for this vocabulary }
+
+-__mixed_content_member = .
+__CARET = #0.
+__PIPE  = #0.
+__PLUS  = #0.
+__SLASH = #0.
+__STAR  = #0.
+__TILDE = #0.
+__UNDER = #0.
+
+{-----------------------------------------------------------------------------}
+{ Boilerplate included specification of XSD-generated Crane-txt2xml handling }
+
+{ value specifications both for attributes and for elements }
+-__values = __value+.
+__value = __quoted | __unquoted, __WS.
+-__quoted = -'"', -'"' | -'"', -__more_quoted, -'"'.
+-__more_quoted = ( __BS | ~['"' | "\"] ), __more_quoted?.
+-__unquoted = ( __BS | __NWSBSQACOT ) , __unquoted?.
+__boolean>__value = ( -'true', +'true' | -'false', +'false' |
+                      -'1', +'1' | -'0', +'0' ).
+-__empty__element = .
+
+{ low-level character handling }
+-__BS = -"\", ( [ "\" | '"' | "@" | ":" | "/" ] | __unicode ).
+-__WS = -[Zs] | -#9 | -#a | -#d.
+-__NWSBSQACOT = ~[Zs | #9 | #a | #d | "\" | '"' | "@" | ":" | "/" | '`' ].
+__unicode = __HEX+ , -"\".
+-__HEX = [ "0"-"9"] | ["A"-"F"] | ["a"-"f" ].
+
+{ some vocabularies need mixed content with its own handling }
+-__mixed_content = ( __mixed_content_value, ( __WS*, __mixed_content_value )* )?.
+__mixed_content_value>__mixed_content_value = ( __quoted | __unquoted, __WS | __mixed_content_member | -"`", -"`" | -"`" , __more_markdown, -"`" ).
+-__more_markdown = ( __BSM | __quoted | __CEPLSTU | ~["`" | "\" | "|" | "+" | "*" | "/" | "~" | "^" | "_" | '"' | "@" ] ),
+                   __more_markdown?.
+-__CEPLSTU = __CARET | __PIPE | __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
+-__BSM = -"\", ( [ "\" | "`" | "@" | ":" | "|" | "+" | "*" | "/" | "~" | "^" | "_" | '"' | "@" ]
+         | __unicode ).
+-__CARET_inner = ( __BSM | __quoted | __EPLSTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+                 __CARET_inner?.
+-__EPLSTU = __PIPE | __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
+-__CARET_content = __CARET_inner, -"^".
+-__PIPE_inner = ( __BSM | __quoted | __CPLSTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+                __PIPE_inner?.
+-__CPLSTU = __CARET | __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
+-__PIPE_content = __PIPE_inner, -"|".
+-__PLUS_inner = ( __BSM | __quoted | __CELSTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+                __PLUS_inner?.
+-__CELSTU = __CARET | __PIPE | __SLASH | __STAR | __TILDE | __UNDER.
+-__PLUS_content = __PLUS_inner, -"+".
+-__SLASH_inner = ( __BSM | __quoted | __CEPSTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+                 __SLASH_inner?.
+-__CEPSTU = __CARET | __PIPE | __PLUS | __SLASH | __STAR | __TILDE | __UNDER.
+-__SLASH_content = __SLASH_inner, -"/".
+-__STAR_inner = ( __BSM | __quoted | __CEPLTU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+                __STAR_inner?.
+-__CEPLTU = __CARET | __PIPE | __PLUS | __SLASH | __TILDE | __UNDER.
+-__STAR_content = __STAR_inner, -"*".
+-__TILDE_inner = ( __BSM | __quoted | __CEPLSU | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+                 __TILDE_inner?.
+-__CEPLSU = __CARET | __PIPE | __PLUS | __SLASH | __STAR | __UNDER.
+-__TILDE_content = __TILDE_inner, -"~".
+-__UNDER_inner = ( __BSM | __quoted | __CEPLST | ~["`"|"\"|"|"|"+"|"*"|"/"|"~"|"^"|"_"|'"'|"@"] ),
+                 __UNDER_inner?.
+-__CEPLST = __CARET | __PIPE | __PLUS | __SLASH | __STAR | __TILDE.
+-__UNDER_content = __UNDER_inner, -"_".
+
+{EOF}
