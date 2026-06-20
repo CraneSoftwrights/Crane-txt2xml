@@ -1,0 +1,1 @@
+R:T:Tomato Soup I:N:Ripe Tomatoes A:@u:kilograms 1 I:N:Vegetable Stock A:@u:cups 2 I:N:Yellow Onion A:@u:whole 1 I:N:Heavy Cream A:@u:tablespoon @a:yes 2 S:Chop the tomatoes and onion S:Simmer everything together for twenty minutes S:Blend until smooth and stir in the cream 

@@ -1,0 +1,1 @@
+R:T:Banana Smoothie I:N:Banana A:@u:whole 2 I:N:Yogurt A:@u:cups 0.75 I:N:Honey A:@u:tablespoon @a:yes 1.5 S:Peel the bananas and place all ingredients in a blender S:Blend until smooth and pour into a glass 

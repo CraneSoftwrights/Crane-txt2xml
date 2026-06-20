@@ -1,0 +1,1 @@
+R:T:Spaghetti Aglio e Olio I:N:Spaghetti A:@u:grams 200 I:N:Garlic Clove A:@u:whole 4 I:N:Olive Oil A:@u:tablespoon @a:yes 4 I:N:Chili Flakes A:@u:teaspoon @a:yes 1 S:Boil the spaghetti until al dente 🍝 S:Gently fry sliced garlic and chili flakes in the olive oil S:Toss the drained pasta in the pan and serve hot 🌶️ 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+  <Title>Rice Pilaf</Title>
+  <Ingredient>
+    <Name>Long Grain Rice</Name>
+    <Amount unit="cups">1</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Chicken Broth</Name>
+    <Amount unit="cups">2</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Onion</Name>
+    <Amount unit="whole">0.5</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Butter</Name>
+    <Amount unit="tablespoon">1</Amount>
+  </Ingredient>
+  <Step>Saute the diced onion in butter until soft</Step>
+  <Step>Add the rice and stir to coat</Step>
+  <Step>Pour in the broth, cover, and simmer for eighteen minutes</Step>
+  <Step>Fluff with a fork before serving</Step>
+</Recipe>

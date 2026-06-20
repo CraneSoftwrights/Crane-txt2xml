@@ -1,0 +1,1 @@
+R:T:Toast with Butter I:N:Bread A:@u:slices 1 I:N:Butter A:@u:teaspoon @a:yes 1 S:Toast the bread and spread with butter 

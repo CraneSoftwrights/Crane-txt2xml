@@ -2,5 +2,6 @@
 build/
 
 # Miscellaneous local development
+*.zip
 *.tar.gz
 tarball.sh

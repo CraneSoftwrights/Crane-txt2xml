@@ -1,0 +1,1 @@
+R:T:Grilled Cheese I:N:Bread A:@u:slices 2 I:N:Cheddar Cheese A:@u:slices 2 I:N:Butter A:@u:tablespoon 1 S:Butter one side of each bread slice S:Place cheese between the unbuttered sides S:Grill in a pan until both sides are golden brown 

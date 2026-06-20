@@ -58,11 +58,9 @@ Work in Progress pull requests are also welcome to get feedback early on, or if 
 
 ## Release workflow
 
-Only the Crane repository maintainer account can make a release. They determine the next version number to use for the release and update the submitter's branch with the revised `version-*.md` file. 
+Only the Crane repository maintainer account can make a release. They determine the next version number to use for the release and update the submitter's branch with the renamed and revised `version-*.md` file. That file includes a link to [CHANGELOG.md](CHANGELOG.md) where the changes for the release are documented.
 
-The YAML script `release.yml` prepares a release with the artefact needed for non-Mac users.
-
-The `dev/makeMac.sh` script then is run to create the DMG file that is manually added to the release.
+When the repository maintainer pushes a PR to the main branch, the YAML script `release.yml` prepares a release with the artefact needed for download.
 
 ## Resources
 

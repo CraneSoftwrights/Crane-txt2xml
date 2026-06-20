@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+  <Title>Caesar Salad</Title>
+  <Ingredient>
+    <Name>Romaine Lettuce</Name>
+    <Amount unit="head">1</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>"Authentic" Parmesan</Name>
+    <Amount unit="grams" approximate="yes">50</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Croutons</Name>
+    <Amount unit="cups">1</Amount>
+  </Ingredient>
+  <Step>Wash and tear the lettuce into a bowl</Step>
+  <Step>Add the so-called "Authentic" Parmesan and croutons</Step>
+  <Step>Toss with dressing and serve immediately</Step>
+</Recipe>
