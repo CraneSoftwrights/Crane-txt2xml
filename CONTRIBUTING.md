@@ -26,7 +26,7 @@ When cloning, use:
 
 If you have already cloned without that flag:
 
-    git submodule update --init
+    git submodule update --init --recursive
 
 When working on a branch that bumps the xslstyle component to a new release, test the integration fully before merging to `main`. The submodule pointer in `xslstyle/` records the exact commit in use; updating it requires deliberate action and should always be done on a feature branch first.
 
