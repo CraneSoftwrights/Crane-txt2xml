@@ -8,6 +8,9 @@ Latest release: [![Latest release](https://img.shields.io/github/v/release/Crane
 
 ---
 
+### [v0.0.3] – 2026-06-19
+- update the recipe directory manifest
+
 ### [v0.0.2] – 2026-06-19
 - add the LLM scenario experimental results
 - some housekeeping with batch file invocations and .gitignore
