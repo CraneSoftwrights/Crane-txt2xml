@@ -83,11 +83,21 @@ For the conversion of XML to text one can choose between two stylesheets:
 [`Crane-recipe2short.xsl`](Crane-recipe2short.xsl)
 - conversion of XML documents into Crane-txt2xml text stream with short labels
 
+[`llm-scenario/`](llm-scenario/)
+- a scenario illustrating the LLM generation, validation, and text compression of structured
+information for egress and then local-machine reconstitution of the text into XML angle brackets
+
 [`make-recipe-ixml.bat`](make-recipe-ixml.bat)
 - invoke the conversion of the recipe XSD into iXML (Windows)
 
 [`make-recipe-ixml.sh`](make-recipe-ixml.sh)
 - invoke the conversion of the recipe XSD into iXML (shell)
+
+[`one-recipe.bat`](one-recipe.bat)
+- invoke the conversion of text to XML for a single file
+
+[`one-recipe.sh`](one-recipe.sh)
+- invoke the conversion of text to XML for a single file
 
 [`README.md`](README.md)
 - this file
