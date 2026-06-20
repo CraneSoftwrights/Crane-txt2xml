@@ -8,6 +8,9 @@ Latest release: [![Latest release](https://img.shields.io/github/v/release/Crane
 
 ---
 
+### [v0.0.5] – 2026-06-20
+- missing a command line argument
+
 ### [v0.0.4] – 2026-06-20
 - clarify UBL limitations
 - comprehensive documentation review including rearranging the experiment directory
