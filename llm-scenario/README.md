@@ -11,8 +11,8 @@ open-source tools, at no LLM cost at all.
 
 For the recipe vocabulary itself (the document model, the four XSD
 authoring styles, the iXML grammar, and the short-label and
-long-label text conventions), see the parent directory's
-[`../README.md`](../README.md). This file does not repeat that
+long-label text conventions), see the recipe directory's
+[`../recipe/README.md`](../recipe/README.md). This file does not repeat that
 description; it only narrates what was *done* with that vocabulary as
 a scenario.
 
@@ -20,7 +20,7 @@ a scenario.
 
 1. **An LLM (Claude) synthesized twelve toy recipes, each as a
    schema-valid XML instance**, against the document model in
-   `../recipe-garden-of-eden.xsd` — not as ad hoc structure invented on
+   `../recipe/recipe-garden-of-eden.xsd` — not as ad hoc structure invented on
    the spot, but as XML conforming to a schema the LLM had been given
    to read. Nine were ordinary recipes; three deliberately exercised
    edge cases in escaping and character content (an embedded quotation
@@ -39,7 +39,9 @@ a scenario.
    all four.
 
 3. **The only files the user supplied were the schemas and the
-   stylesheets** — `recipe-garden-of-eden.xsd` (and its three sibling
+   stylesheets** — a small 100K zip combining the two directories [`xsl/`](../xsl/)
+   and [`recipe/`](../recipe/) provided all the sufficient files:  
+   `recipe-garden-of-eden.xsd` (and its three sibling
    style variants) and `Crane-recipe2short.xsl` together with its
    imports `Crane-xml2txt.xsl` and `Crane-recipe-common.xsl`. No
    utility-directory files, no XSLT processor, no Java runtime, no
@@ -84,7 +86,7 @@ a scenario.
    complete the conversion — orchestrated by
    [`llm-scenario.sh`](llm-scenario.sh) (or its Windows equivalent,
    [`llm-scenario.bat`](llm-scenario.bat), composed alongside this
-   README), which calls [`../one-recipe.sh`](../one-recipe.sh) once
+   README), which calls [`../recipe/one-recipe.sh`](../recipe/one-recipe.sh) once
    per compressed file. This half of the story involves no LLM at all:
    it is the user's own software, on the user's own machine, doing the
    expansion.
@@ -201,27 +203,27 @@ set -e
 
 DP0=$( cd "$(dirname "$0")" ; pwd -P )
 
-sh "$DP0/../one-recipe.sh" "r01-pancakes.short.txt" "r01-pancakes.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r02-scrambled-eggs.short.txt" "r02-scrambled-eggs.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r03-grilled-cheese.short.txt" "r03-grilled-cheese.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r04-tomato-soup.short.txt" "r04-tomato-soup.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r05-caesar-salad.short.txt" "r05-caesar-salad.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r06-aglio-e-olio.short.txt" "r06-aglio-e-olio.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r07-hard-boiled-egg.short.txt" "r07-hard-boiled-egg.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r08-banana-smoothie.short.txt" "r08-banana-smoothie.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r09-toast-with-butter.short.txt" "r09-toast-with-butter.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r10-chicken-stir-fry.short.txt" "r10-chicken-stir-fry.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r11-lemonade.short.txt" "r11-lemonade.short.txt.xml"
-sh "$DP0/../one-recipe.sh" "r12-rice-pilaf.short.txt" "r12-rice-pilaf.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r01-pancakes.short.txt" "r01-pancakes.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r02-scrambled-eggs.short.txt" "r02-scrambled-eggs.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r03-grilled-cheese.short.txt" "r03-grilled-cheese.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r04-tomato-soup.short.txt" "r04-tomato-soup.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r05-caesar-salad.short.txt" "r05-caesar-salad.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r06-aglio-e-olio.short.txt" "r06-aglio-e-olio.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r07-hard-boiled-egg.short.txt" "r07-hard-boiled-egg.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r08-banana-smoothie.short.txt" "r08-banana-smoothie.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r09-toast-with-butter.short.txt" "r09-toast-with-butter.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r10-chicken-stir-fry.short.txt" "r10-chicken-stir-fry.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r11-lemonade.short.txt" "r11-lemonade.short.txt.xml"
+sh "$DP0/../recipe/one-recipe.sh" "r12-rice-pilaf.short.txt" "r12-rice-pilaf.short.txt.xml"
 ```
 
-It in turn calls [`../one-recipe.sh`](../one-recipe.sh), which invokes
+It in turn calls [`../recipe/one-recipe.sh`](../recipe/one-recipe.sh), which invokes
 `../shell/Crane-txt2xml.sh` with `recipe.ixml` and
 `../xsl/Crane-ixml2xml.xsl` against each compressed input file.
 
 A Windows batch equivalent, [`llm-scenario.bat`](llm-scenario.bat),
-calls [`../one-recipe.bat`](../one-recipe.bat) once per compressed
-file, mirroring `llm-scenario.sh`'s call to `../one-recipe.sh`, with
+calls [`../recipe/one-recipe.bat`](../recipe/one-recipe.bat) once per compressed
+file, mirroring [`llm-scenario.sh`](llm-scenario.sh)'s call to [`../recipe/one-recipe.sh`](../recipe/one-recipe.sh), with
 explicit `errorlevel` checking after each call.
 
 ## Manifest
@@ -234,7 +236,7 @@ explicit `errorlevel` checking after each call.
 
 [`llm-scenario.bat`](llm-scenario.bat)
 - Windows batch equivalent of `llm-scenario.sh`, calling
-  `../one-recipe.bat` once per file; correct operation depends on
+  `../recipe/one-recipe.bat` once per file; correct operation depends on
   `setlocal` being present in `one-recipe.bat` and `Crane-txt2xml.bat`
   (see the note above)
 
@@ -254,3 +256,6 @@ explicit `errorlevel` checking after each call.
 [`r01-pancakes.short.txt.xml`](r01-pancakes.short.txt.xml) … [`r12-rice-pilaf.short.txt.xml`](r12-rice-pilaf.short.txt.xml)
 - the XML recovered by expanding each `.short.txt` file through
   `llm-scenario.sh`, closing the round trip
+
+
+*Editor's note: Claude was prompted to create the initial version of this post-mortem as it knew the details of what it was doing as part of the experiment.*

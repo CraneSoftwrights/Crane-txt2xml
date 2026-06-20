@@ -2,7 +2,7 @@
 
 A demonstration configuration of the Crane-txt2xml environment for a simple recipe vocabulary, exercising the four XSD authoring styles.
 
-There are four XSD schema expressions of the document mdoel a simple recipe XML structure, Garden of Eden (global element declarations and global type declarations), Russian Doll (local element declarations and local type declarations), Salami Slice (global element declarations and local type declarations), and Venetian Blind (local element declarations and global type declaration).
+There are four XSD schema expressions of the document model a simple recipe XML structure, Garden of Eden (global element declarations and global type declarations), Russian Doll (local element declarations and local type declarations), Salami Slice (global element declarations and local type declarations), and Venetian Blind (local element declarations and global type declaration).
 
 There are two invocations:
 - [`make-recipe-ixml.bat`](make-recipe-ixml.bat)/[`make-recipe-ixml.sh`](make-recipe-ixml.sh)
@@ -59,10 +59,12 @@ failure:
 
 ```
 
-An ultra-compressed text expression is is [recipeTokens1.txt](recipeTokens1.txt) that one could emit from an LLM to represent a recipe would be far shorter and less expensive in tokens, yet the abbreviated labels produce the identical recipe XML output as above:
+An ultra-compressed text expression is [recipeTokens1.txt](recipeTokens1.txt) that one could emit from an LLM to represent a recipe that would be far shorter and less expensive in tokens, yet the abbreviated labels produce the identical recipe XML output as above:
 ```
 R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mix ingredients together S:Cook on a greased griddle \1FAE7\ S:Serve 
 ```
+
+See [`../llm-scenario/` for an experiment in LLM generation](../llm-scenario) of structured content using this toy vocabulary for demonstration.
 
 For the conversion of XML to text one can choose between two stylesheets:
 - [`../xsl/Crane-xml2txt.xsl`](../xsl/Crane-xml2txt.xsl) using element and attribute names as labels
@@ -82,10 +84,6 @@ For the conversion of XML to text one can choose between two stylesheets:
 
 [`Crane-recipe2short.xsl`](Crane-recipe2short.xsl)
 - conversion of XML documents into Crane-txt2xml text stream with short labels
-
-[`llm-scenario/`](llm-scenario/)
-- a scenario illustrating the LLM generation, validation, and text compression of structured
-information for egress and then local-machine reconstitution of the text into XML angle brackets
 
 [`make-recipe-ixml.bat`](make-recipe-ixml.bat)
 - invoke the conversion of the recipe XSD into iXML (Windows)

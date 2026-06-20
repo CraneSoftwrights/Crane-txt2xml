@@ -19,7 +19,7 @@ You provide three inputs to the Crane-txt2xml generation pipeline:
 
     See the [`recipe/`](recipe/) directory for four versions of the XSD for the simple recipe examples.
 
-2. **An Alias XML document or algorithm** of your own with an iXML declaration of the output document element and, optionally, a mapping natural-language element and attribute labels to their XML names. Each XML element name may have multiple labels (aliases). Every environment implicitly supports the raw XML element names as labels; the aliases you define are additive. Whether this is a separate file or built-in to your code is not relevant. Conceptually, this is a just the list of allowed aliases if you choose to allow such. Perhaps natural-language names for humans and short names for LLMs.
+2. **An Alias XML document or algorithm** of your own with an iXML declaration of the output document element and, optionally, a mapping natural-language element and attribute labels to their XML names. Each XML element name may have multiple labels (aliases). Every environment implicitly supports the raw XML element names as labels; the aliases you define are additive. Whether this is a separate file or built-in to your code is not relevant. Conceptually, this is just the list of allowed aliases if you choose to allow such. Perhaps natural-language names for humans and short names for LLMs.
 
     See [`recipe/Crane-recipe2ixml.xsl`](recipe/Crane-recipe2ixml.xsl) for how the recipe example defines both element names (for humans) and single-letter names (for LLMs) as aliases for labeling. 
     See [`Crane-txt2ubl/xsl/Crane-ubl2ixml.xsl`](Crane-txt2ubl/xsl/Crane-ubl2ixml.xsl) for how the UBL example accommodates namespaces and camel-case labels.
@@ -45,7 +45,7 @@ The conversion experience is a simple pipeline:
 
 2. The **Cleanup XSLT** transforms the intermediate XML into the final output, resolving attribute aliases, assigning namespaces, and performing any vocabulary-specific serialization.
 
-3. Optionally, the output XML is **validated** against the vocabulary's schema (DTD or RELAX NG) to catch attribute usage errors and any structural issues not fully constrained by the iXML grammar.
+3. Optionally, the output XML is **validated** against the vocabulary's schema (XSD, DTD, or RELAX NG) to catch attribute usage errors and any structural issues not fully constrained by the iXML grammar.
 
 The user interacts with this pipeline through a turnkey mechanism (command-line invocation, drag-and-drop, or whatever delivery method you choose). They see either the final XML output or plain-language error messages.
 
@@ -97,7 +97,7 @@ Post-generation schema validation catches element and attribute value usage erro
 
 ## The XSD Schema
 
-The [`xsl/Crane-xsd2ixml.xsl`](xsl/Crane-xsd2ixml.xsl) generation stylesheet requires a Garden of Eden or a Venetian Blind XSD. In this convention, all type definitions are global (named) types, and element declarations reference these types are global or local. This allows the stylesheet to traverse the content models systematically and generate iXML rules for each element.
+The [`xsl/Crane-xsd2ixml.xsl`](xsl/Crane-xsd2ixml.xsl) generation stylesheet requires a Garden of Eden or a Venetian Blind XSD. In these conventions, all the type definitions are global (named) types, and the element declarations reference these types are global (Garden of Eden) or local (Venetian Blind). This allows the stylesheet to traverse the content models systematically and generate iXML rules for each element.
 
 If your vocabulary's authoritative schema is in RELAX NG or DTD form, the basic conversion to XSD can use Trang as a first step:
 
@@ -138,7 +138,7 @@ R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mi
 The Cleanup XSLT stylesheet transforms the intermediate XML produced by the iXML processor into the final vocabulary-conformant XML output. Its responsibilities include:
 
 - **Namespace assignment.** The intermediate XML is in no namespace and so any required resulting namespaces need to be inferred from context.
-- **Error message transformation.** When the iXML processor output is in the iXML namespace (indicating parse errors), the Cleanup XSLT uses `&lt;xsl:message>` to report the iXML errors to the error port and terminates the process
+- **Error message transformation.** When the iXML processor output is in the iXML namespace (indicating parse errors), the Cleanup XSLT uses `<xsl:message>` to report the iXML errors to the error port and terminates the process
 
 ## The Generation Pipeline
 
