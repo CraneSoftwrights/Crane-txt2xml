@@ -210,7 +210,7 @@ A string demarcated by back-ticks `` `a *string* of characters` `` is sensitive 
 
 Your vocabulary documentation will give you a legend of which `^`, `+`, `/`, `*`, `~`, `_`, and `|` markdown characters are interpreted as which elements.
 
-See one of the PubNoteIn-text2xml facilities (there are four of them) in the \<PubNote> project for an example of mixed-content and the use of markdown characters, such as `*` for boldface `b:` `/b`, and `/` for italic `i:` `/i` (note how the slash is interpreted differently in different contexts):
+See one of the PubNoteInText2XML facilities (there are four of them) in the \<PubNote> project for an example of mixed-content and the use of markdown characters, such as `*` for boldface `b:` `/b`, and `/` for italic `i:` `/i` (note how the slash is interpreted differently in different contexts):
 
 ```
 AbstractText: `some *bold* text ` b: `bold and /italic/ text` /b " more * text"

@@ -8,6 +8,10 @@ Latest release: [![Latest release](https://img.shields.io/github/v/release/Crane
 
 ---
 
+### [v0.0.4] – 2026-06-20
+- clarify UBL limitations
+- comprehensive documentation review including rearranging the experiment directory
+
 ### [v0.0.3] – 2026-06-19
 - update the recipe directory manifest
 

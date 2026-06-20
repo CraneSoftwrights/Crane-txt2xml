@@ -42,7 +42,7 @@ At this time only a single structural ambiguity has been detected that requires 
 
 ## Example input snippet
 
-From [UBL-invoice-2.1-Example-text.txt](UBL-invoice-2.1-Example-text.txt) is the following partial snippet:
+From [UBL-Invoice-2.1-Example-text.txt](UBL-Invoice-2.1-Example-text.txt) is the following partial snippet:
 
 ```
   Invoice Line:
@@ -69,7 +69,7 @@ From [UBL-invoice-2.1-Example-text.txt](UBL-invoice-2.1-Example-text.txt) is the
 
 ## Example result transformation
 
-See [UBL-invoice-2.1-Example-text.xml](UBL-invoice-2.1-Example-text.xml) for the transformation results.
+See [UBL-Invoice-2.1-Example-text.xml](UBL-Invoice-2.1-Example-text.xml) for the transformation results.
 
 # Manifest
 
@@ -85,13 +85,13 @@ See [UBL-invoice-2.1-Example-text.xml](UBL-invoice-2.1-Example-text.xml) for the
 [`UBL-AllDocuments-2.5.xsd`](UBL-AllDocuments-2.5.xsd)
 - a wrapper XSD document model incorporating all 101 UBL document models
 
-[`UBL-Invoice-2.1-Example.xml`](UBL-invoice-2.1-Example.xml)
+[`UBL-Invoice-2.1-Example.xml`](UBL-Invoice-2.1-Example.xml)
 - an example XML invoice from the UBL 2.1 distribution
 
-[`UBL-Invoice-2.1-Example-text.txt`](UBL-invoice-2.1-Example-text.txt)
+[`UBL-Invoice-2.1-Example-text.txt`](UBL-Invoice-2.1-Example-text.txt)
 - a text stream rendering of the example invoice from the UBL 2.1 distribution
 
-[`UBL-Invoice-2.1-Example-text.xml`](UBL-invoice-2.1-Example-text.xml)
+[`UBL-Invoice-2.1-Example-text.txt.xml`](UBL-Invoice-2.1-Example-text.txt.xml)
 - the UBL XML result of converting the example text stream
 
 [`windows/`](windows)

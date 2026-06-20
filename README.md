@@ -9,7 +9,7 @@ See the [Installation and invocation wiki page](https://github.com/CraneSoftwrig
 
 ## Two Problems To Consider
 
-(1) Many people are tasked with creating XML documents manually, such as ad-hoc invoices, articles, and metadata records. but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
+(1) Many people are tasked with creating XML documents manually, such as ad-hoc invoices, articles, and metadata records, but find XML syntax cumbersome or intimidating. Angle brackets, closing tags, namespace declarations, and strict formatting rules create barriers for authors whose expertise is in the content, not the markup.
 
 (2) When working with AI Large Language Models (LLMs) the egress and ingress of structured information in XML syntax can tend to be more costly in tokens than simple text because of the fully-spelled out element and attribute names, and element end tags. Being able simply to export or even fully round-trip an XML document through simple text with cryptic but unambiguous single-letter labels and no end indicators provides a mechanism for reducing costs.
 
@@ -85,11 +85,11 @@ An important caveat regarding using this strategy for LLM ingress is that while 
 
 ## A conference paper and presentation video
 
-See the [XML Prague Conference 2026 landing page](https://www.xmlprague.cz/) for links to the PDF proceedings of the conference and watch [G. Ken Holman's 30-minute video recording (starting 59 minutes in)](https://www.youtube.com/watch?v=vqL7uzEkYIk&t=59m00s) titled "Crane-txt2xml - an attempt to socialize XML for non-XML'ers". 
+See the [XML Prague Conference 2026 landing page](https://www.xmlprague.cz/) for links to the PDF proceedings of the conference and watch [G. Ken Holman's 30-minute video recording](https://www.youtube.com/watch?v=5k_MG0l_oXc) titled "Crane-txt2xml - an attempt to socialize XML for non-XML'ers". 
 
 ## A functional experiment in the LLM egress of compressed text files
 
-See the [recipe/llm-scenario/](recipe/llm-scenario/) directory for the narrative of an experiment measuring the successful creation, validation, and compression of structured XML content using text files with very short labels. These text files are reconstituted into complete XML documents by the user, thus saving the cost of tokens for egress from the LLM.
+See the [llm-scenario/](llm-scenario/) directory for the narrative of an experiment measuring the successful and reliable creation, validation, and compression of structured XML content using compact text files with very short labels. These text files are reconstituted into complete XML documents by the user, locally on their machine, thus saving the cost of tokens for egress from the LLM. It documents the zero token cost of executing the XML stack (XSD validation and XSLT compression) on the LLM side, and the savings in egress tokens.
 
 ## Final important note
 
@@ -101,7 +101,7 @@ This environment is not suited for every possible XML vocabulary. Please see the
 
 For questions, suggestions, comments, and contributions we invite you to create issues and pull requests, both of which are accessible in tabs in the GitHub web page header. Eager qualified contributors are invited to introduce themselves for consideration in joining the team.
 
-The numeric versioning of this project Latest release: [![Latest release](https://img.shields.io/github/v/release/CraneSoftwrights/Crane-txt2xml)](https://github.com/CraneSoftwrights/Crane-txt2xml/releases) follows the `<major/>`.`<minor/>`.`<patch/>` pattern defined by [Semantic Versioning](https://semver.org/). While generally aligned with SemVer principles, major version changes may also signal significant expansions in the project's scope.
+The numeric versioning of this project [![Latest release](https://img.shields.io/github/v/release/CraneSoftwrights/Crane-txt2xml)](https://github.com/CraneSoftwrights/Crane-txt2xml/releases) follows the `<major/>`.`<minor/>`.`<patch/>` pattern defined by [Semantic Versioning](https://semver.org/). While generally aligned with SemVer principles, major version changes may also signal significant expansions in the project's scope.
 
 - `<major/>` — increased when existing usage may break due to changes, or when substantial new functionality is introduced that significantly broadens the project’s scope (i.e. new project phases).
 - `<minor/>` — increased when new features are added that extend functionality without disrupting existing use (i.e. backward-compatible additions).
