@@ -87,6 +87,10 @@ An important caveat regarding using this strategy for LLM ingress is that while 
 
 See the [XML Prague Conference 2026 landing page](https://www.xmlprague.cz/) for links to the PDF proceedings of the conference and watch [G. Ken Holman's 30-minute video recording (starting 59 minutes in)](https://www.youtube.com/watch?v=vqL7uzEkYIk&t=59m00s) titled "Crane-txt2xml - an attempt to socialize XML for non-XML'ers". 
 
+## A functional experiment in the LLM egress of compressed text files
+
+See the [recipe/llm-scenario/](recipe/llm-scenario/) directory for the narrative of an experiment measuring the successful creation, validation, and compression of structured XML content using text files with very short labels. These text files are reconstituted into complete XML documents by the user, thus saving the cost of tokens for egress from the LLM.
+
 ## Final important note
 
 This environment is not suited for every possible XML vocabulary. Please see the Implementer's guide below for the specific constraints. In general, regularly-structured schemas following the Garden of Eden or the Venetian Blind practice of global declarations, with little or no mixed content, should be able to be adapted. 

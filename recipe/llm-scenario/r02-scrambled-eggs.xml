@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+  <Title>Scrambled Eggs</Title>
+  <Ingredient>
+    <Name>Egg</Name>
+    <Amount unit="whole">3</Amount>
+  </Ingredient>
+  <Step>Beat the eggs and cook gently in a pan, stirring constantly</Step>
+</Recipe>

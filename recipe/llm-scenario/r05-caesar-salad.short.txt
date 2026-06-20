@@ -1,0 +1,1 @@
+R:T:Caesar Salad I:N:Romaine Lettuce A:@u:head 1 I:N:\"Authentic\" Parmesan A:@u:grams @a:yes 50 I:N:Croutons A:@u:cups 1 S:Wash and tear the lettuce into a bowl S:Add the so-called \"Authentic\" Parmesan and croutons S:Toss with dressing and serve immediately 

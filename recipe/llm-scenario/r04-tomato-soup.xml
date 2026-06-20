@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+  <Title>Tomato Soup</Title>
+  <Ingredient>
+    <Name>Ripe Tomatoes</Name>
+    <Amount unit="kilograms">1</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Vegetable Stock</Name>
+    <Amount unit="cups">2</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Yellow Onion</Name>
+    <Amount unit="whole">1</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Heavy Cream</Name>
+    <Amount unit="tablespoon" approximate="yes">2</Amount>
+  </Ingredient>
+  <Step>Chop the tomatoes and onion</Step>
+  <Step>Simmer everything together for twenty minutes</Step>
+  <Step>Blend until smooth and stir in the cream</Step>
+</Recipe>

@@ -16,10 +16,7 @@ set -e
 
 DP0=$( cd "$(dirname "$0")" ; pwd -P )
 
-sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe.ixml" "$DP0/../xsl/Crane-ixml2xml.xsl" "$DP0/recipeTokens1.txt" "$DP0/recipeTokens1.xml"
-
-sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe.ixml" "$DP0/../xsl/Crane-ixml2xml.xsl" "$DP0/recipe1.txt"       "$DP0/recipe1.xml"
-
-sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe.ixml" "$DP0/../xsl/Crane-ixml2xml.xsl" "$DP0/recipe2.txt"       "$DP0/recipe2.xml"
-
-sh "$DP0/../shell/Crane-txt2xml.sh" "$DP0/recipe.ixml" "$DP0/../xsl/Crane-ixml2xml.xsl" "$DP0/recipe3error.txt"  "$DP0/recipe3error.xml"
+sh "$DP0/one-recipe.sh" "$DP0/recipeTokens1.txt" "$DP0/recipeTokens1.xml"
+sh "$DP0/one-recipe.sh" "$DP0/recipe1.txt"       "$DP0/recipe1.xml"
+sh "$DP0/one-recipe.sh" "$DP0/recipe2.txt"       "$DP0/recipe2.xml"
+sh "$DP0/one-recipe.sh" "$DP0/recipe3error.txt"  "$DP0/recipe3error.xml"

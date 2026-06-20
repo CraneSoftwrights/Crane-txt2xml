@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+  <Title>Lemonade</Title>
+  <Ingredient>
+    <Name>Lemon</Name>
+    <Amount unit="whole">6</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Sugar</Name>
+    <Amount unit="cups" approximate="yes">1</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Water</Name>
+    <Amount unit="liters">1</Amount>
+  </Ingredient>
+  <Step>Squeeze the lemons (yield is roughly 1 cup juice, give or take)</Step>
+  <Step>Dissolve sugar in warm water, then stir in the lemon juice &amp; chill</Step>
+  <Step>Serve over ice; note ratio is 1\2 lemon to sugar by old family measure</Step>
+</Recipe>

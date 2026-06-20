@@ -1,0 +1,1 @@
+R:T:Lemonade I:N:Lemon A:@u:whole 6 I:N:Sugar A:@u:cups @a:yes 1 I:N:Water A:@u:liters 1 S:Squeeze the lemons (yield is roughly 1 cup juice, give or take) S:Dissolve sugar in warm water, then stir in the lemon juice & chill S:Serve over ice; note ratio is 1\\2 lemon to sugar by old family measure 

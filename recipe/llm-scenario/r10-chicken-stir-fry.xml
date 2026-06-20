@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+  <Title>Chicken Stir-Fry</Title>
+  <Ingredient>
+    <Name>Chicken Breast</Name>
+    <Amount unit="grams">400</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Bell Pepper</Name>
+    <Amount unit="whole">2</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Broccoli</Name>
+    <Amount unit="cups">2</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Soy Sauce</Name>
+    <Amount unit="tablespoon">3</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Ginger</Name>
+    <Amount unit="teaspoon" approximate="yes">1</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Vegetable Oil</Name>
+    <Amount unit="tablespoon" approximate="yes">2</Amount>
+  </Ingredient>
+  <Step>Slice the chicken and vegetables into bite-sized pieces</Step>
+  <Step>Heat the oil in a wok over high heat</Step>
+  <Step>Stir-fry the chicken until browned</Step>
+  <Step>Add vegetables, ginger, and soy sauce and cook until tender</Step>
+  <Step>Serve over rice</Step>
+</Recipe>

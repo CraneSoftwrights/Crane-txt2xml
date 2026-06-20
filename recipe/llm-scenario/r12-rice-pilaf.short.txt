@@ -1,0 +1,1 @@
+R:T:Rice Pilaf I:N:Long Grain Rice A:@u:cups 1 I:N:Chicken Broth A:@u:cups 2 I:N:Onion A:@u:whole 0.5 I:N:Butter A:@u:tablespoon 1 S:Saute the diced onion in butter until soft S:Add the rice and stir to coat S:Pour in the broth, cover, and simmer for eighteen minutes S:Fluff with a fork before serving 

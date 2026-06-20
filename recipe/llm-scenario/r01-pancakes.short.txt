@@ -1,0 +1,1 @@
+R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Milk A:@u:cups 1.5 I:N:Egg A:@u:whole 2 S:Whisk the dry ingredients together S:Add milk and eggs and mix until smooth S:Cook on a greased griddle until golden S:Serve warm with syrup 
