@@ -89,7 +89,7 @@ See the [XML Prague Conference 2026 landing page](https://www.xmlprague.cz/) for
 
 ## A functional experiment in the LLM egress of compressed text files
 
-See the [llm-scenario/](llm-scenario/#scenario) directory for the narrative of an experiment measuring the successful and reliable creation, validation, and compression of structured XML content using compact text files with very short labels. These text files are reconstituted into complete XML documents by the user, locally on their machine, thus saving the cost of tokens for egress from the LLM. It documents the zero token cost of executing the XML stack (XSD validation and XSLT compression) on the LLM side, and the savings in egress tokens.
+See [llm-scenario/](https://github.com/CraneSoftwrights/Crane-txt2xml/tree/main/llm-scenario/#scenario) for the narrative of an experiment measuring the successful and reliable creation, validation, and compression of structured XML content using compact text files with very short labels. These text files are reconstituted into complete XML documents by the user, locally on their machine, thus saving the cost of tokens for egress from the LLM. It documents the zero token cost of executing the XML stack (XSD validation and XSLT compression) on the LLM side, and the savings in egress tokens.
 
 ## Final important note
 
