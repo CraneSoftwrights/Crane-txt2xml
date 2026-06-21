@@ -1,4 +1,5 @@
-# Scenario: LLM egress of structured content as compressed text
+# Scenario: 
+# LLM egress of structured content as compressed text
 
 This directory is a post-mortem of a completed experiment. It tells the
 story of a user who needs a high volume of structured results from an
