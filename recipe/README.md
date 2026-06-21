@@ -67,8 +67,8 @@ R:T:Pancakes I:N:Flour A:@u:cups 2 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mi
 See [`../llm-scenario/` for an experiment in LLM generation](../llm-scenario) of structured content using this toy vocabulary for demonstration.
 
 For the conversion of XML to text one can choose between two stylesheets:
-- [`../xsl/Crane-xml2txt.xsl`](../xsl/Crane-xml2txt.xsl) using element and attribute names as labels
-- [Crane-recipe2short.xsl](Crane-recipe2short.xsl) using abbreviated single-letter names as labels
+- [`../xsl/Crane-xml2txt.xsl`](../xsl/Crane-xml2txt.xsl) using element and attribute names as labels for authors
+- [`Crane-recipe2short.xsl`](Crane-recipe2short.xsl) using abbreviated single-letter names as labels for LLMs
 
 
 # Manifest
