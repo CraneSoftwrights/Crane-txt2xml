@@ -11,8 +11,8 @@ open-source tools, at no LLM cost at all.
 
 For the recipe vocabulary itself (the document model, the four XSD
 authoring styles, the iXML grammar, and the short-label and
-long-label text conventions), see the recipe directory's
-[`../recipe/README.md`](../recipe/README.md). This file does not repeat that
+long-label text conventions), see the recipe directory
+[`../recipe/`](../recipe/README.md). This file does not repeat that
 description; it only narrates what was *done* with that vocabulary as
 a scenario.
 
@@ -39,8 +39,8 @@ a scenario.
    all four.
 
 3. **The only files the user supplied were the schemas and the
-   stylesheets** — a small 100K zip combining the two directories [`xsl/`](../xsl/)
-   and [`recipe/`](../recipe/) provided all the sufficient files:  
+   stylesheets** — a small 100K zip combining the two directories [`xsl/`](../xsl/README.md)
+   and [`recipe/`](../recipe/README.md) provided all the sufficient files:  
    `recipe-garden-of-eden.xsd` (and its three sibling
    style variants) and `Crane-recipe2short.xsl` together with its
    imports `Crane-xml2txt.xsl` and `Crane-recipe-common.xsl`. No

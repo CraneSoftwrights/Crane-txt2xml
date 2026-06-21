@@ -8,6 +8,9 @@ Latest release: [![Latest release](https://img.shields.io/github/v/release/Crane
 
 ---
 
+### [v0.0.6] – 2026-06-21
+- tweak link for better reader experience
+
 ### [v0.0.5] – 2026-06-20
 - missing a command line argument
 

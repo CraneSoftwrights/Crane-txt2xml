@@ -76,7 +76,7 @@ An important caveat regarding using this strategy for LLM ingress is that while 
 **Authors** create XML by typing text or by exporting text from an LLM. They need to know the text syntax (universal across all environments) and the structural rules of their specific vocabulary (provided by the implementer).
 - **[Author's guide](AUTHORING.md)** — The text syntax: how to write element labels, attribute labels, and values. Applicable to all vocabulary environments.
 
-**Implementers** create the vocabulary environments for users. They adapt Crane-txt2xml for a specific XML vocabulary by providing schema information, label mappings, and a serialization stylesheet. They package the result for their authors and document the vocabulary's elements and attributes.
+**Implementers** create the vocabulary environments for users and LLM sandboxes. They adapt Crane-txt2xml for a specific XML vocabulary by providing schema information, label mappings, and a serialization stylesheet. They package the result for their text-to-XML authors and document the vocabulary's elements and attributes. They package the schemas and stylesheets for their XML-to-text LLMs to execute to serialize structured content in a token-saving manner for egress.
 - **[Implementer's guide](IMPLEMENTING.md)** — How to create a vocabulary environment: the required inputs, the generation pipeline, error handling, packaging, and documentation responsibilities.
 
 **Executives and evaluators** need to understand what Crane-txt2xml does and whether it fits their organization's needs, and whether or not there exists a configured environment that already can suit their requirements.
@@ -89,7 +89,7 @@ See the [XML Prague Conference 2026 landing page](https://www.xmlprague.cz/) for
 
 ## A functional experiment in the LLM egress of compressed text files
 
-See the [llm-scenario/](llm-scenario/) directory for the narrative of an experiment measuring the successful and reliable creation, validation, and compression of structured XML content using compact text files with very short labels. These text files are reconstituted into complete XML documents by the user, locally on their machine, thus saving the cost of tokens for egress from the LLM. It documents the zero token cost of executing the XML stack (XSD validation and XSLT compression) on the LLM side, and the savings in egress tokens.
+See [llm-scenario/](llm-scenario/README.md) for the narrative of an experiment measuring the successful and reliable creation, validation, and compression of structured XML content using compact text files with very short labels. These text files are reconstituted into complete XML documents by the user, locally on their machine, thus saving the cost of tokens for egress from the LLM. It documents the zero token cost of executing the XML stack (XSD validation and XSLT compression) on the LLM side, and the savings in egress tokens.
 
 ## Final important note
 

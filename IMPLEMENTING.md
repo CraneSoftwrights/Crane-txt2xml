@@ -4,7 +4,7 @@ This guide is for XML practitioners creating a vocabulary environment, adapting 
 
 It assumes familiarity with XML, XSD, XSLT, and the basics of Invisible XML (iXML). If you are an author looking to write text or a user looking to instruct an LLM to emit text for an existing Crane-txt2xml environment, see the [Author's Guide](AUTHORING.md).
 
-For illustrative and documentation purposes, the [`recipe`](recipe/) directory has resources cited below that can be followed for guidance on integration and configuration. 
+For illustrative and documentation purposes, the [`recipe`](recipe/README.md) directory has resources cited below that can be followed for guidance on integration and configuration. 
 
 ## Architecture Overview
 
@@ -17,7 +17,7 @@ You provide three inputs to the Crane-txt2xml generation pipeline:
 
 1. **A "Venetian Blind" or "Garden of Eden" XSD schema** for the target XML vocabulary. If your vocabulary is defined in RELAX NG or DTD form, use [Trang](https://relaxng.org/jclark/trang.html) to produce a compatible XSD — provided the schema is expressible in XSD. Note that the repository includes a utility XSLT stylesheet `Crane-salami2eden.xsl` that may help in converting a "Salami Slice" XSD schema into a "Garden of Eden" XSD schema.
 
-    See the [`recipe/`](recipe/) directory for four versions of the XSD for the simple recipe examples.
+    See the [`recipe/`](recipe/README.md) directory for four versions of the XSD for the simple recipe examples.
 
 2. **An Alias XML document or algorithm** of your own with an iXML declaration of the output document element and, optionally, a mapping natural-language element and attribute labels to their XML names. Each XML element name may have multiple labels (aliases). Every environment implicitly supports the raw XML element names as labels; the aliases you define are additive. Whether this is a separate file or built-in to your code is not relevant. Conceptually, this is just the list of allowed aliases if you choose to allow such. Perhaps natural-language names for humans and short names for LLMs.
 
