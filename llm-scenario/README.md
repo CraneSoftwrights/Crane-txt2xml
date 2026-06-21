@@ -11,8 +11,8 @@ open-source tools, at no LLM cost at all.
 
 For the recipe vocabulary itself (the document model, the four XSD
 authoring styles, the iXML grammar, and the short-label and
-long-label text conventions), see the recipe directory's
-[`../recipe/README.md`](../recipe/README.md). This file does not repeat that
+long-label text conventions), see the recipe directory
+[`../recipe/`](../recipe/README.md). This file does not repeat that
 description; it only narrates what was *done* with that vocabulary as
 a scenario.
 
