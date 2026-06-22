@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+  <Title>Waffles</Title>
+  <Ingredient>
+    <Name>Flour</Name>
+    <Amount unit="cups">4</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Vegetable Oil</Name>
+    <Amount unit="cups">1</Amount>
+  </Ingredient>
+  <Ingredient>
+    <Name>Maple Syrup</Name>
+    <Amount unit="tablespoon" approximate="yes">3</Amount>
+  </Ingredient>
+  <Step>Mix ingredients together</Step>
+  <Step>Cook on a greased griddle 🫧</Step>
+  <Step>Serve</Step>
+</Recipe>

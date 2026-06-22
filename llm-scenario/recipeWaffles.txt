@@ -1,0 +1,1 @@
+R:T:Waffles I:N:Flour A:@u:cups 4 I:N:Vegetable Oil A:@u:cups 1 I:N:Maple Syrup A:@u:tablespoon @a:yes 3 S:Mix ingredients together S:Cook on a greased griddle 🫧 S:Serve 

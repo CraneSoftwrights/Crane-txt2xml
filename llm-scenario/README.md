@@ -1,13 +1,22 @@
-# Scenario: LLM egress of structured content as compressed text
+# Scenario: LLM egress and ingress of structured content as compressed text
 
-This directory is a post-mortem of a completed experiment. It tells the
-story of a user who needs a high volume of structured results from an
-LLM, and who is concerned about the token cost of getting that
-structure out as XML. The scenario shows how the Crane-txt2xml
-environment lets that user ask the LLM for a *compressed* text
-notation instead — at a fraction of the token cost of XML — and then
-expand that notation back into schema-valid XML locally, using
-open-source tools, at no LLM cost at all.
+This directory is a post-mortem of a completed experiment, later
+extended with a second round of testing in a follow-up conversation,
+engaging with an LLM equipped with a real execution environment in
+its own sandbox that executes code supplied by the user.
+Together they tell the story of a user who needs a high volume of
+structured results in and out of an LLM, and who is concerned about the token
+cost of getting that structure into and out of XML. The scenario
+shows both directions: how the Crane-txt2xml environment lets a user
+ask an LLM to run schema validation and the user's own
+Extensible Stylesheet Language Transformations (XSLT)
+and Saxon for a *compressed* text notation instead of XML on
+egress and, separately, how an LLM can run the *ingress*
+side of the same toolchain itself, parsing compressed text into
+XML with the user's own Invisible XML (iXML) grammar and Coffeepot, rather than only
+ever producing or consuming XML directly. Both at a fraction of the token cost.
+
+![Experimental flow](llm-flow.png)
 
 For the recipe vocabulary itself (the document model, the four XSD
 authoring styles, the iXML grammar, and the short-label and
@@ -16,7 +25,9 @@ long-label text conventions), see the recipe directory
 description; it only narrates what was *done* with that vocabulary as
 a scenario.
 
-## The story, in order
+## Part one: egress — XML compressed to text by the LLM, expanded back by the user
+
+The story, in order:
 
 1. **An LLM (Claude) synthesized twelve toy recipes, each as a
    schema-valid XML instance**, against the document model in
@@ -91,7 +102,59 @@ a scenario.
    it is the user's own software, on the user's own machine, doing the
    expansion.
 
-## Where the cost lies, and where it doesn't
+This closes part one's round trip entirely on the user's side: the
+LLM never ran Coffeepot, only Saxon. Part two, below, tests whether
+the LLM can run the ingress half itself.
+
+## Part two: ingress — the LLM running Coffeepot on its own, against real grammars
+
+A follow-up conversation tested the opposite question: rather than the
+user expanding compressed text into XML locally, could the LLM itself
+retrieve and run a real iXML processor — Coffeepot, not a simulation
+of it — against the user's own grammar, the same way part one had it
+retrieve and run a real Saxon? Three vocabularies of increasing
+grammar size were tried, each supplied directly in conversation by the
+user (not pre-staged in this repository the way the twelve recipe
+files are):
+
+- **The toy recipe grammar** (`recipe.ixml`, ~8KB) — a freshly written
+  compressed-text recipe ("Tea Sandwiches") was parsed by Coffeepot and
+  transformed by Saxon in well under a minute combined, producing
+  schema-valid XML with no memory pressure at all.
+- **A PubMed-vocabulary grammar** (`PubMedIn-short.ixml`, ~33KB) — a
+  genuinely complex compressed-text article record, including nested
+  affiliations, mixed-content abstracts with labelled sections,
+  escaped characters, and a reference list, was parsed by Coffeepot in
+  about 49 seconds on the default JVM heap (~1GB) and transformed by
+  Saxon in about 2 seconds, producing correct, well-formed XML on the
+  first attempt.
+- **The full UBL invoice grammar** (`ubl-2.5.ixml`, ~887KB) — Coffeepot
+  was given a real UBL 2.1 invoice instance in compressed text and the
+  full UBL grammar. It did not complete. Three attempts, with the JVM
+  heap raised from the ~1GB default to 3.2GB and then 3.5GB (close to
+  this particular environment's entire available memory), all failed
+  with `java.lang.OutOfMemoryError: Java heap space`, each time
+  partway through Earley parser forest-node construction — deeper into
+  the parse with more heap, but never finishing. This is a genuine,
+  reproducible resource ceiling in this environment, not a timeout:
+  the failures took 53, 166, and 172 seconds respectively to exhaust
+  memory and stop, well short of any wall-clock limit.
+
+The honest conclusion from these three points: an LLM with a real
+execution environment can run a real iXML processor against a real
+grammar and a real compressed-text instance, end to end, with no
+simulation involved — but the grammar's size, not elapsed time, is
+what determines whether it can. Somewhere between a 33KB grammar
+(comfortable) and an 887KB grammar (infeasible here), this particular
+environment's memory ceiling is crossed. A different LLM execution
+environment with more available memory might move that ceiling
+considerably further out; a constrained one might move it
+considerably closer in. The number itself is specific to one
+container in one conversation and shouldn't be treated as a fixed
+property of LLMs generally — but the *shape* of the result, a hard
+resource wall rather than a graceful slowdown, is the useful finding.
+
+## Where the cost lies, and where it doesn't, in both directions
 
 This is the crux the scenario is meant to illustrate for a user
 weighing whether high-volume structured output from an LLM is
@@ -123,27 +186,66 @@ affordable:
   schema. Running it twelve times, or twelve thousand times, costs the
   same: nothing, beyond ordinary local compute.
 
+- **When the LLM runs the ingress side itself, as in part two, the
+  token cost is of the same kind as part one's — uploading a
+  specification once, as input tokens — not a new kind of cost.** Part
+  one's specification was a schema and a stylesheet; part two's was an
+  iXML grammar and a stylesheet. What differs between the two parts is
+  scale and reuse, not principle. In part one, the four small XSDs and
+  `Crane-recipe2short.xsl` together were uploaded once and covered the
+  synthesis of all twelve recipes — the upload cost was amortized
+  across many outputs. In part two, the grammar itself is the bulkier
+  artifact, and its size varied enormously across the three
+  vocabularies tried: 8KB for the toy recipe, 33KB for PubMed, 887KB
+  for UBL. A schema expresses structure declaratively and stays terse
+  regardless of vocabulary complexity; a grammar generated from that
+  same schema has to spell out the full parsing logic — every literal
+  token, every structural alternative — and grows accordingly. The
+  UBL grammar was both the most expensive of the three to upload and,
+  as part two showed, too large for this environment to execute at
+  all. The egress direction never had to confront that ceiling, because
+  compressing already-valid XML through a stylesheet doesn't carry the
+  same grammar-size dependency that parsing compressed text back into
+  XML does.
+
 ## A caution belonging to this story
 
-The reliability shown here — schema-valid XML synthesized correctly,
-compressed correctly via the user's own stylesheet, and (on the user's
-side) expanded back without loss — rests on the LLM actually being
-able to retrieve and run a real XSLT processor and a real schema
-validator against the user's own code, rather than asking the LLM to
-narrate or approximate what that code does. Not every LLM, and not
-every environment an LLM runs in, has that retrieval-and-execution
-capability available, or applies it as a matter of course rather than
-answering directly from training. A user relying on this approach
-should confirm that whatever LLM and environment they are using
-actually executed the supplied schema and stylesheet — and didn't
-simply produce text that resembles what it might output.
+The reliability shown in part one — schema-valid XML synthesized
+correctly, compressed correctly via the user's own stylesheet, and
+(on the user's side) expanded back without loss — rests on the LLM
+actually being able to retrieve and run a real XSLT processor and a
+real schema validator against the user's own code, rather than asking
+the LLM to narrate or approximate what that code does. Not every LLM,
+and not every environment an LLM runs in, has that
+retrieval-and-execution capability available, or applies it as a
+matter of course rather than answering directly from training. A user
+relying on this approach should confirm that whatever LLM and
+environment they are using actually executed the supplied schema and
+stylesheet — and didn't simply produce text that resembles what it
+might output.
 
-## Compression observed (XML bytes vs. short-text bytes)
+Part two adds a second, more concrete caution to that general one:
+even granted genuine retrieval-and-execution capability, the
+environment the LLM runs in has finite resources, and a real iXML
+grammar can exceed them well short of any wall-clock timeout. The UBL
+result above is not a hypothetical — it is a measured, reproducible
+failure in one specific environment, at one specific point on the
+spectrum from an 8KB toy grammar to an 887KB production one. A user
+planning to rely on an LLM running ingress for a large or complex
+vocabulary should not assume success just because a smaller-grammar
+case succeeded; the failure mode here was abrupt (an exhausted heap)
+rather than gradual, so there is little warning between "comfortably
+within capacity" and "fails outright" as grammar size grows.
+
+## Compression observed in part one (XML bytes vs. short-text bytes)
 
 The "XML bytes" column below reflects the internal working artifact,
 never returned to the user. It is shown only to quantify the
 compression the user received by getting back compressed text
-instead.
+instead. This table covers part one only; part two's three
+vocabularies are too few and too disparate in size to support a
+similar table, and its result was about whether ingress completed at
+all, not how much it compressed.
 
 | file | XML bytes | short-text bytes | ratio |
 |---|---|---|---|
@@ -167,7 +269,7 @@ scenario, since XML's angle brackets and closing tags tend to
 tokenize less efficiently than the compressed notation's plain
 delimiters — a separate, larger effect this table doesn't measure.
 
-## The prompt that produced the twelve recipes
+## Part one's prompt: what produced the twelve recipes
 
 The synthesis step (point 1 above) was requested of the LLM, in the
 conversation that produced this scenario, as follows:
@@ -191,7 +293,7 @@ edge cases (rather than either uniformly simple or uniformly
 adversarial), and the short-label compressed form only (rather than
 showing both long-label and short-label renditions side by side).
 
-## The script that expanded the results back to XML
+## Part one's script: what expanded the results back to XML
 
 [`llm-scenario.sh`](llm-scenario.sh) is the script that ran the
 expansion, once per compressed file, on the user's side:
@@ -226,7 +328,43 @@ calls [`../recipe/one-recipe.bat`](../recipe/one-recipe.bat) once per compressed
 file, mirroring [`llm-scenario.sh`](llm-scenario.sh)'s call to [`../recipe/one-recipe.sh`](../recipe/one-recipe.sh), with
 explicit `errorlevel` checking after each call.
 
+## Part two's method: how the LLM ran ingress itself
+
+Unlike part one, part two's three test cases were not pre-staged as
+files in this repository — the grammar, stylesheet, and compressed
+text for each were supplied directly in a follow-up conversation, and
+the LLM ran the conversion live rather than the user running a script
+locally. For each vocabulary, the LLM:
+
+1. retrieved its own copy of Coffeepot and Saxon (the same jars used
+   throughout this repository, fetched from this project's own GitHub
+   repository rather than installed by the user),
+2. ran Coffeepot directly — `java -Xss16m -jar coffeepot.jar -i
+   <compressed-text> -g <grammar.ixml> -o <intermediate.xml>
+   --mark-ambiguities --input-newline` — against the supplied grammar
+   and compressed text,
+3. ran Saxon directly — `java -cp saxonhe.jar net.sf.saxon.Transform
+   -s:<intermediate.xml> -xsl:<ixml2xml-stylesheet> -o:<result.xml>` —
+   against the Coffeepot output, and
+4. validated the result against the relevant schema where one was
+   available (the recipe case only; PubMed and UBL were tested for
+   successful, well-formed conversion rather than schema validation).
+
+For the UBL case, after the default JVM heap (~1GB) failed, the LLM
+retried twice more with `-Xmx3200m` and then `-Xmx3500m` — close to
+the entire memory available in that conversation's execution
+environment — before concluding the grammar could not be processed
+there. No files from part two's three test cases are included in this
+directory; the conversation transcript and the LLM's reported timings
+and outcomes are the only record of that work. A reader wanting to
+reproduce part two would need the PubMed and UBL grammars and
+stylesheets from elsewhere in this project (or the UBL subproject) and
+a compressed-text instance to test against.
+
 ## Manifest
+
+This manifest covers part one's files only, all of which live in this
+directory. Part two produced no files here; see the note above.
 
 [`README.md`](README.md)
 - this file
@@ -257,5 +395,12 @@ explicit `errorlevel` checking after each call.
 - the XML recovered by expanding each `.short.txt` file through
   `llm-scenario.sh`, closing the round trip
 
+[`recipeWaffles.txt`](recipeWaffles.txt)
+- a test recipe written for ingress to the LLM to convert to XML in its sandbox before using the XML stack
 
-*Editor's note: Claude was prompted to create the initial version of this post-mortem as it knew the details of what it was doing as part of the experiment.*
+[`recipeWaffles.xml`](recipeWaffles.xml)
+- the result of the test exported on request from the LLM
+
+*Editor's note: Claude was prompted to create the initial version of
+this post-mortem as it knew the details of what it was
+doing as part of the experiment.*
