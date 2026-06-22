@@ -9,8 +9,6 @@
                 expand-text="yes"
                 version="3.0">
 
-<xsl:include href="Crane-reportCoffeepotErrors.xsl"/>
-
 <xst:doc info="https://GitHub.com/CraneSoftwrights/Crane-txt2xml"
         filename="Crane-ixml2xml.xsl" vocabulary="DocBook">
   <xst:title>Convert the iXML document into a raw XML document</xst:title>
@@ -19,6 +17,8 @@
     not vocabulary specific.
   </para>
 </xst:doc>
+
+<xsl:include href="Crane-reportCoffeepotErrors.xsl"/>
 
 <!--========================================================================-->
 <xst:doc>
