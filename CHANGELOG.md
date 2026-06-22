@@ -8,8 +8,9 @@ Latest release: [![Latest release](https://img.shields.io/github/v/release/Crane
 
 ---
 
-### [v0.0.7] - 2026-06-22
+### [v0.0.7 - v.0.0.8] - 2026-06-22
 - rewrite experimentation and documentation with new revelations on LLM ingress due to the LLM sandbox
+- polish the XSLT documentation
 
 ### [v0.0.6] – 2026-06-21
 - tweak link for better reader experience
