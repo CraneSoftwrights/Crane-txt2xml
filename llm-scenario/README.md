@@ -1,17 +1,20 @@
 # Scenario: LLM egress and ingress of structured content as compressed text
 
 This directory is a post-mortem of a completed experiment, later
-extended with a second round of testing in a follow-up conversation.
+extended with a second round of testing in a follow-up conversation,
+engaging with an LLM equipped with a real execution environment in
+its own sandbox that executes code supplied by the user.
 Together they tell the story of a user who needs a high volume of
-structured results from an LLM, and who is concerned about the token
+structured results in and out of an LLM, and who is concerned about the token
 cost of getting that structure into and out of XML. The scenario
 shows both directions: how the Crane-txt2xml environment lets a user
-ask the LLM for a *compressed* text notation instead of XML on
-egress — at a fraction of the token cost — and, separately, how an
-LLM equipped with a real execution environment can run the *ingress*
-side of the same toolchain itself, parsing compressed text back into
-XML with the user's own iXML grammar and Coffeepot, rather than only
-ever producing or consuming XML directly.
+ask an LLM to run schema validation and the user's own
+Extensible Stylesheet Language Transformations (XSLT)
+and Saxon for a *compressed* text notation instead of XML on
+egress and, separately, how an LLM can run the *ingress*
+side of the same toolchain itself, parsing compressed text into
+XML with the user's own Invisible XML (iXML) grammar and Coffeepot, rather than only
+ever producing or consuming XML directly. Both at a fraction of the token cost.
 
 ![Experimental flow](llm-flow.png)
 

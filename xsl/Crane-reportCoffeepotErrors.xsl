@@ -243,6 +243,12 @@
   </xsl:choose>
 </xsl:template>
 
+<xst:template>
+  <para>
+    Indent the given XML structure simply and expose the content and
+    attributes simply without regard for escape mechanisms or round-tripping.
+  </para>
+</xst:template>
 <xsl:template mode="c:xml2txtSimple" match="*">
   <xsl:if test="parent::*"><xsl:text>&#xa;</xsl:text></xsl:if>
   <xsl:for-each select="ancestor::*"><xsl:text>  </xsl:text></xsl:for-each>
