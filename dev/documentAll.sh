@@ -21,6 +21,7 @@ ls -la $REPO/utilities/saxonhe/saxonhe.jar
 echo \(note that SXWN9040 is innocuous and inevitable with recent design decisions by Saxonica\)
 find "$REPO" \
   -name xslstyle -prune \
+  -name Crane-txt2xml -prune \
   -o \( -name '*.xsl' ! -name 'Crane-recipe2ixml.xsl' ! -name 'Crane-reportCoffeepotErrors.xsl' \
     -exec sh -c '
       file=$1
@@ -31,8 +32,8 @@ find "$REPO" \
 echo
 echo These files have inconsistencies that need to be addressed:
 find "$REPO" \
-  -name xslstyle -prune \
-  -o \( -name '*.xsl' \
-    -exec grep -l Inconsistencies {} \; \)
+  \( -name utilities -o -name xslstyle \) -prune \
+  -o \( -name '*.html' -o -name '*.xsl' \) \
+  -exec grep -l Inconsistencies {} \;
 echo End of list of files with inconsistencies
 echo Remember that the SXWN9040 errors are innocuous ... would love to avoid them but I haven\'t the time to update the 22-year-old files
